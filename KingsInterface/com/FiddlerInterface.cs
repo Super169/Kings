@@ -13,7 +13,7 @@ namespace KingsInterface
         private const int FIDDLER_PORT = 8899;
         public static bool isSysProxy { get; private set; } = false;
 
-        private static void ConfigFiddler(string appName)
+        public static void ConfigFiddler(string appName)
         {
             Fiddler.FiddlerApplication.SetAppDisplayName(appName);
 

@@ -12,7 +12,7 @@ using Fiddler;
 
 namespace KingsInterface
 {
-    static class KingsMonitor
+    public static class KingsMonitor
     {
         static List<KingsSocketMonitor> monitorList = new List<KingsSocketMonitor>();
 
@@ -26,7 +26,7 @@ namespace KingsInterface
         public delegate void UpdateUiEventHandler(string info);
         static event UpdateUiEventHandler updateUiEventHandler;
 
-        public static bool Start()
+        public static bool Start(string appName)
         {
             monitorList.Clear();
             IPAddress[] hosts = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
@@ -47,17 +47,20 @@ namespace KingsInterface
             }
 
             // Start Fiddler before starting the monitor, otherwise, it may cause problem when traffic comes before not all monitors started.
+            com.ConfigFiddler(appName);
             com.Startup(false);
+
+            int monitorCnt = 0;
 
             foreach (KingsSocketMonitor monitor in monitorList)
             {
 #if CONSOLE_DEBUG
                 Console.WriteLine("Start monitor on " + monitor.ip());
 #endif
-                monitor.Start();
+                if (monitor.Start()) monitorCnt++;
             }
 
-            return true;
+            return (monitorCnt > 0);
         }
 
 

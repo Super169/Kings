@@ -43,8 +43,9 @@ namespace KingsInterface.monitor
             return this.ipAddress.ToString();
         }
 
-        public void Start()
+        public bool Start()
         {
+            bool socketReady = false;
             if (monitor_Socket == null)
             {
                 try
@@ -61,14 +62,19 @@ namespace KingsInterface.monitor
                     monitor_Socket.Bind(new IPEndPoint(ipAddress, 0));
                     monitor_Socket.IOControl(SIO_RCVALL, BitConverter.GetBytes((int)1), null);
                     monitor_Socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
+                    socketReady = true;
                 }
                 catch (Exception e)
                 {
-                    monitor_Socket.Close();
+                    if (monitor_Socket != null)
+                    {
+                        monitor_Socket.Close();
+                    }
                     monitor_Socket = null;
                     Console.WriteLine(e.ToString());
                 }
             }
+            return socketReady;
         }
 
         public void Stop()
