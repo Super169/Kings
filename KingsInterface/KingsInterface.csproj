@@ -53,6 +53,7 @@
     <Compile Include="action\Commands.cs" />
     <Compile Include="com\DataExtraction.cs" />
     <Compile Include="com\ServerCommnization.cs" />
+    <Compile Include="data\GameAccount.cs" />
     <Compile Include="data\LoginInfo.cs" />
     <Compile Include="data\PacketKey.cs" />
     <Compile Include="data\RequestReturnObject.cs" />

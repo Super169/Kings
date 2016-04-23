@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KingsTester"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="大重帝輔助測試工具" Height="768" Width="1024">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600*" MinWidth="400"/>
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <TextBox x:Name="txtInfo" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*" MinHeight="90" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="600*" MinHeight="200" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView x:Name="lvAccounts" Margin="2,2,2,2">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding serverTitle}"/>
+                            <GridViewColumn Header="主公名稱" Width="110"  DisplayMemberBinding="{Binding nickName}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
+            <Grid Grid.Row="2">
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

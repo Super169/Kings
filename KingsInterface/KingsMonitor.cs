@@ -20,11 +20,11 @@ namespace KingsInterface
         static Object accountsLocker = new Object();
 
         // Propagate to parent handler when new sid is detected  
-        public delegate void NewSidEventHandler(string server, string sid, LoginInfo li, HTTPRequestHeaders oH);
-        static event NewSidEventHandler newSidEventHandler;
+        public delegate void NewSidEventHandler(LoginInfo li, HTTPRequestHeaders oH);
+        public static event NewSidEventHandler newSidEventHandler;
 
-        public delegate void UpdateUiEventHandler(string info);
-        static event UpdateUiEventHandler updateUiEventHandler;
+        public delegate void NotificationEventHandler(string info);
+        public static event NotificationEventHandler notificationEventHandler;
 
         public static bool Start(string appName)
         {
@@ -134,25 +134,26 @@ namespace KingsInterface
             data.LoginInfo li = action.Login_login(oH, sid);
             if (!li.ready) return;
 
+            li.server = server;
             UpdateUI(string.Format("{0} | {1} - {2}", li.account, li.serverTitle, li.nickName));
-            NewSid(server, sid, li, oH);
+            NewSid(li, oH);
 
         }
 
 
-        private static void NewSid(string server, string sid, LoginInfo li, HTTPRequestHeaders oH)
+        private static void NewSid(LoginInfo li, HTTPRequestHeaders oH)
         {
             if (newSidEventHandler != null)
             {
-                newSidEventHandler(server, sid, li, oH);
+                newSidEventHandler(li, oH);
             }
         }
 
         private static void UpdateUI(string info)
         {
-            if (updateUiEventHandler != null)
+            if (notificationEventHandler != null)
             {
-                updateUiEventHandler(info);
+                notificationEventHandler(info);
             }
         }
 
