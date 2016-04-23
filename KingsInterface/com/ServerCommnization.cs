@@ -9,9 +9,9 @@ namespace KingsInterface
     static partial class com
     {
 
-        public static requestReturnObject SendRequest(HTTPRequestHeaders oH, string requestText)
+        public static RequestReturnObject SendRequest(HTTPRequestHeaders oH, string requestText)
         {
-            requestReturnObject rro = new requestReturnObject();
+            RequestReturnObject rro = new RequestReturnObject();
             rro.success = false;
             rro.msg = "";
             rro.session = null;
@@ -48,11 +48,11 @@ namespace KingsInterface
             return rro;
         }
 
-        public static requestReturnObject SendGenericRequest(HTTPRequestHeaders oH, string sid, string act, bool addSId = true, string body = null)
+        public static RequestReturnObject SendGenericRequest(HTTPRequestHeaders oH, string sid, string act, bool addSId = true, string body = null)
         {
             dynamic json;
             string requestText = "";
-            requestReturnObject rro;
+            RequestReturnObject rro;
 
             try
             {
@@ -65,7 +65,7 @@ namespace KingsInterface
             }
             catch (Exception ex)
             {
-                rro = new requestReturnObject();
+                rro = new RequestReturnObject();
                 rro.success = false;
                 rro.msg = ex.Message;
                 rro.session = null;

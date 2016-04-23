@@ -9,12 +9,39 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*" MinWidth="400"/>
+            <ColumnDefinition Width="2" />
             <ColumnDefinition Width="250" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <TextBox x:Name="txtInfo" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*" MinHeight="100" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="600*" MinHeight="200" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBox x:Name="txtInfo" Margin="2,2,2,2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True"/>
+            </Grid>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
+            <Grid Grid.Row="2">
+                <TabControl >
+                    <TabItem Header="Result Text">
+                        <TextBox x:Name="txtResult" Margin="2,2,2,2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True"/>
+                    </TabItem>
+                    <TabItem Header="Result Table">
+                        <ListView x:Name="lvResult" Margin="2">
+                            <ListView.View>
+                                <GridView x:Name="gvResult" >
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </TabItem>
+                </TabControl>
+
+            </Grid>
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="#FFE2E1E1">
+        </Grid>
+        <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90*" MinHeight="90" />
                 <RowDefinition Height="5" />
@@ -23,7 +50,7 @@
             <Grid Grid.Row="0">
                 <ListView x:Name="lvAccounts" Margin="2,2,2,2">
                     <ListView.View>
-                        <GridView>
+                        <GridView >
                             <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding serverTitle}"/>
                             <GridViewColumn Header="主公名稱" Width="110"  DisplayMemberBinding="{Binding nickName}"/>
                         </GridView>
@@ -32,6 +59,7 @@
             </Grid>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
             <Grid Grid.Row="2">
+                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,2,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
     </Grid>

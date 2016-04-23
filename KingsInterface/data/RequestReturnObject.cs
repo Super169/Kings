@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.data
 {
-    public struct requestReturnObject
+    public struct RequestReturnObject
     {
         public bool success;
         public string msg;
