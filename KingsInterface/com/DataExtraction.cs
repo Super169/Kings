@@ -38,7 +38,8 @@ namespace KingsInterface
 
         public static string GetResponseText(Session oS)
         {
-            return Encoding.UTF8.GetString(oS.responseBodyBytes);
+            string responseText = Encoding.UTF8.GetString(oS.responseBodyBytes);
+            return Microsoft.VisualBasic.Strings.StrConv(responseText, Microsoft.VisualBasic.VbStrConv.TraditionalChinese, 0);
         }
 
         public static dynamic getJsonFromResponse(string responseText, bool cleanUp = true)
