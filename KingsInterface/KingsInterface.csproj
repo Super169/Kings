@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="action\SignInReward.cs" />
     <Compile Include="action\Hero.cs" />
     <Compile Include="action\Login.cs" />
     <Compile Include="action\Commands.cs" />

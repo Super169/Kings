@@ -6,7 +6,7 @@ namespace KingsInterface
 {
     public partial class action
     {
-        public static LoginInfo Login_login(HTTPRequestHeaders oH, string sid)
+        public static LoginInfo goGetAccountInfo(HTTPRequestHeaders oH, string sid)
         {
             LoginInfo info = new LoginInfo() { ready = false, sid = sid };
             string sBody = string.Format("{{\"type\":\"WEB_BROWSER\", \"loginCode\":\"{0}\"}}", sid);

@@ -30,12 +30,13 @@
                     <TabItem Header="Result Table">
                         <ListView x:Name="lvResult" Margin="2">
                             <ListView.View>
-                                <GridView x:Name="gvResult" >
-                                </GridView>
+                                <GridView x:Name="gvResult" />
                             </ListView.View>
                         </ListView>
                     </TabItem>
                 </TabControl>
+
+                <CheckBox x:Name="checkBox" Content="Word Warp" HorizontalAlignment="Right" Height="16" VerticalAlignment="Top" Margin="0,4,6,0" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
 
             </Grid>
         </Grid>
@@ -59,7 +60,44 @@
             </Grid>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
             <Grid Grid.Row="2">
-                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,2,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cboAction" Margin="2,2,2,0" VerticalAlignment="Top">
+                    <ComboBoxItem Content="BossWar.bossInfo | 神將無雙 資料"/>
+                    <ComboBoxItem Content="BossWar.enterWar | 神將無雙 進入戰場"/>
+                    <ComboBoxItem Content="BossWar.leaveWar | 神將無雙 離開戰場"/>
+                    <ComboBoxItem Content="BossWar.pk | 神將無雙 戰前切磋"/>
+                    <ComboBoxItem Content="Campaign.eliteBuyTime"/>
+                    <ComboBoxItem Content="Campaign.fightNext"/>
+                    <ComboBoxItem Content="Campaign.getLeftTimes"/>
+                    <ComboBoxItem Content="Campaign.getTrialsInfo"/>
+                    <ComboBoxItem Content="Campaign.nextEnemies"/>
+                    <ComboBoxItem Content="Campaign.quitCampaign"/>
+                    <ComboBoxItem Content="Email.openInBox"/>
+                    <ComboBoxItem Content="Hero.getConvenientFormations"/>
+                    <ComboBoxItem Content="Hero.getFeastInfo"/>
+                    <ComboBoxItem Content="Hero.getPlayerHeroList"/>
+                    <ComboBoxItem Content="Login.login"/>
+                    <ComboBoxItem Content="Login.serverInfo"/>
+                    <ComboBoxItem Content="Manor.decreeInfo | 軍府資料"/>
+                    <ComboBoxItem Content="Manor.getManorInfo | 封地資料"/>
+                    <ComboBoxItem Content="Patrol.dealPatroledEvent"/>
+                    <ComboBoxItem Content="Patrol.getPatrolInfo"/>
+                    <ComboBoxItem Content="Rank.findAllPowerRank"/>
+                    <ComboBoxItem Content="Shop.shopNextRefreshTime"/>
+                    <ComboBoxItem Content="SignInReward.getInfo | 讀取簽到資料"/>
+                    <ComboBoxItem Content="SignInReward.signIn | 簽到"/>
+                    <ComboBoxItem Content="System.ping"/>
+                    <ComboBoxItem Content="TeamDuplicate.battleStart"/>
+                    <ComboBoxItem Content="TeamDuplicate.duplicateList"/>
+                    <ComboBoxItem Content="TeamDuplicate.teamDuplicateFreeTimes"/>
+                    <ComboBoxItem Content="TurnCardReward.getTurnCardRewards"/>
+                    <ComboBoxItem Content="World.citySituationDetail | cityId - 城市資料"/>
+                    <ComboBoxItem Content="World.getAllTransportingUnits"/>
+                    <ComboBoxItem Content="World.worldSituation | 地圖全城市資料"/>
+                </ComboBox>
+                <Button x:Name="btnGoAction" Content="執行指令" Margin="173,29,2,0" VerticalAlignment="Top" Click="btnGoAction_Click" />
+                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,53,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
+                <Button x:Name="btnSignIn" Content="簽到" HorizontalAlignment="Left" Margin="87,53,0,0" VerticalAlignment="Top" Width="75" Click="btnSignIn_Click"/>
+                <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,32,0,0" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
     </Grid>

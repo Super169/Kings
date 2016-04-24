@@ -6,7 +6,7 @@ using System.Web.Helpers;
 
 namespace KingsInterface
 {
-    static partial class com
+    public static partial class com
     {
 
         public static RequestReturnObject SendRequest(HTTPRequestHeaders oH, string requestText)

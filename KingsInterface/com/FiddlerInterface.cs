@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface
 {
-    static partial class com
+    public static partial class com
     {
         private const int FIDDLER_PORT = 8899;
         public static bool isSysProxy { get; private set; } = false;

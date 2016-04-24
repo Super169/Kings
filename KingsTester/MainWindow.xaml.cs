@@ -129,35 +129,6 @@ namespace KingsTester
             return oGA;
         }
 
-        private void btnHeroList_Click(object sender, RoutedEventArgs e)
-        {
-            txtResult.Text = "";
-            GameAccount oGA = GetSelectedAccount();
-            if (oGA == null) return;
-
-            List<HeroInfo> heroList = action.Hero_getPlayerHeroList(oGA.currHeader, oGA.sid);
-            if (heroList == null) return;
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach(HeroInfo hi in heroList)
-            {
-                sb.Append(string.Format("{0} : {1} : {2} : {3} : {4} : {5} : {6} : {7} : {8} : {9} : {10} : {11}\n", 
-                          hi.idx, hi.nm, hi.army, hi.lv, hi.power, hi.cfd, hi.intl, hi.strg, hi.chrm, hi.attk, hi.dfnc, hi.spd));
-            }
-            txtResult.Text = sb.ToString();
-
-
-            gvResult.Columns.Clear();
-            addResultColumn("序號", 30, "idx");
-            addResultColumn("英雄名稱", 80, "nm");
-            addResultColumn("兵種", 60, "army");
-            addResultColumn("等級", 30, "lv");
-            addResultColumn("戰力", 60, "power");
-            lvResult.ItemsSource = heroList;
-
-        }
-
         private void addResultColumn(string header, int width, string binding)
         {
             GridViewColumn gvc = new GridViewColumn();
@@ -179,6 +150,114 @@ namespace KingsTester
             gvResult.Columns.Add(gvc);
         }
 
+        private void btnGoAction_Click(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = "";
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+            string sAction = cboAction.Text.Split('|')[0].Trim();
+            string sBody = null;
+            string result = "";
+            switch (sAction)
+            {
+                case "BossWar.bossInfo":
+                case "BossWar.enterWar":
+                case "BossWar.leaveWar":
+                case "BossWar.pk":
+                case "Campaign.eliteBuyTime":
+                case "Campaign.fightNext":
+                case "Campaign.getLeftTimes":
+                case "Campaign.getTrialsInfo":
+                case "Campaign.nextEnemies":
+                case "Campaign.quitCampaign":
+                case "Email.openInBox":
+                case "Hero.getFeastInfo":
+                case "Hero.getConvenientFormations":
+                case "Hero.getPlayerHeroList":
+                case "Login.serverInfo":
+                case "Manor.decreeInfo":
+                case "Manor.getManorInfo":
+                case "Patrol.getPatrolInfo":
+                case "Rank.findAllPowerRank":
+                case "Shop.shopNextRefreshTime":
+                case "SignInReward.getInfo":
+                case "SignInReward.signIn":
+                case "TeamDuplicate.battleStart":
+                case "TeamDuplicate.duplicateList":
+                case "TeamDuplicate.teamDuplicateFreeTimes":
+                case "TurnCardReward.getTurnCardRewards":
+                case "World.getAllTransportingUnits":
+                case "World.worldSituation":
+                    showActionResult(action.goGenericAction(oGA.currHeader, oGA.sid, sAction));
+                    break;
+                case "Login.login":
+                    sBody = "{\"type\":\"WEB_BROWSER\",\"loginCode\":\"" + oGA.sid + "\"}";
+                    showActionResult(action.goGenericAction(oGA.currHeader, oGA.sid, sAction, false, sBody));
+                    break;
+                case "System.ping":
+                    TimeSpan t = DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1);
+                    Int64 jsTime = (Int64)(t.TotalMilliseconds + 0.5);
+                    sBody = "{\"clientTime\":\"" + jsTime.ToString() + " \"}";
+                    showActionResult(action.goGenericAction(oGA.currHeader, oGA.sid, sAction, true, sBody));
+                    break;
+                default:
+                    txtResult.Text = string.Format("指令 {0} 尚未支援", sAction);
+                    break;
+            }
+        }
 
+        private void showActionResult(string result)
+        {
+            if (cbxCleanUp.IsChecked == true) result = com.CleanUpResponse(result);
+            txtResult.Text = result;
+        }
+
+
+        private void btnHeroList_Click(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = "";
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+
+            List<HeroInfo> heroList = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+            if (heroList == null) return;
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (HeroInfo hi in heroList)
+            {
+                sb.Append(string.Format("{0} : {1} : {2} : {3} : {4} : {5} : {6} : {7} : {8} : {9} : {10} : {11}\n",
+                          hi.idx, hi.nm, hi.army, hi.lv, hi.power, hi.cfd, hi.intl, hi.strg, hi.chrm, hi.attk, hi.dfnc, hi.spd));
+            }
+            txtResult.Text = sb.ToString();
+
+
+            gvResult.Columns.Clear();
+            addResultColumn("序號", 30, "idx");
+            addResultColumn("英雄名稱", 80, "nm");
+            addResultColumn("兵種", 60, "army");
+            addResultColumn("等級", 30, "lv");
+            addResultColumn("戰力", 60, "power");
+            lvResult.ItemsSource = heroList;
+
+        }
+
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            txtResult.Text = "";
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+            txtResult.Text = action.goSignIn(oGA.currHeader, oGA.sid);
+        }
+
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            txtResult.TextWrapping = TextWrapping.Wrap;
+        }
+
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtResult.TextWrapping = TextWrapping.NoWrap;
+        }
     }
 }

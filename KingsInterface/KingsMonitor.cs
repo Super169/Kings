@@ -131,7 +131,7 @@ namespace KingsInterface
                 }
             }
             
-            data.LoginInfo li = action.Login_login(oH, sid);
+            data.LoginInfo li = action.goGetAccountInfo(oH, sid);
             if (!li.ready) return;
 
             li.server = server;

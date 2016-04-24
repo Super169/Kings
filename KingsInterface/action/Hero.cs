@@ -11,7 +11,7 @@ namespace KingsInterface
 {
     public partial class action
     {
-        public static List<HeroInfo> Hero_getPlayerHeroList(HTTPRequestHeaders oH, string sid)
+        public static List<HeroInfo> goGetHerosInfo(HTTPRequestHeaders oH, string sid)
         {
             List<HeroInfo> heroList = new List<HeroInfo>();
             try
@@ -29,7 +29,7 @@ namespace KingsInterface
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 heroList = null;
             }

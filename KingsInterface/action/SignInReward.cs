@@ -10,27 +10,16 @@ namespace KingsInterface
 {
     public partial class action
     {
-        public const string CMD_Login_login = "Login.login";
-
-        public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
-
-        public const string CMD_Player_getProperties = "Player.getProperties";
-
-        public const string CMD_SignInReward_signIn = "SignInReward.signIn";
-
-
-        // Generic method to test specified action
-        public static string goGenericAction(HTTPRequestHeaders oH, string sid, string command, bool addSId = true, string body = null)
+        public static string goSignIn (HTTPRequestHeaders oH, string sid)
         {
             string info = "";
             try
             {
-                RequestReturnObject rro = com.SendGenericRequest(oH, sid, command, addSId, body);
+                RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_signIn);
                 if (rro.success)
                 {
                     info = com.GetResponseText(rro.session);
-                }
-                else
+                } else
                 {
                     info = rro.msg;
                 }
@@ -39,9 +28,9 @@ namespace KingsInterface
             {
                 info = ex.Message;
             }
+
             return info;
         }
-
     }
-
 }
+

@@ -8,7 +8,7 @@ using System.Web.Helpers;
 
 namespace KingsInterface
 {
-    static partial class com
+    public static partial class com
     {
 
         public static string CleanUpResponse(string responseText, int minLength = 7)
