@@ -45,6 +45,10 @@ namespace KingsTester
                 this.Close();
             }
             lvAccounts.ItemsSource = gameAccounts;
+
+            cboAction.IsEnabled = false;
+            btnGoAction.IsEnabled = false;
+
         }
 
         private void OnNewSidHandler(LoginInfo li, HTTPRequestHeaders oH)
