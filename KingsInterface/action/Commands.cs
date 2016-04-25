@@ -20,26 +20,18 @@ namespace KingsInterface
 
 
         // Generic method to test specified action
-        public static string goGenericAction(HTTPRequestHeaders oH, string sid, string command, bool addSId = true, string body = null)
+        public static RequestReturnObject goGenericAction(HTTPRequestHeaders oH, string sid, string command, bool addSId = true, string body = null)
         {
-            string info = "";
+            RequestReturnObject rro;
             try
             {
-                RequestReturnObject rro = com.SendGenericRequest(oH, sid, command, addSId, body);
-                if (rro.success)
-                {
-                    info = com.GetResponseText(rro.session);
-                }
-                else
-                {
-                    info = rro.msg;
-                }
+                rro = com.SendGenericRequest(oH, sid, command, addSId, body);
             }
             catch (Exception ex)
             {
-                info = ex.Message;
+                rro = new RequestReturnObject() { success = false, msg = ex.Message };
             }
-            return info;
+            return rro;
         }
 
     }
