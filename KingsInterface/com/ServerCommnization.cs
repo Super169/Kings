@@ -15,6 +15,7 @@ namespace KingsInterface
             rro.success = false;
             rro.msg = "";
             rro.session = null;
+            rro.requestText = requestText;
 
             // For safety, Fiddler should be started before sendRequest, and it should not start here
             // Othwise, there may have concern on when should Fiddler be shutdown
@@ -45,6 +46,17 @@ namespace KingsInterface
             {
                 rro.msg = ex.Message;
             }
+
+            // Use other try catch after succes to avoid misleading of fail in communization
+            try
+            {
+                rro.responseText = com.GetResponseText(rro.session);
+                rro.responseJson = com.getJsonFromResponse(rro.responseText, true);
+            } catch (Exception ex) {
+                // In this case, communization is still success, but the result may be not a json object
+                rro.msg = ex.Message;
+            }
+
             return rro;
         }
 

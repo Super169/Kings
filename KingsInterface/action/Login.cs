@@ -12,16 +12,13 @@ namespace KingsInterface
             string sBody = string.Format("{{\"type\":\"WEB_BROWSER\", \"loginCode\":\"{0}\"}}", sid);
             RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_Login_login, false, sBody);
             if (!rro.success) return info;
-            dynamic json = com.getJsonFromResponse(rro.session);
-            info.account = json.account;
-            info.serverTitle = json.serverTitle;
-            info.nickName = json.nickName;
-
+            info.account = rro.responseJson.account;
+            info.serverTitle = rro.responseJson.serverTitle;
+            info.nickName = rro.responseJson.nickName;
             rro = com.SendGenericRequest(oH, sid, CMD_Player_getProperties);
             if (!rro.success) return info;
             // only assign the sid here if all data is ready. or should it use other field like isReady?
-            json = com.getJsonFromResponse(rro.session);
-            DynamicJsonArray pvs = (DynamicJsonArray)json.pvs;
+            DynamicJsonArray pvs = (DynamicJsonArray) rro.responseJson.pvs;
             foreach (dynamic j in pvs)
             {
                 if (j.p == "CORPS_NAME") info.CORPS_NAME = j.v;

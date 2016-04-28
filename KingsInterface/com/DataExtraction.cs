@@ -15,6 +15,9 @@ namespace KingsInterface
         {
             if (responseText == null) return null;
 
+            // No need to clearn up for short return
+            if (responseText.Length < 20 && responseText.StartsWith("{")) return responseText;
+
             string jsonString = null;
 
             string[] data = responseText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -36,14 +39,14 @@ namespace KingsInterface
             return jsonString;
         }
 
-        public static string GetResponseText(Session oS)
+        private static string GetResponseText(Session oS)
         {
             string responseText = Encoding.UTF8.GetString(oS.responseBodyBytes);
             return Microsoft.VisualBasic.Strings.StrConv(responseText, Microsoft.VisualBasic.VbStrConv.TraditionalChinese, 0x0804);
             // return responseText;
         }
 
-        public static dynamic getJsonFromResponse(string responseText, bool cleanUp = true)
+        private static dynamic getJsonFromResponse(string responseText, bool cleanUp = true)
         {
             dynamic json = null;
             try
@@ -58,7 +61,7 @@ namespace KingsInterface
             return json;
         }
 
-        public static dynamic getJsonFromResponse(Session oS, bool cleanUp = true)
+        private static dynamic getJsonFromResponse(Session oS, bool cleanUp = true)
         {
             string responseText = GetResponseText(oS);
             return getJsonFromResponse(responseText, cleanUp);

@@ -19,8 +19,7 @@ namespace KingsInterface
                 RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_Hero_getPlayerHeroList);
                 if (rro.success)
                 {
-                    dynamic json = com.getJsonFromResponse(rro.session, true);
-                    DynamicJsonArray heros = json.heros;
+                    DynamicJsonArray heros = rro.responseJson.heros;
 
                     foreach (dynamic hero in heros)
                     {

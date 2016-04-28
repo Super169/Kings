@@ -15,10 +15,17 @@ namespace KingsInterface
             string info = "";
             try
             {
-                RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_signIn);
+                RequestReturnObject rro;
+                rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_getInfo);
                 if (rro.success)
                 {
-                    info = com.GetResponseText(rro.session);
+
+                }
+
+                rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_signIn);
+                if (rro.success)
+                {
+                    info = rro.responseText;
                 } else
                 {
                     info = rro.msg;

@@ -16,6 +16,7 @@ namespace KingsInterface
 
         public const string CMD_Player_getProperties = "Player.getProperties";
 
+        public const string CMD_SignInReward_getInfo = "SignInReward.getInfo";
         public const string CMD_SignInReward_signIn = "SignInReward.signIn";
 
 

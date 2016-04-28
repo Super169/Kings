@@ -225,7 +225,7 @@ namespace KingsTester
             RequestReturnObject rro = action.goGenericAction(oH, sid, command, addSId, body);
             if (rro.success)
             {
-                ShowActionResult(com.GetResponseText(rro.session));
+                ShowActionResult(rro.responseText);
             } else
             {
                 ShowActionResult(rro.msg);
@@ -334,22 +334,21 @@ namespace KingsTester
 
             try
             {
-                dynamic json = com.getJsonFromResponse(rro.session);
-                if (json == null)
+                if (rro.responseJson == null)
                 {
                     ai.msg = "讀取 百步穿楊 資訊失敗\n資料空白";
                     return ai;
                 }
 
-                ai.tRing = json.tRing;
-                ai.arr = json.arr;
-                ai.wind = json.wind;
+                ai.tRing = rro.responseJson.tRing;
+                ai.arr = rro.responseJson.arr;
+                ai.wind = rro.responseJson.wind;
                 ai.success = true;
             }
             catch (Exception ex)
             {
                 ai.msg = "讀取 百步穿楊 資訊失敗\n" + ex.Message;
-                ai.msg += "\n\n" + com.GetResponseText(rro.session);
+                ai.msg += "\n\n" + rro.responseText;
             }
             return ai;
         }
@@ -376,24 +375,23 @@ namespace KingsTester
 
             try
             {
-                dynamic json = com.getJsonFromResponse(rro.session);
-                if (json == null)
+                if (rro.responseJson == null)
                 {
                     ai.msg = "讀取穿擊結果失敗\n資料空白";
                     return false;
                 }
 
-                ai.atX = json.x;
-                ai.atY = json.y;
-                ai.ring = json.ring;
-                ai.nWind = json.nWind;
+                ai.atX = rro.responseJson.x;
+                ai.atY = rro.responseJson.y;
+                ai.ring = rro.responseJson.ring;
+                ai.nWind = rro.responseJson.nWind;
                 txtResult.Text += string.Format("擊中: ( {0} , {1} ), 取得 {2} 環, 下次風力為 {3}", ai.atX, ai.atY, ai.ring, ai.nWind);
                 ai.success = true;
             }
             catch (Exception ex)
             {
                 ai.msg = "讀取穿擊結果失敗\n" + ex.Message;
-                ai.msg += "\n\n" + com.GetResponseText(rro.session);
+                ai.msg += "\n\n" + rro.responseText;
             }
 
             return ai.success;
