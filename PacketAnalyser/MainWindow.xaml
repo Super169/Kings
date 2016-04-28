@@ -20,8 +20,8 @@
                     <RowDefinition Height="300*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Label x:Name="label" Content="Packets read from data file:" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lblPacketCount" Content="999" Margin="0,4,2,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="119"/>
+                    <Label x:Name="label" Content="Packets:" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lblPacketCount" Content="999" Margin="0,4,148,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="51"/>
                     <ListView x:Name="lvPackets" Margin="2,30,2,2" SelectionChanged="lvPackets_SelectionChanged">
                         <ListView.View>
                             <GridView>
@@ -30,6 +30,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button x:Name="btnFilter" Content="Filter Packets" HorizontalAlignment="Left" Margin="155,6,0,0" VerticalAlignment="Top" Width="96" Click="btnFilter_Click"/>
                 </Grid>
                 <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
                 <Grid Grid.Row="2">
