@@ -60,6 +60,8 @@ namespace PacketDump
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             btnStart.IsEnabled = false;
+            btnEnd.IsEnabled = true;
+            btnClose.IsEnabled = false;
             MyMonitor.notificationEventHandler += new NotificationEventHandler(this.onNotificationHandler);
             MyMonitor.newPacketEventHandler += new NewPacketEventHandler(this.onNewPacketHandler);
             MyMonitor.Start();
@@ -67,6 +69,7 @@ namespace PacketDump
 
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
+            btnEnd.IsEnabled = false;
             MyMonitor.Stop();
             // wait 1 seconds for all socket event completed
             Thread.Sleep(1000);
@@ -86,6 +89,7 @@ namespace PacketDump
             {
                 fs.Close();
             }
+            btnClose.IsEnabled = true;
         }
 
         private void onNotificationHandler(string info)
@@ -104,7 +108,21 @@ namespace PacketDump
                 UpdateInfo(packets.Count.ToString() + " packets received");
             }
         }
-        
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            this.Topmost = true;
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.Topmost = true;
+        }
     }
 
 }

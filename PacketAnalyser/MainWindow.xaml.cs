@@ -79,6 +79,27 @@ namespace PacketAnalyer
 
         }
 
+
+        private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            List<MyPacket> filterPackets = packets;
+            packets = new List<MyPacket>();
+            for (int i = 0; i < filterPackets.Count; i++)
+            {
+                MyPacket p = filterPackets.ElementAt(i);
+                string s = Encoding.UTF8.GetString(p.data);
+                if (s.Contains(".icantw.com"))
+                {
+                    packets.Add(p);
+                }
+            }
+            lvPackets.ItemsSource = packets;
+            lvPackets.SelectedIndex = -1;
+            headers.Clear();
+            txtHexDump.Text = "";
+            txtStrDump.Text = "";
+        }
+
         private void lvPackets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MyPacket p = (MyPacket)lvPackets.SelectedItem;
@@ -138,9 +159,6 @@ namespace PacketAnalyer
 
             src_IPAddress = new IPAddress(BitConverter.ToUInt32(raw, 12));
             des_IPAddress = new IPAddress(BitConverter.ToUInt32(raw, 16));
-
-            headers.Add(new HeaderInfo() { key = "Src. IP", value = src_IPAddress.ToString() });
-            headers.Add(new HeaderInfo() { key = "Des. IP", value = des_IPAddress.ToString() });
 
             if (protocolType == ProtocolType.TCP || protocolType == ProtocolType.UDP)
             {

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PacketDump"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Deactivated="Window_Deactivated" Activated="Window_Activated">
     <Grid>
-        <Button x:Name="btnStart" Content="開始" Margin="0,0,85,10" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnStart_Click"/>
-        <Button x:Name="btnEnd" Content="結束" Margin="0,0,5,10" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="btnEnd_Click"/>
+        <Button x:Name="btnStart" Content="開始" Margin="0,0,170,10" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnStart_Click"/>
+        <Button x:Name="btnEnd" Content="結束" Margin="0,0,90,10" HorizontalAlignment="Right" Width="75" Height="22" VerticalAlignment="Bottom" Click="btnEnd_Click" IsEnabled="False"/>
         <TextBox x:Name="txtInfo" Margin="10,10,10,37" TextWrapping="Wrap"/>
+        <Button x:Name="btnClose" Content="關閉" Margin="0,0,10,10" Click="btnClose_Click" Height="22" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
 
     </Grid>
 </Window>
