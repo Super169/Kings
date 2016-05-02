@@ -13,5 +13,9 @@ namespace PacketDump
     /// </summary>
     public partial class App : Application
     {
+        private void ApplicationExit(object sender, ExitEventArgs e)
+        {
+            MyMonitor.Stop();
+        }
     }
 }

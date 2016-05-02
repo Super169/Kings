@@ -28,7 +28,7 @@ namespace PacketDump
         private IPAddress ipAddress;
         public string ip { get; set; }
         private byte[] buffer;
-
+        
         public event NewPacketEventHandler newPacketEventHandler;
         public delegate void NewPacketEventHandler(MySocketMonitor monitor, MyPacket p);
 
@@ -66,14 +66,22 @@ namespace PacketDump
                 }
                 catch (Exception e)
                 {
-                    monitor_Socket.Close();
-                    monitor_Socket = null;
+                    if (monitor_Socket != null)
+                    {
+                        monitor_Socket.Close();
+                        monitor_Socket = null;
+                    }
                     Console.WriteLine(e.ToString());
                     return false;
                 }
                 return true;
             }
             return false;
+        }
+
+        public bool IsReady()
+        {
+            return (monitor_Socket != null);
         }
 
         public void Stop()

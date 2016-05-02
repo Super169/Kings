@@ -58,8 +58,11 @@ namespace PacketDump
         {
             foreach (MySocketMonitor monitor in monitorList)
             {
-                monitor.Stop();
-                UpdateUI("停止監察 " + monitor.ip );
+                if (monitor.IsReady())
+                {
+                    monitor.Stop();
+                    UpdateUI("停止監察 " + monitor.ip);
+                }
             }
             return true;
         }
