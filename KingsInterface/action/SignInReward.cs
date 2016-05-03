@@ -16,13 +16,13 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro;
-                rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_getInfo);
+                rro = go_SignInReward_getInfo(oH, sid);
                 if (rro.success)
                 {
 
                 }
 
-                rro = com.SendGenericRequest(oH, sid, CMD_SignInReward_signIn);
+                rro = go_SignInReward_signIn(oH, sid);
                 if (rro.success)
                 {
                     info = rro.responseText;

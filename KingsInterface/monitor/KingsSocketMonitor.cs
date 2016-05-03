@@ -63,6 +63,10 @@ namespace KingsInterface.monitor
                     monitor_Socket.IOControl(SIO_RCVALL, BitConverter.GetBytes((int)1), null);
                     monitor_Socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
                     socketReady = true;
+#if CONSOLE_DEBUG
+                    Console.WriteLine("Start monitor on " + ip());
+#endif
+
                 }
                 catch (Exception e)
                 {
@@ -71,7 +75,7 @@ namespace KingsInterface.monitor
                         monitor_Socket.Close();
                     }
                     monitor_Socket = null;
-                    Console.WriteLine(e.ToString());
+                    Console.WriteLine("Fail starting monitor on " + ip() + "\n" + e.ToString());
                 }
             }
             return socketReady;
@@ -81,6 +85,9 @@ namespace KingsInterface.monitor
         {
             if (monitor_Socket != null)
             {
+#if CONSOLE_DEBUG
+                Console.WriteLine("Stop monitor on " + ip());
+#endif
                 monitor_Socket.Close();
                 monitor_Socket = null;
             }

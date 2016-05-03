@@ -16,7 +16,7 @@ namespace KingsInterface
             List<HeroInfo> heroList = new List<HeroInfo>();
             try
             {
-                RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_Hero_getPlayerHeroList);
+                RequestReturnObject rro = go_Hero_getPlayerHeroList(oH, sid);
                 if (rro.success)
                 {
                     DynamicJsonArray heros = rro.responseJson.heros;

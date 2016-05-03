@@ -54,9 +54,6 @@ namespace KingsInterface
 
             foreach (KingsSocketMonitor monitor in monitorList)
             {
-#if CONSOLE_DEBUG
-                Console.WriteLine("Start monitor on " + monitor.ip());
-#endif
                 if (monitor.Start()) monitorCnt++;
             }
 
@@ -68,9 +65,6 @@ namespace KingsInterface
         {
             foreach(KingsSocketMonitor monitor in monitorList)
             {
-#if CONSOLE_DEBUG
-                Console.WriteLine("Stop monitor on " + monitor.ip());
-#endif
                 monitor.Stop();
             }
             return true;

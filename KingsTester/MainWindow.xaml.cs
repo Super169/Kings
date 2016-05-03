@@ -222,7 +222,7 @@ namespace KingsTester
 
         private void ShowGenericActionResult(HTTPRequestHeaders oH, string sid, string command, bool addSId = true, string body = null)
         {
-            RequestReturnObject rro = action.goGenericAction(oH, sid, command, addSId, body);
+            RequestReturnObject rro = com.SendGenericRequest(oH, sid, command, addSId, body);
             if (rro.success)
             {
                 ShowActionResult(rro.responseText);
@@ -283,14 +283,26 @@ namespace KingsTester
         {
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
-
-            ArcheryInfo ai = getArcheryInfo(oGA);
-            if (!ai.success)
+            ArcheryInfo ai = null;
+            if (!action.goArcheryShoot(oGA.currHeader, oGA.sid,  ref ai))
             {
-                txtResult.Text = ai.msg;
+                if (ai.returnCode ==  AiReturnCode.NO_ACTIVITY)
+                {
+                    txtResult.Text += "今天沒有百步穿楊";
+                }
+                else if (ai.returnCode == AiReturnCode.COMPLETED)
+                {
+                    txtResult.Text += string.Format("已經再沒有箭可以射了.  現有: {0} 環\n", ai.tRing);
+                }
+                else
+                {
+                    txtResult.Text += ai.msg + "\n";
+                }
                 return;
             }
-            txtResult.Text += string.Format("已取得: {0} 環; 尚有 {1} 次; 風力: {2}\n", ai.tRing, ai.arr, ai.wind);
+
+            txtResult.Text += string.Format("{0}環; {1} 次; 風力: {2}; ({3},{4}) => ({5},{6}) : {7}環\n", 
+                                            ai.tRing, ai.arr, ai.wind, ai.goX, ai.goY, ai.atX, ai.atY, ai.ring);
             if (ai.arr == 0)
             {
                 txtResult.Text += "已經再沒有箭可以射了\n";
@@ -301,57 +313,6 @@ namespace KingsTester
 
         }
 
-        class ArcheryInfo
-        {
-            public bool success { get; set; }
-            public string msg { get; set; }
-            public string body { get; set; }
-            public string requestBody { get; set; }
-            public string responseBody { get; set; }
-            public int tRing { get; set; }
-            public int arr { get; set; }
-            public int wind { get; set; }
-            public int x { get; set;  }
-            public int y { get; set;  }
-            public int atX { get; set;  }
-            public int atY { get; set;  }
-            public int ring { get; set;  }
-            public int nWind { get; set;  }
-        }
-
-        private ArcheryInfo getArcheryInfo(GameAccount oGA)
-        {
-            ArcheryInfo ai = new ArcheryInfo() { success = false };
-            RequestReturnObject rro;
-            string sAction = "Archery.getArcheryInfo";
-            ai.body = "{\"type\":\"NORMAL\"}";
-            rro = action.goGenericAction(oGA.currHeader, oGA.sid, sAction, true, ai.body);
-            if (!rro.success)
-            {
-                ai.msg = "讀取 百步穿楊 資訊失敗\n" + rro.msg;
-                return ai;
-            }
-
-            try
-            {
-                if (rro.responseJson == null)
-                {
-                    ai.msg = "讀取 百步穿楊 資訊失敗\n資料空白";
-                    return ai;
-                }
-
-                ai.tRing = rro.responseJson.tRing;
-                ai.arr = rro.responseJson.arr;
-                ai.wind = rro.responseJson.wind;
-                ai.success = true;
-            }
-            catch (Exception ex)
-            {
-                ai.msg = "讀取 百步穿楊 資訊失敗\n" + ex.Message;
-                ai.msg += "\n\n" + rro.responseText;
-            }
-            return ai;
-        }
 
         private bool goArcheryShoot(GameAccount oGA, ArcheryInfo ai)
         {
@@ -366,7 +327,7 @@ namespace KingsTester
             ai.body = "{\"x\":" + x.ToString() + ",\"y\":" + y.ToString() + ",\"type\":\"NORMAL\"}";
             // txtResult.Text += "Go " + sAction + "\n" + ai.body + "\n";
 
-            rro = action.goGenericAction(oGA.currHeader, oGA.sid, sAction, true, ai.body);
+            rro = com.SendGenericRequest(oGA.currHeader, oGA.sid, sAction, true, ai.body);
             if (!rro.success)
             {
                 txtResult.Text += "\n執行射擊失敗:\n" + rro.msg;

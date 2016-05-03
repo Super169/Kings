@@ -10,6 +10,9 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public const string CMD_Archery_getArcheryInfo = "Archery.getArcheryInfo";
+        public const string CMD_Archery_shoot = "Archery.shoot";
+
         public const string CMD_Login_login = "Login.login";
 
         public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
@@ -18,22 +21,6 @@ namespace KingsInterface
 
         public const string CMD_SignInReward_getInfo = "SignInReward.getInfo";
         public const string CMD_SignInReward_signIn = "SignInReward.signIn";
-
-
-        // Generic method to test specified action
-        public static RequestReturnObject goGenericAction(HTTPRequestHeaders oH, string sid, string command, bool addSId = true, string body = null)
-        {
-            RequestReturnObject rro;
-            try
-            {
-                rro = com.SendGenericRequest(oH, sid, command, addSId, body);
-            }
-            catch (Exception ex)
-            {
-                rro = new RequestReturnObject() { success = false, msg = ex.Message };
-            }
-            return rro;
-        }
 
     }
 

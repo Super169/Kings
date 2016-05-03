@@ -9,8 +9,7 @@ namespace KingsInterface
         public static LoginInfo goGetAccountInfo(HTTPRequestHeaders oH, string sid)
         {
             LoginInfo info = new LoginInfo() { ready = false, sid = sid };
-            string sBody = string.Format("{{\"type\":\"WEB_BROWSER\", \"loginCode\":\"{0}\"}}", sid);
-            RequestReturnObject rro = com.SendGenericRequest(oH, sid, CMD_Login_login, false, sBody);
+            RequestReturnObject rro = go_Login_login(oH, sid);
             if (!rro.success) return info;
             info.account = rro.responseJson.account;
             info.serverTitle = rro.responseJson.serverTitle;

@@ -13,7 +13,7 @@ namespace KingsTester
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Exit(object sender, ExitEventArgs e)
+        private void ApplicationExit(object sender, ExitEventArgs e)
         {
             KingsInterface.KingsMonitor.Stop();
         }

@@ -50,12 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="action\Archery.cs" />
+    <Compile Include="action\_Request.cs" />
     <Compile Include="action\SignInReward.cs" />
     <Compile Include="action\Hero.cs" />
     <Compile Include="action\Login.cs" />
-    <Compile Include="action\Commands.cs" />
+    <Compile Include="action\_Commands.cs" />
     <Compile Include="com\DataExtraction.cs" />
     <Compile Include="com\ServerCommnization.cs" />
+    <Compile Include="data\ArcheryInfo.cs" />
     <Compile Include="data\GameAccount.cs" />
     <Compile Include="data\HeroInfo.cs" />
     <Compile Include="data\LoginInfo.cs" />
