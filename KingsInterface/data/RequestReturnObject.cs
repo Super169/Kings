@@ -10,6 +10,9 @@ namespace KingsInterface.data
     public struct RequestReturnObject
     {
         public bool success;
+        public int ok;
+        public string style;
+        public string prompt;
         public int returnCode;
         public string msg;
         public Session session;

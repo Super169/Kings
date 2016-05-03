@@ -6,12 +6,14 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public delegate void DelegateUpdateInfo(string info);
+
         public static ArcheryInfo getArcheryInfo(HTTPRequestHeaders oH, string sid) {
             ArcheryInfo ai = new ArcheryInfo() { success = false, returnCode = AiReturnCode.NORMAL};
             RequestReturnObject rro = action.go_Archery_getArcheryInfo(oH, sid);
             if (!rro.success)
             {
-                ai.msg = "讀取 百步穿楊 資訊失敗\n" + rro.msg;
+                ai.msg = "讀取 百步穿楊 資訊失敗: " + rro.msg;
                 return ai;
             }
 
@@ -19,12 +21,12 @@ namespace KingsInterface
             {
                 if (rro.responseJson == null)
                 {
-                    ai.msg = "讀取 百步穿楊 資訊失敗\n資料空白";
+                    ai.msg = "讀取 百步穿楊 資訊失敗: 資料空白";
                     return ai;
                 }
-                if (rro.responseJson["style"] == "ERROR")
+                if (rro.style == "ERROR")
                 {
-                    if (rro.responseJson["prompt"] == "ACTIVITY_IS_NOT_OPEN")
+                    if (rro.prompt == PROMPT_ACTIVITY_NOT_OPEN)
                     {
                         ai.returnCode = AiReturnCode.NO_ACTIVITY;
                     } else
@@ -42,8 +44,7 @@ namespace KingsInterface
             }
             catch (Exception ex)
             {
-                ai.msg = "讀取 百步穿楊 資訊失敗\n" + ex.Message;
-                ai.msg += "\n\n" + rro.responseText;
+                ai.msg = "讀取 百步穿楊 資訊失敗: " + ex.Message;
             }
             return ai;
         }
@@ -67,11 +68,10 @@ namespace KingsInterface
             // TODO: Adjust for abs(ai.wind) > 500
             ai.goX = (Math.Abs(ai.wind) < 100 ? 0 : (ai.wind < 0 ? (ai.wind + 100) / -10 : (100 - ai.wind) / 10));
             ai.goY = 11;
-            ai.msg += string.Format("瞄準位置: ( {0} , {1} )\n", ai.goX, ai.goY);
             RequestReturnObject rro = action.go_Archery_shoot(oH, sid, ai.goX, ai.goY);
             if (!rro.success)
             {
-                ai.msg += "\n執行射擊失敗:\n" + rro.msg;
+                ai.msg = "執行射擊失敗: " + rro.msg;
                 return false;
             }
 
@@ -79,22 +79,69 @@ namespace KingsInterface
             {
                 if (rro.responseJson == null)
                 {
-                    ai.msg = "讀取穿擊結果失敗\n資料空白";
+                    ai.msg = "讀取穿擊結果失敗: 資料空白";
                     return false;
                 }
-                ai.atX = rro.responseJson.x;
-                ai.atY = rro.responseJson.y;
-                ai.ring = rro.responseJson.ring;
-                ai.nWind = rro.responseJson.nWind;
-                ai.msg += string.Format("擊中: ( {0} , {1} ), 取得 {2} 環, 下次風力為 {3}", ai.atX, ai.atY, ai.ring, ai.nWind);
-                ai.success = true;
+                if (rro.style == "ERROR")
+                {
+                    ai.returnCode = AiReturnCode.ERROR;
+                    ai.msg = "ERROR: " + rro.responseJson["prompt"];
+                }
+                else
+                {
+                    ai.atX = rro.responseJson.x;
+                    ai.atY = rro.responseJson.y;
+                    ai.ring = rro.responseJson.ring;
+                    ai.nWind = rro.responseJson.nWind;
+                    ai.success = true;
+                }
             }
             catch (Exception ex)
             {
-                ai.msg = "讀取射擊結果失敗\n" + ex.Message;
-                ai.msg += "\n\n" + rro.responseText;
+                ai.msg = "讀取射擊結果失敗: " + ex.Message;
             }
             return ai.success;
+        }
+
+
+        // 現有{0}環; 餘下{1}次; 風力{2}; 目標({3},{4}); 結果({5},{6}); 得{7}環
+        //
+        public static bool goArcheryShootAll(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo)
+        {
+            ArcheryInfo ai;
+            bool returnCode = true;
+            bool goNext = true;
+            do
+            {
+                // Enforce to check archery info before shooting
+                ai = null;
+                goNext = goArcheryShoot(oH, sid, ref ai);
+                if (goNext)
+                {
+                    string info = string.Format("現有{0}環; 餘下{1}次; 風力{2}; 目標({3},{4}); 結果({5},{6}); 得{7}環",
+                                                ai.tRing, ai.arr, ai.wind, ai.goX, ai.goY, ai.atX, ai.atY, ai.ring);
+                    if (updateInfo != null) updateInfo(info);
+                }
+                else
+                {
+                    if (ai.returnCode == AiReturnCode.NO_ACTIVITY)
+                    {
+                        if (updateInfo != null) updateInfo("今天沒有百步穿楊");
+                    }
+                    else if (ai.returnCode == AiReturnCode.COMPLETED)
+                    {
+                        if (updateInfo != null) updateInfo(string.Format("現有: {0} 環; 已經再沒有箭可以射了.", ai.tRing));
+                    }
+                    else
+                    {
+                        if (updateInfo != null) updateInfo(ai.msg);
+                        returnCode = false;
+                    }
+                }
+
+            } while (goNext);
+
+            return returnCode;
         }
 
     }

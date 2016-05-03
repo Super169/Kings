@@ -13,6 +13,7 @@ namespace KingsInterface
         {
             RequestReturnObject rro = new RequestReturnObject();
             rro.success = false;
+            rro.ok = -1;
             rro.msg = "";
             rro.session = null;
             rro.requestText = requestText;
@@ -52,6 +53,11 @@ namespace KingsInterface
             {
                 rro.responseText = com.GetResponseText(rro.session);
                 rro.responseJson = com.getJsonFromResponse(rro.responseText, true);
+                if (rro.responseJson != null) { 
+                    if (rro.responseJson["ok"] != null) rro.ok = (int) rro.responseJson["ok"];
+                    if (rro.responseJson["style"] != null) rro.style = rro.responseJson["style"];
+                    if (rro.responseJson["prompt"] != null) rro.prompt = rro.responseJson["prompt"];
+                }
             } catch (Exception ex) {
                 // In this case, communization is still success, but the result may be not a json object
                 rro.msg = ex.Message;
@@ -79,6 +85,7 @@ namespace KingsInterface
             {
                 rro = new RequestReturnObject();
                 rro.success = false;
+                rro.ok = -1;
                 rro.msg = ex.Message;
                 rro.session = null;
             }

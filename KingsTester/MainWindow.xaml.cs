@@ -46,8 +46,8 @@ namespace KingsTester
             }
             lvAccounts.ItemsSource = gameAccounts;
 
-            cboAction.IsEnabled = false;
-            btnGoAction.IsEnabled = false;
+            cboAction.IsEnabled = true;
+            btnGoAction.IsEnabled = true;
 
         }
 
@@ -101,7 +101,7 @@ namespace KingsTester
             // UpdateInfo(info);
         }
 
-        private void UpdateInfo(string info, bool addTime = true, bool resetText = false)
+        private void UpdateUI(TextBox tb, string info, bool addTime = true, bool resetText = false)
         {
             if (Dispatcher.FromThread(Thread.CurrentThread) == null)
             {
@@ -110,14 +110,26 @@ namespace KingsTester
 
                 Application.Current.Dispatcher.BeginInvoke(
                   System.Windows.Threading.DispatcherPriority.Normal,
-                  (Action)(() => UpdateInfo(info, false, resetText)));
+                  (Action)(() => UpdateUI(tb, info, false, resetText)));
                 return;
             }
-            if (resetText) txtInfo.Text = "";
-            if (addTime) txtInfo.Text += DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ");
-            txtInfo.Text += info + "\n";
-            txtInfo.ScrollToEnd();
+            if (resetText) tb.Text = "";
+            if (addTime) tb.Text += DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ");
+            tb.Text += info + "\n";
+            tb.ScrollToEnd();
+
         }
+
+        private void UpdateInfo(string info, bool addTime = true, bool resetText = false)
+        {
+            UpdateUI(txtInfo, info, addTime, resetText);
+        }
+
+        private void UpdateResult(string info, bool addTime = true, bool resetText = false)
+        {
+            UpdateUI(txtResult, info, addTime, resetText);
+        }
+
 
 
         private GameAccount GetSelectedAccount()
@@ -156,7 +168,6 @@ namespace KingsTester
 
         private void btnGoAction_Click(object sender, RoutedEventArgs e)
         {
-            txtResult.Text = "";
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
             string sAction = cboAction.Text.Split('|')[0].Trim();
@@ -208,7 +219,7 @@ namespace KingsTester
                     ShowGenericActionResult(oGA.currHeader, oGA.sid, sAction, true, sBody);
                     break;
                 default:
-                    txtResult.Text = string.Format("指令 {0} 尚未支援", sAction);
+                    UpdateResult(string.Format("指令 {0} 尚未支援", sAction));
                     break;
             }
         }
@@ -216,7 +227,7 @@ namespace KingsTester
         private void ShowActionResult(string result)
         {
             if (cbxCleanUp.IsChecked == true) result = com.CleanUpResponse(result);
-            txtResult.Text = result;
+            UpdateResult(result);
         }
 
 
@@ -234,7 +245,6 @@ namespace KingsTester
 
         private void btnHeroList_Click(object sender, RoutedEventArgs e)
         {
-            txtResult.Text = "";
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
 
@@ -242,14 +252,14 @@ namespace KingsTester
             if (heroList == null) return;
 
             StringBuilder sb = new StringBuilder();
+            sb.Append("Hero List:\n");
 
             foreach (HeroInfo hi in heroList)
             {
                 sb.Append(string.Format("{0} : {1} : {2} : {3} : {4} : {5} : {6} : {7} : {8} : {9} : {10} : {11}\n",
                           hi.idx, hi.nm, hi.army, hi.lv, hi.power, hi.cfd, hi.intl, hi.strg, hi.chrm, hi.attk, hi.dfnc, hi.spd));
             }
-            txtResult.Text = sb.ToString();
-
+            UpdateResult(sb.ToString());
 
             gvResult.Columns.Clear();
             AddResultColumn("序號", 30, "idx");
@@ -263,10 +273,9 @@ namespace KingsTester
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            txtResult.Text = "";
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
-            txtResult.Text = action.goSignIn(oGA.currHeader, oGA.sid);
+            action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)
@@ -279,84 +288,18 @@ namespace KingsTester
             txtResult.TextWrapping = TextWrapping.NoWrap;
         }
 
+        private void UpdateInfoHandler(string info)
+        {
+            UpdateUI(txtResult, info);
+        }
+
         private void btnArchery_Click(object sender, RoutedEventArgs e)
         {
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
-            ArcheryInfo ai = null;
-            if (!action.goArcheryShoot(oGA.currHeader, oGA.sid,  ref ai))
-            {
-                if (ai.returnCode ==  AiReturnCode.NO_ACTIVITY)
-                {
-                    txtResult.Text += "今天沒有百步穿楊";
-                }
-                else if (ai.returnCode == AiReturnCode.COMPLETED)
-                {
-                    txtResult.Text += string.Format("已經再沒有箭可以射了.  現有: {0} 環\n", ai.tRing);
-                }
-                else
-                {
-                    txtResult.Text += ai.msg + "\n";
-                }
-                return;
-            }
-
-            txtResult.Text += string.Format("{0}環; {1} 次; 風力: {2}; ({3},{4}) => ({5},{6}) : {7}環\n", 
-                                            ai.tRing, ai.arr, ai.wind, ai.goX, ai.goY, ai.atX, ai.atY, ai.ring);
-            if (ai.arr == 0)
-            {
-                txtResult.Text += "已經再沒有箭可以射了\n";
-                return;
-            }
-            goArcheryShoot(oGA, ai);
-            txtResult.Text += "\n\n";
-
+            action.goArcheryShootAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
         }
 
-
-        private bool goArcheryShoot(GameAccount oGA, ArcheryInfo ai)
-        {
-            ai.success = false;
-            RequestReturnObject rro;
-            string sAction = "Archery.shoot";
-
-            int x, y;
-            x = (Math.Abs(ai.wind) < 100 ? 0 : (ai.wind < 0 ? (ai.wind + 100) / -10 : (100 - ai.wind) / 10));
-            y = 11;
-            txtResult.Text += string.Format("瞄準位置: ( {0} , {1} )\n", x, y);
-            ai.body = "{\"x\":" + x.ToString() + ",\"y\":" + y.ToString() + ",\"type\":\"NORMAL\"}";
-            // txtResult.Text += "Go " + sAction + "\n" + ai.body + "\n";
-
-            rro = com.SendGenericRequest(oGA.currHeader, oGA.sid, sAction, true, ai.body);
-            if (!rro.success)
-            {
-                txtResult.Text += "\n執行射擊失敗:\n" + rro.msg;
-                return false;
-            }
-
-            try
-            {
-                if (rro.responseJson == null)
-                {
-                    ai.msg = "讀取穿擊結果失敗\n資料空白";
-                    return false;
-                }
-
-                ai.atX = rro.responseJson.x;
-                ai.atY = rro.responseJson.y;
-                ai.ring = rro.responseJson.ring;
-                ai.nWind = rro.responseJson.nWind;
-                txtResult.Text += string.Format("擊中: ( {0} , {1} ), 取得 {2} 環, 下次風力為 {3}", ai.atX, ai.atY, ai.ring, ai.nWind);
-                ai.success = true;
-            }
-            catch (Exception ex)
-            {
-                ai.msg = "讀取穿擊結果失敗\n" + ex.Message;
-                ai.msg += "\n\n" + rro.responseText;
-            }
-
-            return ai.success;
-        }
-
+        
     }
 }

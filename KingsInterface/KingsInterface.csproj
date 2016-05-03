@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="action\Archery.cs" />
+    <Compile Include="action\_Prompt.cs" />
     <Compile Include="action\_Request.cs" />
     <Compile Include="action\SignInReward.cs" />
     <Compile Include="action\Hero.cs" />

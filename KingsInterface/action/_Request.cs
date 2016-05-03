@@ -43,5 +43,12 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_SignInReward_signIn);
         }
 
+        public static RequestReturnObject go_SignInReward_signInMultiple(HTTPRequestHeaders oH, string sid, int signNum)
+        {
+            string body = string.Format("{{\"signNum\":{0}}}", signNum);
+            return com.SendGenericRequest(oH, sid, CMD_SignInReward_signInMultiple, true, body);
+        }
+
+
     }
 }
