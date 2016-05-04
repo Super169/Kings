@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketData", "PacketData\Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketAnalyser", "PacketAnalyser\PacketAnalyser.csproj", "{5E9B86FF-EF36-4E23-8982-AB0B6DDB6076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KingsBackground", "KingsBackground\KingsBackground.csproj", "{D61F193E-26B1-4AB5-A3AF-0F2D4B7C878E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5E9B86FF-EF36-4E23-8982-AB0B6DDB6076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E9B86FF-EF36-4E23-8982-AB0B6DDB6076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E9B86FF-EF36-4E23-8982-AB0B6DDB6076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61F193E-26B1-4AB5-A3AF-0F2D4B7C878E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61F193E-26B1-4AB5-A3AF-0F2D4B7C878E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61F193E-26B1-4AB5-A3AF-0F2D4B7C878E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61F193E-26B1-4AB5-A3AF-0F2D4B7C878E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
