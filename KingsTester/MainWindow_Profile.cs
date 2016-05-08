@@ -109,7 +109,7 @@ namespace KingsTester
                 return false;
             }
             oGAP.toGameAccount(oGA);
-            UpdateInfo(string.Format("{0} - {1} : 取得神將設定", oGA.serverTitle, oGA.nickName));
+            UpdateInfo(oGA.msgPrefix() + "取得神將設定");
             return true;
         }
 

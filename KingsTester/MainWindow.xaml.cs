@@ -32,6 +32,8 @@ namespace KingsTester
         ObservableCollection<GameAccount> gameAccounts = new ObservableCollection<GameAccount>();
         Object gameAccountsLocker = new Object();
 
+        bool normalMode = true;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -50,6 +52,9 @@ namespace KingsTester
             btnGoAction.IsEnabled = true;
             RestoreProfile();
             UpdateInfo("大重帝輔助測試工具 啟動");
+            setUI();
+            autoTimer.Elapsed += new System.Timers.ElapsedEventHandler(autoTimerElapsedEventHandler);
+            autoTimer.Enabled = false;
         }
 
         private void OnNewSidHandler(LoginInfo li, HTTPRequestHeaders oH)
@@ -299,7 +304,7 @@ namespace KingsTester
         {
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
-            List<ManorInfo> mis = action.goGetManorInfo(oGA.currHeader, oGA.sid);
+            List<ManorInfo> mis = action.goManorGetManorInfo(oGA.currHeader, oGA.sid);
             UpdateResult("封田資料:");
             foreach (ManorInfo mi in mis)
             {
@@ -310,10 +315,7 @@ namespace KingsTester
 
         private void btnHarvestAll_Click(object sender, RoutedEventArgs e)
         {
-            foreach (GameAccount oGA in gameAccounts)
-            {
-                action.goHarvestAll(oGA, UpdateInfoHandler);
-            }
+            goHarvestAll();
         }
 
         private void btnHeroList_Click(object sender, RoutedEventArgs e)
@@ -361,7 +363,7 @@ namespace KingsTester
                 return;
             }
 
-            oGA.DecreeHeros = action.goGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros );
+            oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros );
 
             foreach (DecreeInfo di in oGA.DecreeHeros)
             {
@@ -402,6 +404,29 @@ namespace KingsTester
         private void btnCycleShop_Click(object sender, RoutedEventArgs e)
         {
             goCycleShop();
+        }
+
+        private void setUI()
+        {
+            btnArchery.IsEnabled = normalMode;
+            btnBossWar.IsEnabled = normalMode;
+            btnBossWarSetting.IsEnabled = normalMode;
+            btnCycleShop.IsEnabled = normalMode;
+            btnDecInfo.IsEnabled = normalMode;
+            btnGoAction.IsEnabled = normalMode;
+            btnGoAuto.IsEnabled = true;
+            btnGoAuto.Content = (normalMode ? "啟動" : "停止") + " 自動大皇帝";
+            btnGoAuto.Background = (normalMode ? btnArchery.Background : Brushes.Red);
+            btnHarvestAll.IsEnabled = normalMode;
+            btnHeroList.IsEnabled = normalMode;
+            btnManorInfo.IsEnabled = normalMode;
+            btnPlayerInfo.IsEnabled = normalMode;
+            btnSignIn.IsEnabled = normalMode;
+        }
+
+        private void btnGoAuto_Click(object sender, RoutedEventArgs e)
+        {
+            goAutoKings();
         }
     }
 }

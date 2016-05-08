@@ -13,7 +13,7 @@ namespace KingsInterface
     {
         private const int MIN_HARVEST = 100;
 
-        public static List<DecreeInfo> goGetDecreeInfo(HTTPRequestHeaders oH, string sid)
+        public static List<DecreeInfo> goManorGetDecreeInfo(HTTPRequestHeaders oH, string sid)
         {
             List<DecreeInfo> decreeInfo = new List<DecreeInfo>();
             try
@@ -44,10 +44,10 @@ namespace KingsInterface
             return decreeInfo;
         }
 
-        public static List<DecreeInfo> goGetDecreeInfoWithName(HTTPRequestHeaders oH, string sid, List<HeroInfo> heroInfo)
+        public static List<DecreeInfo> goManorGetDecreeInfoWithName(HTTPRequestHeaders oH, string sid, List<HeroInfo> heroInfo)
         {
             List<DecreeInfo> decreeInfo = new List<DecreeInfo>();
-            decreeInfo = goGetDecreeInfo(oH, sid);
+            decreeInfo = goManorGetDecreeInfo(oH, sid);
 
             if ((heroInfo == null) && (heroInfo.Count == 0))
             {
@@ -68,7 +68,7 @@ namespace KingsInterface
             return decreeInfo;
         }
 
-        public static List<ManorInfo> goGetManorInfo(HTTPRequestHeaders oH, string sid)
+        public static List<ManorInfo> goManorGetManorInfo(HTTPRequestHeaders oH, string sid)
         {
             List<ManorInfo> manorInfo = new List<ManorInfo>();
             RequestReturnObject rro = go_Manor_getManorInfo(oH, sid);
@@ -97,7 +97,7 @@ namespace KingsInterface
             return manorInfo;
         }
 
-        public static int goHarvestProduct(HTTPRequestHeaders oH, string sid, int field, DelegateUpdateInfo updateInfo = null)
+        public static int goManorHarvestProduct(HTTPRequestHeaders oH, string sid, int field, DelegateUpdateInfo updateInfo = null)
         {
             // No special handle required
             RequestReturnObject rro = go_Manor_harvestProduct(oH, sid, field);
@@ -114,7 +114,7 @@ namespace KingsInterface
             return outProduct;
         }
 
-        public static bool goHarvestAll(GameAccount oGA, DelegateUpdateInfo updateInfo = null)
+        public static bool goManorHarvestAll(GameAccount oGA, DelegateUpdateInfo updateInfo = null)
         {
             HTTPRequestHeaders oH = oGA.currHeader;
             string sid = oGA.sid;
@@ -132,7 +132,7 @@ namespace KingsInterface
                 return false;
             }
 
-            List<ManorInfo> mis = action.goGetManorInfo(oH, sid);
+            List<ManorInfo> mis = action.goManorGetManorInfo(oH, sid);
             if (mis.Count == 0)
             {
                 if (updateInfo != null) updateInfo(oGA.msgPrefix() + "找不到封田資料");
@@ -149,7 +149,7 @@ namespace KingsInterface
                     case "SP":
                         if ((mi.products > MIN_HARVEST) && (pp.SILVER < pp.MAX_SILVER))
                         {
-                            outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
+                            outProducts = action.goManorHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
                             {
                                 // updateInfo(string.Format("收取 {0} 的銀 {1}", mi.field, mi.products));
@@ -162,7 +162,7 @@ namespace KingsInterface
                     case "MC":
                         if ((mi.products > MIN_HARVEST) && (pp.FOOD < pp.MAX_FOOD))
                         {
-                            outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
+                            outProducts = action.goManorHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
                             {
                                 // updateInfo(string.Format("收取 {0} 的糧 {1}", mi.field, mi.products));
@@ -174,7 +174,7 @@ namespace KingsInterface
                     case "LTC":
                         if ((mi.products > MIN_HARVEST) && (pp.IRON < pp.MAX_IRON))
                         {
-                            outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
+                            outProducts = action.goManorHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
                             {
                                 // updateInfo(string.Format("收取 {0} 的鐵 {1}", mi.field, mi.products));
