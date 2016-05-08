@@ -45,8 +45,7 @@ namespace KingsTester
             DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 00, 00).AddHours(1);
             // DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, minNext.Minute, 00).AddMinutes(1);
 
-            goHarvestAll();
-            goCycleShop();
+            goAutoTasks();
 
             autoTimer.Interval = (int)(nextActionTime - DateTime.Now).TotalSeconds * 1000;
             autoTimer.Enabled = true;

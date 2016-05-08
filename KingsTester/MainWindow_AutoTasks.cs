@@ -7,12 +7,30 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 
 namespace KingsTester
 {
     public partial class MainWindow : Window
     {
+
+        private void goAutoTasks()
+        {
+            goHarvestAll();
+            goCycleShop();
+            goFinishAllTasks();
+            goSingInAll();
+        }
+
+        private void goHarvestAll()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                action.goManorHarvestAll(oGA, UpdateInfoHandler);
+            }
+        }
+
         private void goCycleShop()
         {
             foreach (GameAccount oGA in gameAccounts)
@@ -27,7 +45,8 @@ namespace KingsTester
                         if (action.goShopbuyCycleShopItem(oGA.currHeader, oGA.sid, csi.pos))
                         {
                             info += "成功";
-                        } else
+                        }
+                        else
                         {
                             info += "失敗";
                         }
@@ -36,5 +55,22 @@ namespace KingsTester
                 }
             }
         }
+
+        private void goFinishAllTasks()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                action.goTaskFinishTaskAll(oGA, UpdateInfoHandler);
+            }
+        }
+
+        private void goSingInAll()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+            }
+        }
+
     }
 }

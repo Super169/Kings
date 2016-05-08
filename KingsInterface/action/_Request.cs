@@ -136,7 +136,20 @@ namespace KingsInterface
 
         #endregion "Shop"
 
+        #region "Task"
 
+        public static RequestReturnObject go_Task_finishTask(HTTPRequestHeaders oH, string sid, int taskId)
+        {
+            string body = "{\"taskId\":" + taskId.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Task_finishTask, true, body);
+        }
+
+        public static RequestReturnObject go_Task_getTaskTraceInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Task_getTaskTraceInfo);
+        }
+
+        #endregion
 
     }
 }
