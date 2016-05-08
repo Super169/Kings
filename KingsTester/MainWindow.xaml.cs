@@ -48,7 +48,7 @@ namespace KingsTester
 
             cboAction.IsEnabled = true;
             btnGoAction.IsEnabled = true;
-
+            RestoreProfile();
         }
 
         private void OnNewSidHandler(LoginInfo li, HTTPRequestHeaders oH)
@@ -73,7 +73,9 @@ namespace KingsTester
                 GameAccount oExists = gameAccounts.SingleOrDefault(x => x.account == li.account);
                 if (oExists == null)
                 {
-                    gameAccounts.Add(new GameAccount(li, oH));
+                    GameAccount oGA = new GameAccount(li, oH);
+                    RestoreProfile(oGA);
+                    gameAccounts.Add(oGA);
                     if (lvAccounts.SelectedIndex == -1) lvAccounts.SelectedIndex = 0;
                     UpdateInfo(String.Format("加入 {0}: {1} - {2} [{3}]", li.account, li.serverTitle, li.nickName, li.sid));
                 }
@@ -367,12 +369,36 @@ namespace KingsTester
 
         private void btnBossWarSetting_Click(object sender, RoutedEventArgs e)
         {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
 
+            if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+            // Fail to get hero info
+            if (oGA.Heros.Count == 0)
+            {
+                UpdateResult("讀取英雄資料失敗");
+                return;
+            }
+
+            ui.BossWarSettings Window = new ui.BossWarSettings();
+            Window.Owner = this;
+            Window.Title = "神將無雙佈陣";
+            Window.setData(oGA);
+            bool? dialogResult = Window.ShowDialog();
+            if (dialogResult == true)
+            {
+                refreshAccountList();
+                SaveProfile();
+            }
         }
 
         private void btnBossWar_Click(object sender, RoutedEventArgs e)
         {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
 
         }
+
+
     }
 }

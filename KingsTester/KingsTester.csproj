@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow_Profile.cs" />
     <Compile Include="ui\BossWarSettings.xaml.cs">
       <DependentUpon>BossWarSettings.xaml</DependentUpon>
     </Compile>
