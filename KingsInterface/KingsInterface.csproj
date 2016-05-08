@@ -37,6 +37,8 @@
       <HintPath>..\..\myUtil\myUtil\FiddlerCoreAPI\DotNet4\FiddlerCore4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Helpers">
@@ -48,6 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="action\Archery.cs" />
@@ -62,6 +65,8 @@
     <Compile Include="com\DataExtraction.cs" />
     <Compile Include="com\ServerCommnization.cs" />
     <Compile Include="data\ArcheryInfo.cs" />
+    <Compile Include="data\CycleShopInfo.cs" />
+    <Compile Include="data\DecreeInfo.cs" />
     <Compile Include="data\GameAccount.cs" />
     <Compile Include="data\HeroInfo.cs" />
     <Compile Include="data\LoginInfo.cs" />
@@ -78,6 +83,7 @@
   <ItemGroup>
     <None Include="Properties\app.manifest" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

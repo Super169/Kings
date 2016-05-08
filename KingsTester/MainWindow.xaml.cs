@@ -244,34 +244,6 @@ namespace KingsTester
             }
         }
 
-        private void btnHeroList_Click(object sender, RoutedEventArgs e)
-        {
-            GameAccount oGA = GetSelectedAccount();
-            if (oGA == null) return;
-
-            List<HeroInfo> heroList = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
-            if (heroList == null) return;
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Hero List:\n");
-
-            foreach (HeroInfo hi in heroList)
-            {
-                sb.Append(string.Format("{0} : {1} : {2} : {3} : {4} : {5} : {6} : {7} : {8} : {9} : {10} : {11}\n",
-                          hi.idx, hi.nm, hi.army, hi.lv, hi.power, hi.cfd, hi.intl, hi.strg, hi.chrm, hi.attk, hi.dfnc, hi.spd));
-            }
-            UpdateResult(sb.ToString());
-
-            gvResult.Columns.Clear();
-            AddResultColumn("序號", 30, "idx");
-            AddResultColumn("英雄名稱", 80, "nm");
-            AddResultColumn("兵種", 60, "army");
-            AddResultColumn("等級", 30, "lv");
-            AddResultColumn("戰力", 60, "power");
-            lvResult.ItemsSource = heroList;
-
-        }
-
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
             GameAccount oGA = GetSelectedAccount();
@@ -338,6 +310,69 @@ namespace KingsTester
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
             action.goHarvestAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+        }
+
+        private void btnHeroList_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+
+            oGA.Heros.Clear();
+
+            oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+            if (oGA.Heros == null) return;
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Hero List:\n");
+
+            foreach (HeroInfo hi in oGA.Heros)
+            {
+                sb.Append(string.Format("{0} : {1} : {2} : {3} : {4} : {5} : {6} : {7} : {8} : {9} : {10} : {11}\n",
+                          hi.idx, hi.nm, hi.army, hi.lv, hi.power, hi.cfd, hi.intl, hi.strg, hi.chrm, hi.attk, hi.dfnc, hi.spd));
+            }
+            UpdateResult(sb.ToString());
+
+            gvResult.Columns.Clear();
+            AddResultColumn("序號", 30, "idx");
+            AddResultColumn("英雄名稱", 80, "nm");
+            AddResultColumn("兵種", 60, "army");
+            AddResultColumn("等級", 30, "lv");
+            AddResultColumn("戰力", 60, "power");
+            lvResult.ItemsSource = oGA.Heros;
+
+        }
+
+        private void btnDecInfo_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+
+            oGA.DecreeHeros.Clear();
+
+            if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+            // Fail to get hero info
+            if (oGA.Heros.Count == 0)
+            {
+                UpdateResult("讀取英雄資料失敗");
+                return;
+            }
+
+            oGA.DecreeHeros = action.goGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros );
+
+            foreach (DecreeInfo di in oGA.DecreeHeros)
+            {
+                UpdateResult(string.Format("{0}: [{1}] [{2}] [{3}] [{4}] [{5}]", di.name(), di.heroName[0], di.heroName[1], di.heroName[2], di.heroName[3], di.heroName[4]));
+            }
+        }
+
+        private void btnBossWarSetting_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBossWar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

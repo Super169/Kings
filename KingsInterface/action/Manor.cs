@@ -11,6 +11,61 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public static List<DecreeInfo> goGetDecreeInfo(HTTPRequestHeaders oH, string sid)
+        {
+            List<DecreeInfo> decreeInfo = new List<DecreeInfo>();
+            try
+            {
+                RequestReturnObject rro = go_Manor_decreeInfo(oH, sid);
+                if ((rro.success) && (rro.responseJson != null) && (rro.responseJson["decHeros"] != null))
+                {
+                    DynamicJsonArray decHeros = rro.responseJson["decHeros"];
+
+                    foreach (dynamic decree in decHeros)
+                    {
+
+                        DecreeInfo decInfo = new DecreeInfo() { decId = decree.decId };
+                        DynamicJsonArray heros = decree.heros;
+                        foreach (dynamic hero in heros)
+                        {
+                            int heroIdx = (hero.open ? hero.heroIdx : -1);
+                            decInfo.heroIdx[hero.pos - 1] = heroIdx;
+                            decInfo.heroName[hero.pos - 1] = (heroIdx > 0 ? "?" : (heroIdx == 0 ? "+" : "-"));
+                        }
+                        decreeInfo.Add(decInfo);
+
+                    }
+                }
+
+            }
+            catch (Exception) { }
+            return decreeInfo;
+        }
+
+        public static List<DecreeInfo> goGetDecreeInfoWithName(HTTPRequestHeaders oH, string sid, List<HeroInfo> heroInfo)
+        {
+            List<DecreeInfo> decreeInfo = new List<DecreeInfo>();
+            decreeInfo = goGetDecreeInfo(oH, sid);
+
+            if ((heroInfo == null) && (heroInfo.Count == 0))
+            {
+                // Cannot get name withtou heroInfo
+                return decreeInfo;
+            }
+            foreach (DecreeInfo di in decreeInfo)
+            {
+                for (int idx = 0; idx < 5; idx++)
+                {
+                    if (di.heroIdx[idx] > 0)
+                    {
+                        HeroInfo hi = heroInfo.SingleOrDefault(x => x.idx == di.heroIdx[idx]);
+                        di.heroName[idx] = (hi == null ? "????" : hi.nm);
+                    }
+                }
+            }
+            return decreeInfo;
+        }
+
         public static List<ManorInfo> goGetManorInfo(HTTPRequestHeaders oH, string sid)
         {
             List<ManorInfo> manorInfo = new List<ManorInfo>();
@@ -35,10 +90,8 @@ namespace KingsInterface
                     }
                 }
             }
-            catch (Exception)
-            {
+            catch (Exception) { }
 
-            }
             return manorInfo;
         }
 

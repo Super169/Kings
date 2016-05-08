@@ -19,7 +19,13 @@ namespace KingsInterface.data
         public string vipLevel { get; set; }
         public HTTPRequestHeaders currHeader { get; set; }
         public DateTime lastUpdateDTM { get; set; }
-
+        public List<HeroInfo> Heros { get; set; }
+        public List<DecreeInfo> DecreeHeros { get; set; }
+        public int[] BossWarHeros = new int[7];
+        public int BossWarChiefIdx = -1;
+        public string BossWarBody { get; set; }
+        public int BossWarCount { get; set; }
+        
         public GameAccount(LoginInfo li, HTTPRequestHeaders oH)
         {
             if (li.ready)
@@ -34,6 +40,12 @@ namespace KingsInterface.data
                 this.vipLevel = li.VIP_LEVEL;
                 this.currHeader = oH;
                 this.lastUpdateDTM = DateTime.Now;
+                this.Heros = new List<HeroInfo>();
+                this.DecreeHeros = new List<DecreeInfo>();
+                for (int idx = 0; idx < 7; idx++) this.BossWarHeros[idx] = 0;
+                this.BossWarChiefIdx = -1;
+                this.BossWarBody = "";
+                this.BossWarCount = 0;
             } 
         }
     }

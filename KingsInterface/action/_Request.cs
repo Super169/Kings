@@ -10,6 +10,8 @@ namespace KingsInterface
 {
     public partial class action
     {
+        #region "Archery"
+
         public static RequestReturnObject go_Archery_getArcheryInfo(HTTPRequestHeaders oH, string sid)
         {
             string body = "{\"type\":\"NORMAL\"}";
@@ -22,9 +24,23 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_Archery_shoot, true, body);
         }
 
+        #endregion "Archery"
+        
+        #region "Hero"
+
+
         public static RequestReturnObject go_Hero_getPlayerHeroList(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Hero_getPlayerHeroList);
+        }
+
+        #endregion "Hero"
+
+        #region "Manor"
+
+        public static RequestReturnObject go_Manor_decreeInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Manor_decreeInfo);
         }
 
         public static RequestReturnObject go_Manor_getManorInfo(HTTPRequestHeaders oH, string sid)
@@ -37,17 +53,29 @@ namespace KingsInterface
             string body = "{\"field\":" + field.ToString() + "}";
             return com.SendGenericRequest(oH, sid, CMD_Manor_harvestProduct, true, body);
         }
-        
+
+        #endregion "Manor"
+
+        #region "Player"
+
         public static RequestReturnObject go_Player_getProperties(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Player_getProperties);
         }
+
+        #endregion "Player"
+        
+        #region "Login"
 
         public static RequestReturnObject go_Login_login(HTTPRequestHeaders oH, string sid)
         {
             string body = string.Format("{{\"type\":\"WEB_BROWSER\", \"loginCode\":\"{0}\"}}", sid);
             return com.SendGenericRequest(oH, sid, CMD_Login_login, false, body);
         }
+
+        #endregion "Login"
+        
+        #region "SignInReward"
 
         public static RequestReturnObject go_SignInReward_getInfo(HTTPRequestHeaders oH, string sid)
         {
@@ -64,6 +92,18 @@ namespace KingsInterface
             string body = string.Format("{{\"signNum\":{0}}}", signNum);
             return com.SendGenericRequest(oH, sid, CMD_SignInReward_signInMultiple, true, body);
         }
+
+        #endregion "SignInReward"
+
+        #region "Shop"
+
+        public static RequestReturnObject go_Shop_getCycleShopInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Shop_getCycleShopInfo);
+        }
+
+        #endregion "Shop"
+
 
 
     }
