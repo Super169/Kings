@@ -24,6 +24,7 @@ namespace KingsInterface
         public const string CMD_Manor_decreeInfo = "Manor.decreeInfo";
         public const string CMD_Manor_getManorInfo = "Manor.getManorInfo";
         public const string CMD_Manor_harvestProduct = "Manor.harvestProduct";
+        public const string CMD_Manor_refreshManor = "Manor.refreshManor";
 
         public const string CMD_Player_getProperties = "Player.getProperties";
 
@@ -32,6 +33,7 @@ namespace KingsInterface
         public const string CMD_SignInReward_signInMultiple = "SignInReward.signInMultiple";
 
         public const string CMD_Shop_getCycleShopInfo = "Shop.getCycleShopInfo";
+        public const string CMD_Shop_buyCycleShopItem = "Shop.buyCycleShopItem";
 
 
     }

@@ -107,6 +107,7 @@
                 <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,107,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
                 <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="87,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
                 <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="173,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
+                <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="173,132,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
             </Grid>
         </Grid>
     </Grid>

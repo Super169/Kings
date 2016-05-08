@@ -48,5 +48,16 @@ namespace KingsInterface.data
                 this.BossWarCount = 0;
             } 
         }
+
+        public string accInfo()
+        {
+            return string.Format("{0} - {1}", this.serverTitle, this.nickName);
+        }
+
+        public string msgPrefix()
+        {
+            return string.Format("{0} - {1} >> ", this.serverTitle, this.nickName);
+        }
+
     }
 }

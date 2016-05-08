@@ -310,9 +310,10 @@ namespace KingsTester
 
         private void btnHarvestAll_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
-            if (oGA == null) return;
-            action.goHarvestAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                action.goHarvestAll(oGA, UpdateInfoHandler);
+            }
         }
 
         private void btnHeroList_Click(object sender, RoutedEventArgs e)
@@ -396,9 +397,11 @@ namespace KingsTester
         private void btnBossWar_Click(object sender, RoutedEventArgs e)
         {
             GoBossWarOnce();
-
         }
 
-
+        private void btnCycleShop_Click(object sender, RoutedEventArgs e)
+        {
+            goCycleShop();
+        }
     }
 }

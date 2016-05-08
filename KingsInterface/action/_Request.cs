@@ -73,6 +73,13 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_Manor_harvestProduct, true, body);
         }
 
+        public static RequestReturnObject go_Manor_refreshManor(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Manor_refreshManor);
+        }
+
+
+
         #endregion "Manor"
 
         #region "Player"
@@ -119,6 +126,12 @@ namespace KingsInterface
         public static RequestReturnObject go_Shop_getCycleShopInfo(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Shop_getCycleShopInfo);
+        }
+
+        public static RequestReturnObject go_Shop_buyCycleShopItem(HTTPRequestHeaders oH, string sid, int pos)
+        {
+            string body = "{\"pos\":" + pos.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Shop_buyCycleShopItem, true, body);
         }
 
         #endregion "Shop"

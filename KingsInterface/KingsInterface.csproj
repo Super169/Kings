@@ -57,6 +57,7 @@
     <Compile Include="action\BossWar.cs" />
     <Compile Include="action\Manor.cs" />
     <Compile Include="action\Player.cs" />
+    <Compile Include="action\Shop.cs" />
     <Compile Include="action\_Prompt.cs" />
     <Compile Include="action\_Request.cs" />
     <Compile Include="action\SignInReward.cs" />

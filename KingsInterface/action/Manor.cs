@@ -11,6 +11,8 @@ namespace KingsInterface
 {
     public partial class action
     {
+        private const int MIN_HARVEST = 100;
+
         public static List<DecreeInfo> goGetDecreeInfo(HTTPRequestHeaders oH, string sid)
         {
             List<DecreeInfo> decreeInfo = new List<DecreeInfo>();
@@ -112,25 +114,28 @@ namespace KingsInterface
             return outProduct;
         }
 
-        public static bool goHarvestAll(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo = null)
+        public static bool goHarvestAll(GameAccount oGA, DelegateUpdateInfo updateInfo = null)
         {
+            HTTPRequestHeaders oH = oGA.currHeader;
+            string sid = oGA.sid;
+
             PlayerProperties pp = action.goGetPlayerProperties(oH, sid);
             if (! pp.ready)
             {
-                if (updateInfo != null) updateInfo("讀取主公資料失敗");
+                if (updateInfo != null) updateInfo(oGA.msgPrefix() + "讀取主公資料失敗");
                 return false;
             }
 
             if ((pp.FOOD >= pp.MAX_FOOD) && (pp.SILVER >= pp.MAX_SILVER) && (pp.IRON >= pp.MAX_IRON))
             {
-                if (updateInfo != null) updateInfo("主公各項資源都滿了");
+                if (updateInfo != null) updateInfo(oGA.msgPrefix() + "主公各項資源都滿了");
                 return false;
             }
 
             List<ManorInfo> mis = action.goGetManorInfo(oH, sid);
             if (mis.Count == 0)
             {
-                if (updateInfo != null) updateInfo("找不到封田資料");
+                if (updateInfo != null) updateInfo(oGA.msgPrefix() + "找不到封田資料");
                 return false;
             }
             int getSILVER = 0, getFOOD = 0, getIRON = 0;
@@ -142,7 +147,7 @@ namespace KingsInterface
                 {
                     case "MH":
                     case "SP":
-                        if ((mi.products > 1000) && (pp.SILVER < pp.MAX_SILVER))
+                        if ((mi.products > MIN_HARVEST) && (pp.SILVER < pp.MAX_SILVER))
                         {
                             outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
@@ -155,7 +160,7 @@ namespace KingsInterface
                         break;
                     case "NT":
                     case "MC":
-                        if ((mi.products > 1000) && (pp.FOOD < pp.MAX_FOOD))
+                        if ((mi.products > MIN_HARVEST) && (pp.FOOD < pp.MAX_FOOD))
                         {
                             outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
@@ -167,7 +172,7 @@ namespace KingsInterface
                         }
                         break;
                     case "LTC":
-                        if ((mi.products > 1000) && (pp.IRON < pp.MAX_IRON))
+                        if ((mi.products > MIN_HARVEST) && (pp.IRON < pp.MAX_IRON))
                         {
                             outProducts = action.goHarvestProduct(oH, sid, mi.field, updateInfo);
                             if (outProducts > 0)
@@ -180,8 +185,7 @@ namespace KingsInterface
                         break;
                 }
             }
-            if (updateInfo != null) updateInfo(string.Format("封地收獲: {0} 銀, {1} 糧, {2} 鐵", getSILVER, getFOOD, getIRON));
-
+            if (updateInfo != null) updateInfo(string.Format("{0}封地收獲: {1} 銀, {2} 糧, {3} 鐵", oGA.msgPrefix(), getSILVER, getFOOD, getIRON));
             return true;
         }
 
