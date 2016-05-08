@@ -49,6 +49,7 @@ namespace KingsTester
             cboAction.IsEnabled = true;
             btnGoAction.IsEnabled = true;
             RestoreProfile();
+            UpdateInfo("大重帝輔助測試工具 啟動");
         }
 
         private void OnNewSidHandler(LoginInfo li, HTTPRequestHeaders oH)
@@ -394,8 +395,7 @@ namespace KingsTester
 
         private void btnBossWar_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
-            if (oGA == null) return;
+            GoBossWarOnce();
 
         }
 

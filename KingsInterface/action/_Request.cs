@@ -25,7 +25,26 @@ namespace KingsInterface
         }
 
         #endregion "Archery"
-        
+
+        #region "BossWar"
+
+        public static RequestReturnObject go_BossWar_enterWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_BossWar_enterWar);
+        }
+
+        public static RequestReturnObject go_BossWar_leaveWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_BossWar_leaveWar);
+        }
+
+        public static RequestReturnObject go_BossWar_sendTroop(HTTPRequestHeaders oH, string sid, string body)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_BossWar_sendTroop, true, body);
+        }
+
+        #endregion
+
         #region "Hero"
 
 

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="action\Archery.cs" />
+    <Compile Include="action\BossWar.cs" />
     <Compile Include="action\Manor.cs" />
     <Compile Include="action\Player.cs" />
     <Compile Include="action\_Prompt.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="com\DataExtraction.cs" />
     <Compile Include="com\ServerCommnization.cs" />
     <Compile Include="data\ArcheryInfo.cs" />
+    <Compile Include="data\BossWarInfo.cs" />
     <Compile Include="data\CycleShopInfo.cs" />
     <Compile Include="data\DecreeInfo.cs" />
     <Compile Include="data\GameAccount.cs" />
