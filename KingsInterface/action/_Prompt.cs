@@ -12,5 +12,6 @@ namespace KingsInterface
 
         public const string PROMPT_ACTIVITY_NOT_OPEN = "ACTIVITY_IS_NOT_OPEN";
 
+        public const string PROMPT_RESOURCE_FULL = "RESOURCE_FULL";
     }
 }

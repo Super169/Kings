@@ -306,6 +306,31 @@ namespace KingsTester
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
             PlayerProperties pp = action.goGetPlayerProperties(oGA.currHeader, oGA.sid);
+            if (pp.ready)
+            {
+                UpdateResult("主公資料:");
+                UpdateResult(string.Format("LEVEL: {0}; VIP_LEVEL: {1}", pp.LEVEL, pp.VIP_LEVEL));
+                UpdateResult(string.Format("EXP: {0}; UNDERGO_EXP: {1}; LEVEL_UP_EXP: {2}", pp.EXP, pp.UNDERGO_EXP, pp.LEVEL_UP_EXP));
+                UpdateResult(string.Format("GOLD: {0}; LONGMARCH_COIN: {1}; CSKING_COIN: {2}; GOLD_TICKET: {3}", pp.GOLD, pp.LONGMARCH_COIN, pp.CSKING_COIN, pp.GOLD_TICKET));
+                UpdateResult(string.Format("SILVER: {0}/{1}; FOOD: {2}/{3}; IRON: {4}/{5}", pp.SILVER, pp.MAX_SILVER, pp.FOOD, pp.MAX_FOOD, pp.IRON, pp.MAX_IRON));
+            }
+            else
+            {
+                UpdateResult("讀取主公資料出錯");
+            }
+        }
+
+        private void btnManorInfo_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+            List<ManorInfo> mis = action.goGetManorInfo(oGA.currHeader, oGA.sid);
+            UpdateResult("封田資料:");
+            foreach (ManorInfo mi in mis)
+            {
+                UpdateResult(string.Format("field: {0}; type: {1}; level: {2}; levelSeconds: {3}; heroIndex: {4}; leftSeconds: {5}; products: {6}; produceSeconds: {7}",
+                                           mi.field, mi.type, mi.level, mi.levelSeconds, mi.heroIndex, mi.leftSeconds, mi.products, mi.produceSeconds));
+            }
         }
     }
 }

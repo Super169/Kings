@@ -113,9 +113,12 @@ namespace KingsInterface
 
                         }
                     }
+                    pp.ready = true;
                 }
             }
             return pp;
         }
+
+
     }
 }

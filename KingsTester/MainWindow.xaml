@@ -102,6 +102,7 @@
                 <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,32,0,0" VerticalAlignment="Top"/>
                 <Button x:Name="btnArchery" Content="百步穿楊" HorizontalAlignment="Left" Margin="173,57,0,0" VerticalAlignment="Top" Width="75" Click="btnArchery_Click"/>
                 <Button x:Name="btnPlayerInfo" Content="主公資料" HorizontalAlignment="Left" Margin="3,82,0,0" VerticalAlignment="Top" Width="74" Click="btnPlayerInfo_Click"/>
+                <Button x:Name="btnManorInfo" Content="封田資料" HorizontalAlignment="Left" Margin="87,82,0,0" VerticalAlignment="Top" Width="75" Click="btnManorInfo_Click"/>
             </Grid>
         </Grid>
     </Grid>

@@ -27,6 +27,11 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_Hero_getPlayerHeroList);
         }
 
+        public static RequestReturnObject go_Manor_getManorInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Manor_getManorInfo);
+        }
+        
         public static RequestReturnObject go_Player_getProperties(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Player_getProperties);

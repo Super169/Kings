@@ -17,6 +17,9 @@ namespace KingsInterface
 
         public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
 
+        public const string CMD_Manor_getManorInfo = "Manor.getManorInfo";
+        public const string CMD_Manor_harvestProduct = "Manor.harvestProduct";
+
         public const string CMD_Player_getProperties = "Player.getProperties";
 
         public const string CMD_SignInReward_getInfo = "SignInReward.getInfo";
