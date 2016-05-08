@@ -192,6 +192,7 @@ namespace KingsTester
                 case "Manor.decreeInfo":
                 case "Manor.getManorInfo":
                 case "Patrol.getPatrolInfo":
+                case "Player.getProperties":
                 case "Rank.findAllPowerRank":
                 case "Shop.shopNextRefreshTime":
                 case "SignInReward.getInfo":
@@ -300,6 +301,11 @@ namespace KingsTester
             action.goArcheryShootAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
         }
 
-        
+        private void btnPlayerInfo_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+            PlayerProperties pp = action.goGetPlayerProperties(oGA.currHeader, oGA.sid);
+        }
     }
 }
