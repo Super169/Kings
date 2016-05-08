@@ -31,6 +31,12 @@ namespace KingsInterface
         {
             return com.SendGenericRequest(oH, sid, CMD_Manor_getManorInfo);
         }
+
+        public static RequestReturnObject go_Manor_harvestProduct(HTTPRequestHeaders oH, string sid, int field)
+        {
+            string body = "{\"field\":" + field.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Manor_harvestProduct, true, body);
+        }
         
         public static RequestReturnObject go_Player_getProperties(HTTPRequestHeaders oH, string sid)
         {

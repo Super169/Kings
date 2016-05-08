@@ -11,7 +11,7 @@ namespace KingsInterface
 {
     public partial class action
     {
-        public static bool goSignIn (HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo)
+        public static bool goSignIn(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo = null)
         {
             try
             {

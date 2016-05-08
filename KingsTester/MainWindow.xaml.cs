@@ -332,5 +332,12 @@ namespace KingsTester
                                            mi.field, mi.type, mi.level, mi.levelSeconds, mi.heroIndex, mi.leftSeconds, mi.products, mi.produceSeconds));
             }
         }
+
+        private void btnHarvestAll_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+            action.goHarvestAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+        }
     }
 }
