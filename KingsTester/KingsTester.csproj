@@ -64,7 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MainWindow_Auto.cs" />
     <Compile Include="MainWindow_BossWar.cs" />
     <Compile Include="MainWindow_Profile.cs" />
     <Compile Include="MainWindow_AutoTasks.cs" />

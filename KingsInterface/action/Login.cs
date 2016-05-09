@@ -10,13 +10,11 @@ namespace KingsInterface
         {
             LoginInfo info = new LoginInfo() { ready = false, sid = sid };
             RequestReturnObject rro = go_Login_login(oH, sid);
-            // if ((!rro.success) || (rro.responseJson == null) || (rro.responseJson["account"] == null)) return info;
             if (!rro.SuccessWithJson("account")) return info;
             info.account = rro.responseJson.account;
             info.serverTitle = rro.responseJson.serverTitle;
             info.nickName = rro.responseJson.nickName;
             rro = com.SendGenericRequest(oH, sid, CMD_Player_getProperties);
-            // if (!rro.success) return info;
             if (!rro.SuccessWithJson("pvs")) return info;
             // only assign the sid here if all data is ready. or should it use other field like isReady?
             DynamicJsonArray pvs = (DynamicJsonArray) rro.responseJson.pvs;

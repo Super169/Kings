@@ -90,6 +90,7 @@ namespace KingsTester
                     oExists.sid = li.sid;
                     oExists.currHeader = oH;
                     oExists.lastUpdateDTM = DateTime.Now;
+                    oExists.status = AccountStatus.Online;
                     refreshAccountList();
                     UpdateInfo(String.Format("更新 {0}: {1} - {2} [{3}]", li.account, li.serverTitle, li.nickName, li.sid));
                 }
@@ -99,6 +100,14 @@ namespace KingsTester
 
         void refreshAccountList()
         {
+            if (Dispatcher.FromThread(Thread.CurrentThread) == null)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                  System.Windows.Threading.DispatcherPriority.Normal,
+                  (Action)(() => refreshAccountList()));
+                return;
+            }
+
             ICollectionView view = CollectionViewSource.GetDefaultView(lvAccounts.ItemsSource);
             view.Refresh();
         }
@@ -430,6 +439,7 @@ namespace KingsTester
             btnHeroList.IsEnabled = normalMode;
             btnManorInfo.IsEnabled = normalMode;
             btnPlayerInfo.IsEnabled = normalMode;
+            btnReadMail.IsEnabled = normalMode;
             btnSignIn.IsEnabled = normalMode;
         }
 

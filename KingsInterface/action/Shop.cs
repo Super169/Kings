@@ -17,7 +17,7 @@ namespace KingsInterface
 
             List<CycleShopInfo> csis = new List<CycleShopInfo>();
             RequestReturnObject rro = action.go_Shop_getCycleShopInfo(oH, sid);
-            if ((!rro.success) || (rro.responseJson == null) || (rro.responseJson["items"] == null)) return csis;
+            if (!rro.SuccessWithJson("items")) return csis;
             try
             {
                 DynamicJsonArray items = rro.responseJson["items"];
@@ -39,7 +39,7 @@ namespace KingsInterface
         public static bool goShopbuyCycleShopItem(HTTPRequestHeaders oH, string sid, int pos)
         {
             RequestReturnObject rro = action.go_Shop_buyCycleShopItem(oH, sid, pos);
-            if ((!rro.success) || (rro.style == "ERROR") || (rro.responseJson == null) || (rro.responseJson["pos"] == null)) return false;
+            if (!rro.SuccessWithJson("pos") || (rro.style == "ERROR")) return false;
             int retPos = getInt(rro.responseJson, "pos", -1);
             return (retPos == pos);
         }

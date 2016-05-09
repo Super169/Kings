@@ -27,7 +27,9 @@ namespace KingsInterface
             }
             bwi.beforeCnt = getInt(rro.responseJson, "sendCount", -1);
             if ((rro.responseJson["bossInfo"] != null) && (rro.responseJson["bossInfo"]["hpp"] != null))
-            bwi.bossHP = getInt(rro.responseJson["bossInfo"], "hpp", -1);
+            {
+                bwi.bossHP = getInt(rro.responseJson["bossInfo"], "hpp", -1);
+            }
 
             rro = go_BossWar_sendTroop(oH, sid, body);
             bwi.sendFail = (rro.ok != 1);

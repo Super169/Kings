@@ -9,6 +9,7 @@ namespace KingsInterface
     public partial class action
     {
         public const string PROMPT_NOT_SUPPORT = "ERR_COMMON_NOT_SUPPORTED";
+        public const string PROMPT_RELOGIN = "ERR_COMMON_RELOGIN";
 
         public const string PROMPT_ACTIVITY_NOT_OPEN = "ACTIVITY_IS_NOT_OPEN";
 

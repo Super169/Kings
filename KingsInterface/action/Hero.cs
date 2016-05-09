@@ -17,7 +17,7 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro = go_Hero_getPlayerHeroList(oH, sid);
-                if (rro.success)
+                if (rro.SuccessWithJson("heros"))
                 {
                     DynamicJsonArray heros = rro.responseJson.heros;
 

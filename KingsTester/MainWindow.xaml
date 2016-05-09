@@ -54,6 +54,7 @@
                         <GridView >
                             <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding serverTitle}"/>
                             <GridViewColumn Header="主公名稱" Width="110"  DisplayMemberBinding="{Binding nickName}"/>
+                            <GridViewColumn Header="狀態" Width="30"  DisplayMemberBinding="{Binding status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

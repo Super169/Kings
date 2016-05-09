@@ -47,6 +47,8 @@ namespace KingsInterface
         public const string CMD_Shop_getCycleShopInfo = "Shop.getCycleShopInfo";
         public const string CMD_Shop_buyCycleShopItem = "Shop.buyCycleShopItem";
 
+        public const string CMD_System_ping = "System.ping";
+        
         public const string CMD_Task_finishTask = "Task.finishTask";
         public const string CMD_Task_getTaskTraceInfo = "Task.getTaskTraceInfo";
 

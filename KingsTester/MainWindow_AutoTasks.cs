@@ -14,21 +14,68 @@ namespace KingsTester
 {
     public partial class MainWindow : Window
     {
+        System.Timers.Timer autoTimer = new System.Timers.Timer(1000);
+
+        private void goAutoKings()
+        {
+            normalMode = !normalMode;
+            setUI();
+
+            if (normalMode)
+            {
+                autoTimer.Enabled = false;
+                UpdateResult("自動大皇帝 - 停止");
+            }
+            else
+            {
+
+                UpdateResult("自動大皇帝 - 啟動");
+                autoTimer.Interval = 1000;
+                autoTimer.Enabled = true;
+            }
+
+        }
+
+        void autoTimerElapsedEventHandler(object sender, ElapsedEventArgs e)
+        {
+            autoTimer.Enabled = false;
+            UpdateResult(string.Format("自動大皇帝 - 開始執行"));
+
+            DateTime minNext = DateTime.Now.AddMinutes(1);
+            DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 00, 00).AddHours(1);
+            // DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, minNext.Minute, 00).AddMinutes(1);
+
+            goAutoTasks();
+
+            autoTimer.Interval = (int)(nextActionTime - DateTime.Now).TotalSeconds * 1000;
+            autoTimer.Enabled = true;
+            UpdateResult(string.Format("自動大皇帝 - 執行完成, 下次執行時候為: {0:yyyy-MM-dd hh:mm:ss}", nextActionTime));
+        }
 
         private void goAutoTasks()
         {
+            goCheckAccountStatus();
             goHarvestAll();
-            goCycleShop();
+            // goCycleShop();
             goFinishAllTasks();
             goSingInAll();
             goReadEmail();
+        }
+
+        private void goCheckAccountStatus()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                oGA.CheckStatus();
+            }
+           refreshAccountList();
         }
 
         private void goHarvestAll()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                action.goManorHarvestAll(oGA, UpdateInfoHandler);
+                if (oGA.IsOnline()) action.goManorHarvestAll(oGA, UpdateInfoHandler);
             }
         }
 
@@ -36,23 +83,27 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                List<CycleShopInfo> csis = action.goShopGetCycleShopInfo(oGA.currHeader, oGA.sid);
-                foreach (CycleShopInfo csi in csis)
+                if (oGA.IsOnline())
                 {
-                    // No way, can only check using this string, or hard code the position.  Text has been converted to TradChinese
-                    if ((csi.pos < 3) && (!csi.sold) && (csi.res == "銀兩"))
+                    List<CycleShopInfo> csis = action.goShopGetCycleShopInfo(oGA.currHeader, oGA.sid);
+                    foreach (CycleShopInfo csi in csis)
                     {
-                        string info = oGA.msgPrefix() + "用銀買 " + csi.nm + " : ";
-                        if (action.goShopbuyCycleShopItem(oGA.currHeader, oGA.sid, csi.pos))
+                        // No way, can only check using this string, or hard code the position.  Text has been converted to TradChinese
+                        if ((csi.pos < 3) && (!csi.sold) && (csi.res == "銀兩"))
                         {
-                            info += "成功";
+                            string info = oGA.msgPrefix() + "用銀買 " + csi.nm + " : ";
+                            if (action.goShopbuyCycleShopItem(oGA.currHeader, oGA.sid, csi.pos))
+                            {
+                                info += "成功";
+                            }
+                            else
+                            {
+                                info += "失敗";
+                            }
+                            UpdateResult(info);
                         }
-                        else
-                        {
-                            info += "失敗";
-                        }
-                        UpdateResult(info);
                     }
+
                 }
             }
         }
@@ -61,7 +112,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                action.goTaskFinishTaskAll(oGA, UpdateInfoHandler);
+                if (oGA.IsOnline()) action.goTaskFinishTaskAll(oGA, UpdateInfoHandler);
             }
         }
 
@@ -69,7 +120,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+                if (oGA.IsOnline()) action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
             }
         }
 
@@ -77,8 +128,11 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                int emailCnt = action.goEmailReadAll(oGA.currHeader, oGA.sid);
-                if (emailCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("開啟 {0} 封郵件", emailCnt));
+                if (oGA.IsOnline())
+                {
+                    int emailCnt = action.goEmailReadAll(oGA.currHeader, oGA.sid);
+                    if (emailCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("開啟 {0} 封郵件", emailCnt));
+                }
             }
         }
 

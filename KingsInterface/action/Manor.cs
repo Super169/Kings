@@ -19,7 +19,7 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro = go_Manor_decreeInfo(oH, sid);
-                if ((rro.success) && (rro.responseJson != null) && (rro.responseJson["decHeros"] != null))
+                if (rro.SuccessWithJson("decHeros"))
                 {
                     DynamicJsonArray decHeros = rro.responseJson["decHeros"];
 
@@ -74,7 +74,7 @@ namespace KingsInterface
             RequestReturnObject rro = go_Manor_getManorInfo(oH, sid);
             try
             {
-                if ((rro.success) && (rro.responseJson["buildings"] != null))
+                if (rro.SuccessWithJson("buildings"))
                 {
                     DynamicJsonArray buildings = rro.responseJson["buildings"];
                     foreach (dynamic building in buildings)

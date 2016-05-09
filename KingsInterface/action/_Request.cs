@@ -193,6 +193,19 @@ namespace KingsInterface
 
         #endregion "Shop"
 
+        #region "System"
+
+        public static RequestReturnObject go_System_ping(HTTPRequestHeaders oH, string sid)
+        {
+            TimeSpan t = DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1);
+            Int64 jsTime = (Int64)(t.TotalMilliseconds + 0.5);
+            string body = "{\"clientTime\":\"" + jsTime.ToString() + " \"}";
+            return com.SendGenericRequest(oH, sid, CMD_System_ping, true, body);
+        }
+
+        #endregion
+
+
         #region "Task"
 
         public static RequestReturnObject go_Task_finishTask(HTTPRequestHeaders oH, string sid, int taskId)
