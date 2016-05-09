@@ -61,6 +61,7 @@ namespace KingsTester
             goSingInAll();
             goReadEmail();
             goSLBuyFood();
+            goCleanBag();
         }
 
         private void goCheckAccountStatus()
@@ -145,6 +146,17 @@ namespace KingsTester
                 {
                     int buyCount = action.goSLShopBuyFood(oGA);
                     if (buyCount > 0) UpdateResult(oGA.msgPrefix() + string.Format("勢力商店買了 {0} 次糧", buyCount));
+                }
+            }
+        }
+
+        private void goCleanBag()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    int cleanUpCount = action.goBagCleanUp(oGA, UpdateInfoHandler);
                 }
             }
         }

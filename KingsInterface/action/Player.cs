@@ -16,17 +16,29 @@ namespace KingsInterface
         public static int getInt(dynamic o, string key, int defValue = -1)
         {
             if (o[key] == null) return defValue;
-            int retValue;
+            int retValue = defValue;
             try
             {
                 retValue = Convert.ToInt32(o[key]);
             }
-            catch
-            {
-                retValue = -1;
-            }
+            catch { }
             return retValue;
         }
+
+
+        public static bool getBool(dynamic o, string key, bool defValue = false)
+        {
+            if (o[key] == null) return defValue;
+            bool retValue = defValue;
+            try
+            {
+                retValue = Convert.ToBoolean(o[key]);
+            }
+            catch { }
+            return retValue;
+
+        }
+
 
         public static PlayerProperties goGetPlayerProperties(HTTPRequestHeaders oH, string sid)
         {

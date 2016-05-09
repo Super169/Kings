@@ -191,6 +191,7 @@ namespace KingsTester
             string sBody = null;
             switch (sAction)
             {
+                case "Bag.getBagInfo":
                 case "BossWar.bossInfo":
                 case "BossWar.enterWar":
                 case "BossWar.leaveWar":

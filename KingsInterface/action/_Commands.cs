@@ -13,6 +13,10 @@ namespace KingsInterface
         public const string CMD_Archery_getArcheryInfo = "Archery.getArcheryInfo";
         public const string CMD_Archery_shoot = "Archery.shoot";
 
+        public const string CMD_Bag_getBagInfo = "Bag.getBagInfo";
+        public const string CMD_Bag_useItem = "Bag.useItem";
+
+
         public const string CMD_BossWar_enterWar = "BossWar.enterWar";
         public const string CMD_BossWar_leaveWar = "BossWar.leaveWar";
         public const string CMD_BossWar_sendTroop = "BossWar.sendTroop";

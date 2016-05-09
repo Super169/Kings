@@ -26,6 +26,22 @@ namespace KingsInterface
 
         #endregion "Archery"
 
+        #region "Bag"
+
+        public static RequestReturnObject go_Bag_getBagInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Bag_getBagInfo);
+        }
+
+        public static RequestReturnObject go_Bag_useItem(HTTPRequestHeaders oH, string sid, int num, int index)
+        {
+            string body = "{\"paramList\":[\"-1\"],\"num\":" + num.ToString() + ",\"index\":" + index.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Bag_useItem, true, body);
+        }
+
+        #endregion
+
+
         #region "BossWar"
 
         public static RequestReturnObject go_BossWar_enterWar(HTTPRequestHeaders oH, string sid)

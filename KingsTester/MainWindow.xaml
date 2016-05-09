@@ -63,6 +63,7 @@
             <Grid Grid.Row="2">
                 <ComboBox x:Name="cboAction" Margin="2,2,2,0" VerticalAlignment="Top">
                     <ComboBoxItem Content="Archery.getArcheryInfo | 百步穿楊 資料"/>
+                    <ComboBoxItem Content="Bag.getBagInfo | 倉庫資料"/>
                     <ComboBoxItem Content="BossWar.bossInfo | 神將無雙 資料"/>
                     <ComboBoxItem Content="BossWar.enterWar | 神將無雙 進入戰場"/>
                     <ComboBoxItem Content="BossWar.leaveWar | 神將無雙 離開戰場"/>
