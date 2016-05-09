@@ -274,7 +274,7 @@ namespace KingsTester
         {
             GameAccount oGA = GetSelectedAccount();
             if (oGA == null) return;
-            action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+            action.goSignIn(oGA, UpdateInfoHandler);
         }
 
         private void checkBox_Checked(object sender, RoutedEventArgs e)

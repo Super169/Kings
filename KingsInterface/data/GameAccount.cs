@@ -62,8 +62,9 @@ namespace KingsInterface.data
         }
 
         public string msgPrefix()
+
         {
-            return string.Format("{0} - {1} >> ", this.serverTitle, this.nickName);
+            return string.Format("【{0} - {1}】", this.serverTitle, this.nickName);
         }
 
         public AccountStatus CheckStatus()

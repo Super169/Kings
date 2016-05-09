@@ -11,8 +11,10 @@ namespace KingsInterface
 {
     public partial class action
     {
-        public static bool goSignIn(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo = null)
+        public static bool goSignIn(GameAccount oGA, DelegateUpdateInfo updateInfo = null)
         {
+            HTTPRequestHeaders oH = oGA.currHeader;
+            string sid = oGA.sid;
             try
             {
                 RequestReturnObject rro;
@@ -23,7 +25,7 @@ namespace KingsInterface
                 {
                     if (rro.responseJson == null)
                     {
-                        if (updateInfo != null) updateInfo("帳戶尚未達到簽到要求");
+                        if (updateInfo != null) updateInfo(oGA.msgPrefix() + "帳戶尚未達到簽到要求");
                         return false;
                     }
                     if (rro.responseJson["curNum"] != null) curNum = (int)rro.responseJson["curNum"];
@@ -33,25 +35,25 @@ namespace KingsInterface
                         if (rroAction.ok == 1)
                         {
                             curNum++;
-                            if (updateInfo != null) updateInfo(string.Format("成功進行第{0}次簽到", curNum));
+                            if (updateInfo != null) updateInfo(oGA.msgPrefix() + string.Format("成功進行第{0}次簽到", curNum));
                         }
                         else
                         {
-                            if (updateInfo != null) updateInfo("簽到失敗");
+                            if (updateInfo != null) updateInfo(oGA.msgPrefix() + "簽到失敗");
                         }
                     } else
                     {
-                        if (updateInfo != null) updateInfo("今天已經簽到了");
+                        if (updateInfo != null) updateInfo(oGA.msgPrefix() + "今天已經簽到了");
                     }
                 } else
                 {
-                    if (updateInfo != null) updateInfo("讀取 簽到 資料失敗");
+                    if (updateInfo != null) updateInfo(oGA.msgPrefix() + "讀取 簽到 資料失敗");
                     return false;
                 }
 
                 if (rro.responseJson["multipleRewards"] == null)
                 {
-                    if (updateInfo != null) updateInfo("讀取 多次簽到 資料失敗");
+                    if (updateInfo != null) updateInfo(oGA.msgPrefix() + "讀取 多次簽到 資料失敗");
                     return false;
                 }
 
@@ -64,17 +66,17 @@ namespace KingsInterface
                         rroAction = go_SignInReward_signInMultiple(oH, sid, multipleReward["signNum"]);
                         if (rroAction.ok == 1)
                         {
-                            if (updateInfo != null) updateInfo(string.Format("成功領取{0}次簽到額外獎勵", multipleReward["signNum"]));
+                            if (updateInfo != null) updateInfo(oGA.msgPrefix() + string.Format("成功領取{0}次簽到額外獎勵", multipleReward["signNum"]));
                         } else
                         {
-                            if (updateInfo != null) updateInfo(string.Format("領取{0}次簽到額外獎勵失敗", multipleReward["signNum"]));
+                            if (updateInfo != null) updateInfo(oGA.msgPrefix() + string.Format("領取{0}次簽到額外獎勵失敗", multipleReward["signNum"]));
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                if (updateInfo != null) updateInfo("簽到失敗: " + ex.Message);
+                if (updateInfo != null) updateInfo(oGA.msgPrefix() + "簽到失敗: " + ex.Message);
                 return false;
             }
 

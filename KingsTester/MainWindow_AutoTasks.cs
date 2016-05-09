@@ -120,7 +120,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline()) action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+                if (oGA.IsOnline()) action.goSignIn(oGA, UpdateInfoHandler);
             }
         }
 
