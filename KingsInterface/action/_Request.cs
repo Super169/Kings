@@ -193,6 +193,30 @@ namespace KingsInterface
 
         #endregion "Shop"
 
+        #region "Shop2"
+
+        public static RequestReturnObject go_Shop2_availableShops(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Shop2_availableShops);
+        }
+
+        public static RequestReturnObject go_Shop2_shop2Info(HTTPRequestHeaders oH, string sid, string shop2Type)
+        {
+            string body = "{\"shop2Type\":\"" + shop2Type.ToString() + "\"}";
+            return com.SendGenericRequest(oH, sid, CMD_Shop2_shop2Info, true, body);
+        }
+
+        public static RequestReturnObject go_Shop2_buyItem(HTTPRequestHeaders oH, string sid, int id, string shop2Type)
+        {
+            string body = "{\"id\":" + id.ToString() + ", \"shop2Type\":\"" + shop2Type.ToString() + "\"}";
+            return com.SendGenericRequest(oH, sid, CMD_Shop2_buyItem, true, body);
+        }
+
+
+
+        #endregion
+
+
         #region "System"
 
         public static RequestReturnObject go_System_ping(HTTPRequestHeaders oH, string sid)

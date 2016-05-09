@@ -1,0 +1,8 @@
+{"act":"Shop2.availableShops","sid":"678a531931fcadae7842da254831baef77b18ef1"}
+{"shops":["JXP_SHOP","ZBG_SHOP","HS_SHOP","ZHP_SHOP","GX_SHOP","SL_SHOP"]}
+
+{"act":"Shop2.shop2Info","sid":"678a531931fcadae7842da254831baef77b18ef1","body":"{\"shop2Type\":\"SL_SHOP\"}"}
+{"buyCount":4,"remainBuyCount":18}
+
+{"act":"Shop2.buyItem","sid":"678a531931fcadae7842da254831baef77b18ef1","body":"{\"id\":1,\"shop2Type\":\"SL_SHOP\"}"}
+{"ok":1}

@@ -44,5 +44,33 @@ namespace KingsInterface
             return (retPos == pos);
         }
 
+        public static int goSLShopBuyFood(GameAccount oGA)
+        {
+            PlayerProperties pp = action.goGetPlayerProperties(oGA.currHeader, oGA.sid);
+            if ((!pp.ready) || (pp.EXPLOIT < 92)) return 0;
+
+            RequestReturnObject rro = action.go_Shop2_shop2Info(oGA.currHeader, oGA.sid, "SL_SHOP");
+            if (!rro.SuccessWithJson("remainBuyCount")) return 0;
+
+            int coins = pp.EXPLOIT;
+            int remainCount = getInt(rro.responseJson, "remainBuyCount");
+            int buyCount = 0;
+            bool error = false;
+
+            while ((!error) && (coins >= 92) && (remainCount > 0))
+            {
+                rro = go_Shop2_buyItem(oGA.currHeader, oGA.sid, 1, "SL_SHOP");
+                error = (rro.ok != 1);
+                if (!error)
+                {
+                    buyCount++;
+                    remainCount--;
+                    coins += 92;
+                }
+            }
+
+            return buyCount;
+        }
+
     }
 }
