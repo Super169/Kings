@@ -45,6 +45,27 @@ namespace KingsInterface
 
         #endregion
 
+        #region "Email"
+
+        public static RequestReturnObject go_Email_getAttachment(HTTPRequestHeaders oH, string sid, int emailId)
+        {
+            string body = "{\"emailId\":" + emailId.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Email_getAttachment, true, body);
+        }
+
+        public static RequestReturnObject go_Email_openInBox(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Email_openInBox);
+        }
+
+        public static RequestReturnObject go_Email_read(HTTPRequestHeaders oH, string sid, int emailId)
+        {
+            string body = "{\"emailId\":" + emailId.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Email_read, true, body);
+        }
+
+        #endregion
+
         #region "Hero"
 
 
@@ -82,6 +103,42 @@ namespace KingsInterface
 
         #endregion "Manor"
 
+        #region "Naval"
+
+        public static RequestReturnObject go_Naval_enterWar(HTTPRequestHeaders oH, string sid, int n)
+        {
+            string body = "{\"n\":" + n.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Naval_enterWar);
+        }
+
+        public static RequestReturnObject go_Naval_getInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Naval_getInfo);
+        }
+
+        public static RequestReturnObject go_Naval_inMissionHeros(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Naval_inMissionHeros);
+        }
+
+        public static RequestReturnObject go_Naval_killRank(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Naval_killRank);
+        }
+
+        public static RequestReturnObject go_Naval_leaveWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Naval_leaveWar);
+        }
+
+        public static RequestReturnObject go_Naval_rewardCfg(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Naval_rewardCfg);
+        }
+
+        #endregion
+
+
         #region "Player"
 
         public static RequestReturnObject go_Player_getProperties(HTTPRequestHeaders oH, string sid)
@@ -90,7 +147,7 @@ namespace KingsInterface
         }
 
         #endregion "Player"
-        
+
         #region "Login"
 
         public static RequestReturnObject go_Login_login(HTTPRequestHeaders oH, string sid)
@@ -100,7 +157,7 @@ namespace KingsInterface
         }
 
         #endregion "Login"
-        
+
         #region "SignInReward"
 
         public static RequestReturnObject go_SignInReward_getInfo(HTTPRequestHeaders oH, string sid)

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="action\Archery.cs" />
     <Compile Include="action\BossWar.cs" />
+    <Compile Include="action\Email.cs" />
     <Compile Include="action\Manor.cs" />
     <Compile Include="action\Player.cs" />
     <Compile Include="action\Shop.cs" />

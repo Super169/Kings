@@ -17,6 +17,10 @@ namespace KingsInterface
         public const string CMD_BossWar_leaveWar = "BossWar.leaveWar";
         public const string CMD_BossWar_sendTroop = "BossWar.sendTroop";
 
+        public const string CMD_Email_read = "Email.read";
+        public const string CMD_Email_openInBox = "Email.openInBox";
+        public const string CMD_Email_getAttachment = "Email.getAttachment";
+
         public const string CMD_Login_login = "Login.login";
 
         public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
@@ -25,6 +29,14 @@ namespace KingsInterface
         public const string CMD_Manor_getManorInfo = "Manor.getManorInfo";
         public const string CMD_Manor_harvestProduct = "Manor.harvestProduct";
         public const string CMD_Manor_refreshManor = "Manor.refreshManor";
+
+        public const string CMD_Naval_enterWar = "Naval.enterWar";
+        public const string CMD_Naval_getVersusCount = "Naval.getVersusCount";
+        public const string CMD_Naval_getInfo = "Naval.getInfo";
+        public const string CMD_Naval_inMissionHeros = "Naval.inMissionHeros";
+        public const string CMD_Naval_killRank = "Naval.killRank";
+        public const string CMD_Naval_leaveWar = "Naval.leaveWar";
+        public const string CMD_Naval_rewardCfg = "Naval.rewardCfg";
 
         public const string CMD_Player_getProperties = "Player.getProperties";
 

@@ -21,6 +21,7 @@ namespace KingsTester
             goCycleShop();
             goFinishAllTasks();
             goSingInAll();
+            goReadEmail();
         }
 
         private void goHarvestAll()
@@ -71,6 +72,16 @@ namespace KingsTester
                 action.goSignIn(oGA.currHeader, oGA.sid, UpdateInfoHandler);
             }
         }
+
+        private void goReadEmail()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                int emailCnt = action.goEmailReadAll(oGA.currHeader, oGA.sid);
+                if (emailCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("開啟 {0} 封郵件", emailCnt));
+            }
+        }
+
 
     }
 }

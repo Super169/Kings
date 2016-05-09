@@ -72,7 +72,9 @@
                     <ComboBoxItem Content="Campaign.getTrialsInfo"/>
                     <ComboBoxItem Content="Campaign.nextEnemies"/>
                     <ComboBoxItem Content="Campaign.quitCampaign"/>
-                    <ComboBoxItem Content="Email.openInBox"/>
+                    <ComboBoxItem Content="Email.getAttachment | emailId 取得附件"/>
+                    <ComboBoxItem Content="Email.openInBox | 開啟郵箱"/>
+                    <ComboBoxItem Content="Email.read | emailId 讀取郵件"/>
                     <ComboBoxItem Content="Hero.getConvenientFormations"/>
                     <ComboBoxItem Content="Hero.getFeastInfo"/>
                     <ComboBoxItem Content="Hero.getPlayerHeroList"/>
@@ -80,6 +82,13 @@
                     <ComboBoxItem Content="Login.serverInfo"/>
                     <ComboBoxItem Content="Manor.decreeInfo | 軍府資料"/>
                     <ComboBoxItem Content="Manor.getManorInfo | 封地資料"/>
+                    <ComboBoxItem Content="Naval.enterWar | n 跨服進入戰場"/>
+                    <ComboBoxItem Content="Naval.getInfo | 跨服入侵資料"/>
+                    <ComboBoxItem Content="Naval.getVersusCount | battleNo 跨服戰場資料"/>
+                    <ComboBoxItem Content="Naval.inMissionHeros | 跨服戰場英雄資料"/>
+                    <ComboBoxItem Content="Naval.killRank | 跨服排名資料"/>
+                    <ComboBoxItem Content="Naval.leaveWar | 跨服入侵離開"/>
+                    <ComboBoxItem Content="Naval.rewardCfg | 跨服入侵獎勵資料"/>
                     <ComboBoxItem Content="Patrol.dealPatroledEvent"/>
                     <ComboBoxItem Content="Patrol.getPatrolInfo"/>
                     <ComboBoxItem Content="Player.getProperties | 主公資料"/>
@@ -107,6 +116,7 @@
                 <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,107,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
                 <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="87,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
                 <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="173,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
+                <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,132,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
                 <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="173,132,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
                 <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,0,10,10" Click="btnGoAuto_Click" Height="20" VerticalAlignment="Bottom"/>
             </Grid>

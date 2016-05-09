@@ -199,6 +199,11 @@ namespace KingsTester
                 case "Login.serverInfo":
                 case "Manor.decreeInfo":
                 case "Manor.getManorInfo":
+                case "Naval.getInfo":
+                case "Naval.inMissionHeros":
+                case "Naval.killRank":
+                case "Naval.leaveWar":
+                case "Naval.rewardCfg":
                 case "Patrol.getPatrolInfo":
                 case "Player.getProperties":
                 case "Rank.findAllPowerRank":
@@ -212,6 +217,10 @@ namespace KingsTester
                 case "World.getAllTransportingUnits":
                 case "World.worldSituation":
                     ShowGenericActionResult(oGA.currHeader, oGA.sid, sAction);
+                    break;
+                case "Naval.enterWar":
+                    sBody = "{\"n\":2}";
+                    ShowGenericActionResult(oGA.currHeader, oGA.sid, sAction, true, sBody);
                     break;
                 case "Archery.getArcheryInfo":
                     sBody = "{\"type\":\"NORMAL\"}";
@@ -427,6 +436,11 @@ namespace KingsTester
         private void btnGoAuto_Click(object sender, RoutedEventArgs e)
         {
             goAutoKings();
+        }
+
+        private void btnReadMail_Click(object sender, RoutedEventArgs e)
+        {
+            goReadEmail();
         }
     }
 }

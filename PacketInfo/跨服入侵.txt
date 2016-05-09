@@ -1,0 +1,55 @@
+﻿Source: S36 Monday with event
+
+{"act":"Naval.getInfo","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"openTime":1462755600,"battles":["P","P","P","P","P"],"lServer":{"sid":"2077310045","nm":"S45 眾志成城"},"rServer":{"sid":"2077310042","nm":"S42 名聲鵲起"},"minHeroLv":50,"todayBattleNo":[1,2]}
+
+------
+
+{"act":"Naval.leaveWar","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"ok":1}
+
+-------
+
+{"act":"Naval.getVersusCount","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d","body":"{\"battleNo\":1}"}
+{"leftCount":37,"rightCount":23}
+
+--------
+
+{"act":"Naval.getVersusCount","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d","body":"{\"battleNo\":2}"}
+{"leftCount":42,"rightCount":29}
+
+
+{"act":"Naval.rewardCfg","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"fwin":{"resources":{"SILVER":111378,"EXPLOIT":2000,"GOLD":200},"itemDefs":[{"name":"拜帖","num":10}]},"battleRwds":[{"resources":{"EXPLOIT":200,"FOOD":61642},"itemDefs":[{"name":"虎符","num":5}]},{"resources":{"EXPLOIT":200,"FOOD":61642},"itemDefs":[{"name":"虎符","num":5}]},{"resources":{"EXPLOIT":200,"FOOD":61642},"itemDefs":[{"name":"虎符","num":5}]},{"resources":{"EXPLOIT":200,"FOOD":61642},"itemDefs":[{"name":"虎符","num":5}]},{"resources":{"EXPLOIT":200,"FOOD":61642},"itemDefs":[{"name":"虎符","num":5}]}]}
+
+
+{"act":"Naval.killRank","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"ranks":[],"myRank":2147483647}
+
+{"act":"Naval.enterWar","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d","body":"{\"n\":2}"}
+{"disp":{"mySide":"LEFT","myTroops":[],"nwarStatus":{"cityId":2,"ways":[{"way":1,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":2,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":3,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":4,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":5,"troops":[],"state":"INIT","lCampN":8,"rCampN":5}],"startTime":1462795200,"state":"PREPARING","trpNum":{"lAtt":42,"rDef":0,"rAtt":29},"frameSt":"1462757697591","defTroopsNum":0,"declaredCorps":"NA","npcAtt":false,"npcLv":0,"defCorps":"NA","isActivity":false},"startTime":0}}
+
+{"act":"Naval.inMissionHeros","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"alives":[],"deads":[],"deadhero":[]}
+
+{"act":"Naval.sendTroops","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d","body":"{\"cityId\":2,\"save\":{\"chief\":3,\"heros\":[{\"x\":-2,\"y\":0,\"index\":4},{\"x\":-3,\"y\":-1,\"index\":12},{\"x\":-5,\"y\":-1,\"index\":7},{\"x\":-3,\"y\":1,\"index\":15},{\"x\":-5,\"y\":1,\"index\":3}]},\"type\":\"NAVAL\"}"}
+{"troops":{"id":82,"nm":"無名無姓","lv":65,"hnm":"贾诩","way":3,"pos":-1,"state":"M","side":"LEFT","army":"重弩兵","clr":"PUR","phs":1,"role":"ATTK","heros":[{"nm":"曹仁","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"关羽","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"PRE"},{"nm":"吕布","clr":"PUR","phs":2,"star":3,"lv":64,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"周瑜","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"PRE"},{"nm":"贾诩","clr":"PUR","phs":1,"star":5,"lv":64,"hpp":100,"morp":50,"sta":"PRE"}],"power":29445,"hp":75865,"mhp":75865,"ckl":0,"countryId":0,"dynastyId":0,"step":-1,"type":-1,"junxianId":0}}
+
+{"act":"Naval.inMissionHeros","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"alives":[4,12,15,7,3],"deads":[],"deadhero":[]}
+
+{"act":"Naval.leaveWar","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"ok":1}
+
+-- After sending another 5
+{"act":"Naval.inMissionHeros","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"alives":[8,5,1,9,2,4,12,15,7,3],"deads":[],"deadhero":[]}
+
+{"act":"Naval.enterWar","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d","body":"{\"n\":2}"}
+{"disp":{"mySide":"LEFT","myTroops":[{"id":82,"nm":"無名無姓","lv":65,"hnm":"賈詡","way":3,"pos":-1,"state":"M","side":"LEFT","army":"重弩兵","clr":"PUR","phs":1,"role":"ATTK","heros":[{"nm":"曹仁","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"關羽","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"PRE"},{"nm":"呂布","clr":"PUR","phs":2,"star":3,"lv":64,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"周瑜","clr":"PUR","phs":2,"star":5,"lv":64,"hpp":100,"morp":0,"sta":"PRE"},{"nm":"賈詡","clr":"PUR","phs":1,"star":5,"lv":64,"hpp":100,"morp":50,"sta":"PRE"}],"power":29445,"hp":75865,"mhp":75865,"ckl":0,"countryId":0,"dynastyId":0,"step":-1,"type":-1,"junxianId":0}],"nwarStatus":{"cityId":2,"ways":[{"way":1,"troops":[],"state":"INIT","lCampN":13,"rCampN":8},{"way":2,"troops":[],"state":"INIT","lCampN":13,"rCampN":8},{"way":3,"troops":[],"state":"INIT","lCampN":13,"rCampN":7},{"way":4,"troops":[],"state":"INIT","lCampN":12,"rCampN":7},{"way":5,"troops":[],"state":"INIT","lCampN":12,"rCampN":7}],"startTime":1462795200,"state":"PREPARING","trpNum":{"lAtt":63,"rDef":0,"rAtt":37},"frameSt":"1462760001579","defTroopsNum":0,"declaredCorps":"NA","npcAtt":false,"npcLv":0,"defCorps":"NA","isActivity":false},"startTime":0}}
+
+** enterWar: (before)
+{"disp":{"mySide":"LEFT","myTroops":[],"nwarStatus":{"cityId":2,"ways":[{"way":1,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":2,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":3,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":4,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":5,"troops":[],"state":"INIT","lCampN":8,"rCampN":5}],"startTime":1462795200,"state":"PREPARING","trpNum":{"lAtt":42,"rDef":0,"rAtt":29},"frameSt":"1462757697591","defTroopsNum":0,"declaredCorps":"NA","npcAtt":false,"npcLv":0,"defCorps":"NA","isActivity":false},"startTime":0}}
+
+** enterWar: (after)
+{"disp":{"mySide":"LEFT","myTroops":[],"nwarStatus":{"cityId":2,"ways":[{"way":1,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":2,"troops":[],"state":"INIT","lCampN":9,"rCampN":6},{"way":3,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":4,"troops":[],"state":"INIT","lCampN":8,"rCampN":6},{"way":5,"troops":[],"state":"INIT","lCampN":8,"rCampN":5}],"startTime":1462795200,"state":"PREPARING","trpNum":{"lAtt":42,"rDef":0,"rAtt":29},"frameSt":"1462757697591","defTroopsNum":0,"declaredCorps":"NA","npcAtt":false,"npcLv":0,"defCorps":"NA","isActivity":false},"startTime":0}}

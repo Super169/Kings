@@ -10,7 +10,7 @@ namespace KingsInterface
         {
             LoginInfo info = new LoginInfo() { ready = false, sid = sid };
             RequestReturnObject rro = go_Login_login(oH, sid);
-            if (!rro.success) return info;
+            if ((!rro.success) || (rro.responseJson == null) || (rro.responseJson["account"] == null)) return info;
             info.account = rro.responseJson.account;
             info.serverTitle = rro.responseJson.serverTitle;
             info.nickName = rro.responseJson.nickName;
