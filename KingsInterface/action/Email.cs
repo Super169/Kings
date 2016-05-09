@@ -11,7 +11,7 @@ namespace KingsInterface
         {
             int readCnt = 0;
             RequestReturnObject rro = go_Email_openInBox(oH, sid);
-            if ((!rro.success) || (rro.responseJson == null) || (rro.responseJson["emails"] == null)) return 0;
+            if (!rro.SuccessWithJson("emails")) return 0;
             DynamicJsonArray emails = rro.responseJson["emails"];
             foreach (dynamic email in emails)
             {
