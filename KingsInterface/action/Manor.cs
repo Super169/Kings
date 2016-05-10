@@ -110,7 +110,7 @@ namespace KingsInterface
             {
                 return 0;
             }
-            int outProduct = getInt(rro.responseJson, "out");
+            int outProduct = util.getInt(rro.responseJson, "out");
             return outProduct;
         }
 

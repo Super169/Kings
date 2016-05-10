@@ -19,7 +19,7 @@ namespace KingsInterface
                 {
                     if (email["status"]=="NR")
                     {
-                        int emailId = getInt(email, "id", -1);
+                        int emailId = util.getInt(email, "id", -1);
                         if (emailId > 0)
                         {
                             // No need to check for fail as there has nothing can do

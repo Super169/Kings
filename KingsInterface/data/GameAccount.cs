@@ -9,6 +9,29 @@ namespace KingsInterface.data
 {
     public enum AccountStatus { Online, Offline, Unknown}
 
+    public static class KEY
+    {
+        public const string sid = "sid";
+        public const string account = "account";
+        public const string status = "status";
+        public const string timeAdjust = "timeAdjust";
+        public const string server = "server";
+        public const string serverTitle = "serverTitle";
+        public const string nickName = "nickName";
+        public const string corpsName = "corpsName";
+        public const string level = "level";
+        public const string vipLevel = "vipLevel";
+        public const string currHeader = "currHeader";
+        public const string lastUpdateDTM = "lastUpdateDTM";
+        public const string Heros = "Heros";
+        public const string DecreeHeros = "DecreeHeros";
+        public const string BossWarHeros = "BossWarHeros";
+        public const string BossWarChiefIdx = "BossWarChiefIdx";
+        public const string BossWarBody = "BossWarBody";
+        public const string BossWarCount = "BossWarCount";
+        public const string AutoTasks = "AutoTasks";
+    }
+
     public class GameAccount
     {
         public string sid { get; set; }
@@ -94,6 +117,58 @@ namespace KingsInterface.data
         public bool IsOnline()
         {
             return (status == AccountStatus.Online);
+        }
+
+        public util.GenericFileRecord toGenericFileRecord()
+        {
+            util.GenericFileRecord gfr = new util.GenericFileRecord(this.account);
+            gfr.saveObject(KEY.sid, this.sid);
+            gfr.saveObject(KEY.account, this.account);
+            gfr.saveObject(KEY.status, this.status);
+            gfr.saveObject(KEY.timeAdjust, this.timeAdjust);
+            gfr.saveObject(KEY.server, this.server);
+            gfr.saveObject(KEY.serverTitle, this.serverTitle);
+            gfr.saveObject(KEY.nickName, this.nickName);
+            gfr.saveObject(KEY.corpsName, this.corpsName);
+            gfr.saveObject(KEY.level, this.level);
+            gfr.saveObject(KEY.vipLevel, this.vipLevel);
+            gfr.saveObject(KEY.currHeader, this.currHeader);
+            gfr.saveObject(KEY.lastUpdateDTM, this.lastUpdateDTM);
+            gfr.saveObject(KEY.Heros, this.Heros);
+            gfr.saveObject(KEY.DecreeHeros, this.DecreeHeros);
+            gfr.saveObject(KEY.BossWarHeros, this.BossWarHeros);
+            gfr.saveObject(KEY.BossWarChiefIdx, this.BossWarChiefIdx);
+            gfr.saveObject(KEY.BossWarBody, this.BossWarBody);
+            gfr.saveObject(KEY.BossWarCount, this.BossWarCount);
+            gfr.saveObject(KEY.AutoTasks, this.AutoTasks);
+            return gfr;
+        }
+
+        public bool toGenericFileRecord(util.GenericFileRecord gfr)
+        {
+            if (gfr == null) return false;
+            if ((this.account != null) && (gfr.key != this.account)) return false;
+            this.sid = util.getString(gfr.getObject(KEY.sid));
+            this.account = util.getString(gfr.getObject(KEY.account));
+            this.status = (AccountStatus)util.getInt(gfr.getObject(KEY.status));
+            this.timeAdjust = util.getInt(gfr.getObject(KEY.timeAdjust));
+            this.server = util.getString(gfr.getObject(KEY.server));
+            this.serverTitle = util.getString(gfr.getObject(KEY.serverTitle));
+            this.nickName = util.getString(gfr.getObject(KEY.nickName));
+            this.corpsName = util.getString(gfr.getObject(KEY.corpsName));
+            this.level = util.getString(gfr.getObject(KEY.level));
+            this.vipLevel = util.getString(gfr.getObject(KEY.vipLevel));
+            // this.currHeader = util.getString(gfr.getObject(KEY.currHeader));
+            this.lastUpdateDTM = util.getDateTime(gfr.getObject(KEY.lastUpdateDTM));
+            // this.Heros = util.getString(gfr.getObject(KEY.Heros));
+            // this.DecreeHeros = util.getString(gfr.getObject(KEY.DecreeHeros));
+            // this.BossWarHeros = util.getString(gfr.getObject(KEY.BossWarHeros));
+            this.BossWarChiefIdx = util.getInt(gfr.getObject(KEY.BossWarChiefIdx));
+            this.BossWarBody = util.getString(gfr.getObject(KEY.BossWarBody));
+            this.BossWarCount = util.getInt(gfr.getObject(KEY.BossWarCount));
+            //this.AutoTasks = util.getString(gfr.getObject(KEY.AutoTasks));
+
+            return true;
         }
 
     }

@@ -13,33 +13,6 @@ namespace KingsInterface
     public partial class action
     {
 
-        public static int getInt(dynamic o, string key, int defValue = -1)
-        {
-            if (o[key] == null) return defValue;
-            int retValue = defValue;
-            try
-            {
-                retValue = Convert.ToInt32(o[key]);
-            }
-            catch { }
-            return retValue;
-        }
-
-
-        public static bool getBool(dynamic o, string key, bool defValue = false)
-        {
-            if (o[key] == null) return defValue;
-            bool retValue = defValue;
-            try
-            {
-                retValue = Convert.ToBoolean(o[key]);
-            }
-            catch { }
-            return retValue;
-
-        }
-
-
         public static PlayerProperties goGetPlayerProperties(HTTPRequestHeaders oH, string sid)
         {
             PlayerProperties pp = new PlayerProperties() { ready = false };
@@ -53,73 +26,73 @@ namespace KingsInterface
                     switch (p)
                     {
                         case "EXP":
-                            pp.EXP = getInt(pv, "v");
+                            pp.EXP = util.getInt(pv, "v");
                             break;
                         case "UNDERGO_EXP":
-                            pp.UNDERGO_EXP = getInt(pv, "v");
+                            pp.UNDERGO_EXP = util.getInt(pv, "v");
                             break;
                         case "LEVEL_UP_EXP":
-                            pp.LEVEL_UP_EXP = getInt(pv, "v");
+                            pp.LEVEL_UP_EXP = util.getInt(pv, "v");
                             break;
                         case "LEVEL":
-                            pp.LEVEL = getInt(pv, "v");
+                            pp.LEVEL = util.getInt(pv, "v");
                             break;
                         case "VIP_LEVEL":
-                            pp.VIP_LEVEL = getInt(pv, "v");
+                            pp.VIP_LEVEL = util.getInt(pv, "v");
                             break;
                         case "GOLD":
-                            pp.GOLD = getInt(pv, "v");
+                            pp.GOLD = util.getInt(pv, "v");
                             break;
                         case "SILVER":
-                            pp.SILVER = getInt(pv, "v");
+                            pp.SILVER = util.getInt(pv, "v");
                             break;
                         case "FOOD":
-                            pp.FOOD = getInt(pv, "v");
+                            pp.FOOD = util.getInt(pv, "v");
                             break;
                         case "EXPLOIT":
-                            pp.EXPLOIT = getInt(pv, "v");
+                            pp.EXPLOIT = util.getInt(pv, "v");
                             break;
                         case "ARENA_COIN":
-                            pp.ARENA_COIN = getInt(pv, "v");
+                            pp.ARENA_COIN = util.getInt(pv, "v");
                             break;
                         case "XIYU_COIN":
-                            pp.XIYU_COIN = getInt(pv, "v");
+                            pp.XIYU_COIN = util.getInt(pv, "v");
                             break;
                         case "MAX_FOOD":
-                            pp.MAX_FOOD = getInt(pv, "v");
+                            pp.MAX_FOOD = util.getInt(pv, "v");
                             break;
                         case "MAX_SILVER":
-                            pp.MAX_SILVER = getInt(pv, "v");
+                            pp.MAX_SILVER = util.getInt(pv, "v");
                             break;
                         case "MAX_IRON":
-                            pp.MAX_IRON = getInt(pv, "v");
+                            pp.MAX_IRON = util.getInt(pv, "v");
                             break;
                         case "CORPS_NAME":
                             pp.CORPS_NAME = pv["v"];
                             break;
                         case "IRON":
-                            pp.IRON = getInt(pv, "v");
+                            pp.IRON = util.getInt(pv, "v");
                             break;
                         case "ICON":
-                            pp.ICON = getInt(pv, "v");
+                            pp.ICON = util.getInt(pv, "v");
                             break;
                         case "PLATFORM_MARK":
-                            pp.PLATFORM_MARK = getInt(pv, "v");
+                            pp.PLATFORM_MARK = util.getInt(pv, "v");
                             break;
                         case "LONGMARCH_COIN":
-                            pp.LONGMARCH_COIN = getInt(pv, "v");
+                            pp.LONGMARCH_COIN = util.getInt(pv, "v");
                             break;
                         case "CSKING_COIN":
-                            pp.CSKING_COIN = getInt(pv, "v");
+                            pp.CSKING_COIN = util.getInt(pv, "v");
                             break;
                         case "FIGHTING_SPIRIT":
-                            pp.FIGHTING_SPIRIT = getInt(pv, "v");
+                            pp.FIGHTING_SPIRIT = util.getInt(pv, "v");
                             break;
                         case "CONTRIBUTION":
-                            pp.CONTRIBUTION = getInt(pv, "v");
+                            pp.CONTRIBUTION = util.getInt(pv, "v");
                             break;
                         case "GOLD_TICKET":
-                            pp.GOLD_TICKET = getInt(pv, "v");
+                            pp.GOLD_TICKET = util.getInt(pv, "v");
                             break;
 
                     }

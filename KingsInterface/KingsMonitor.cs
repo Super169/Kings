@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading;
 using System.Text.RegularExpressions;
 using Fiddler;
+using System.Web.Helpers;
 
 namespace KingsInterface
 {
@@ -109,6 +110,15 @@ namespace KingsInterface
             oH.RequestPath = "/m.do";
             oH.UriScheme = "http";
 
+            dynamic jH = Json.Decode("{}");
+            jH.HTTPMethod = "POST";
+            jH.HTTPVersion = "HTTP/1.1";
+            jH.RawPath = rawPath;
+            jH.RequestPath = "/m.do";
+            jH.UriScheme = "http";
+
+            dynamic jHeader = Json.Decode("{}");
+            
             string[] headerStr = p.data.Split('|');
             foreach (string s in headerStr)
             {
@@ -120,11 +130,15 @@ namespace KingsInterface
                     if ((key != "") && (value != ""))
                     {
                         oH[key] = value;
+                        jHeader.key = value;
                         // UpdateUI(string.Format("{0} : {1}", key, value));
                     }
                 }
             }
-            
+
+            jH.header = jHeader;
+            string jString = Json.Encode(jH);
+
             data.LoginInfo li = action.goGetAccountInfo(oH, sid);
             if (!li.ready) return;
 

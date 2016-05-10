@@ -22,12 +22,12 @@ namespace KingsInterface
 			foreach (dynamic item in items)
             {
                 BagInfo bi = new BagInfo();
-                bi.idx = getInt(item, "idx");
+                bi.idx = util.getInt(item, "idx");
                 if (bi.idx >= 0)
                 {
                     bi.nm = item["nm"];
-                    bi.n = getInt(item, "n");
-                    bi.us = getBool(item, "us");
+                    bi.n = util.getInt(item, "n");
+                    bi.us = util.getBool(item, "us");
                     bis.Add(bi);
                 }
             }

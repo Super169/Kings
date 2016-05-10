@@ -25,10 +25,10 @@ namespace KingsInterface
                 bwi.bossAvailable = false;
                 return bwi;
             }
-            bwi.beforeCnt = getInt(rro.responseJson, "sendCount", -1);
+            bwi.beforeCnt = util.getInt(rro.responseJson, "sendCount", -1);
             if ((rro.responseJson["bossInfo"] != null) && (rro.responseJson["bossInfo"]["hpp"] != null))
             {
-                bwi.bossHP = getInt(rro.responseJson["bossInfo"], "hpp", -1);
+                bwi.bossHP = util.getInt(rro.responseJson["bossInfo"], "hpp", -1);
             }
 
             rro = go_BossWar_sendTroop(oH, sid, body);
