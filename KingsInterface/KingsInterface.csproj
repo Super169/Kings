@@ -66,6 +66,9 @@
     <Compile Include="action\Hero.cs" />
     <Compile Include="action\Login.cs" />
     <Compile Include="action\_Commands.cs" />
+    <Compile Include="auto\TaskInfo.cs" />
+    <Compile Include="auto\Tasks.cs" />
+    <Compile Include="auto\_Constants.cs" />
     <Compile Include="com\DataExtraction.cs" />
     <Compile Include="com\ServerCommnization.cs" />
     <Compile Include="data\ArcheryInfo.cs" />

@@ -29,7 +29,8 @@ namespace KingsInterface.data
         public int BossWarChiefIdx = -1;
         public string BossWarBody { get; set; }
         public int BossWarCount { get; set; }
-        
+        public List<auto.TaskInfo> AutoTasks { get; set; }
+
         public GameAccount(LoginInfo li, HTTPRequestHeaders oH)
         {
             if (li.ready)
@@ -53,6 +54,7 @@ namespace KingsInterface.data
                 this.BossWarChiefIdx = -1;
                 this.BossWarBody = "";
                 this.BossWarCount = 0;
+                this.AutoTasks = new List<auto.TaskInfo>();
             } 
         }
 
