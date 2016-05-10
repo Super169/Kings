@@ -85,9 +85,16 @@ namespace KingsInterface
                 return (startTimeOK(chkTime) && endTimeOK(chkTime));
             }
 
-            public bool readyToGo(DateTime chkTime)
+            public bool validActionTime(DateTime chkTime)
             {
                 return (matchDOW(chkTime) && matchTime(chkTime));
+            }
+
+            public bool readyToGo()
+            {
+                DateTime now = DateTime.Now;
+                if (now < this.nextExecutionTime) return false;
+                return (validActionTime(now));
             }
 
             public DateTime getNextByElapseTime(DateTime baseTime)
@@ -116,7 +123,7 @@ namespace KingsInterface
                 foreach (TimeSpan ts in executionTimes)
                 {
                     DateTime newTime = getDailyRefTime(baseTime, ts);
-                    if (readyToGo(newTime) && (newTime > baseTime))
+                    if (validActionTime(newTime) && (newTime > baseTime))
                     {
                         if (findOnBase)
                         {
