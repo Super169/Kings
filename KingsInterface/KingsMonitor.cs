@@ -105,19 +105,20 @@ namespace KingsInterface
             HTTPRequestHeaders oH = new HTTPRequestHeaders();
             oH.HTTPMethod = "POST";
             oH.HTTPVersion = "HTTP/1.1";
-            byte[] rawPath = { 47, 109, 46, 100, 111 };
-            oH.RawPath = rawPath;
+            // byte[] rawPath = { 47, 109, 46, 100, 111 };
+            // oH.RawPath = rawPath;
+            oH.RawPath = Encoding.UTF8.GetBytes("/m.do");
             oH.RequestPath = "/m.do";
             oH.UriScheme = "http";
 
             dynamic jH = Json.Decode("{}");
             jH.HTTPMethod = "POST";
             jH.HTTPVersion = "HTTP/1.1";
-            jH.RawPath = rawPath;
+            jH.RawPath = Encoding.UTF8.GetBytes("/m.do"); 
             jH.RequestPath = "/m.do";
             jH.UriScheme = "http";
 
-            dynamic jHeader = Json.Decode("{}");
+            List<object> jHeader = new List<object>();
             
             string[] headerStr = p.data.Split('|');
             foreach (string s in headerStr)
@@ -130,13 +131,16 @@ namespace KingsInterface
                     if ((key != "") && (value != ""))
                     {
                         oH[key] = value;
-                        jHeader.key = value;
+                        dynamic jItem = Json.Decode("{}");
+                        jItem.key = key;
+                        jItem.value = value;
+                        jHeader.Add(jItem);
                         // UpdateUI(string.Format("{0} : {1}", key, value));
                     }
                 }
             }
 
-            jH.header = jHeader;
+            jH.header = new DynamicJsonArray(jHeader.ToArray());
             string jString = Json.Encode(jH);
 
             data.LoginInfo li = action.goGetAccountInfo(oH, sid);
