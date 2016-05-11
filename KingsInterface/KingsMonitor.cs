@@ -27,7 +27,7 @@ namespace KingsInterface
         public delegate void NotificationEventHandler(string info);
         public static event NotificationEventHandler notificationEventHandler;
 
-        public static bool Start(string appName)
+        public static bool Start()
         {
             monitorList.Clear();
             IPAddress[] hosts = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
@@ -46,10 +46,6 @@ namespace KingsInterface
                 monitorList.Add(monitor);
                 // UpdateUI("Monitor added on " + hosts[i].ToString());
             }
-
-            // Start Fiddler before starting the monitor, otherwise, it may cause problem when traffic comes before not all monitors started.
-            com.ConfigFiddler(appName);
-            com.Startup(false);
 
             int monitorCnt = 0;
 

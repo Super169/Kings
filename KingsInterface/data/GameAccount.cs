@@ -176,10 +176,10 @@ namespace KingsInterface.data
             return string.Format("【{0} - {1}】", this.serverTitle, this.nickName);
         }
 
-        public AccountStatus CheckStatus()
+        public AccountStatus CheckStatus(bool forceCheck = false)
         {
             // Offline cannot be changed to online without new login detected
-            if (this.status == AccountStatus.Offline) return AccountStatus.Offline;
+            if ((!forceCheck) &&(this.status == AccountStatus.Offline)) return AccountStatus.Offline;
 
             RequestReturnObject rro = action.go_System_ping(currHeader, sid);
             if (rro.prompt == action.PROMPT_RELOGIN)

@@ -54,7 +54,7 @@ namespace KingsTester
 
         private void goAutoTasks()
         {
-            goCheckAccountStatus();
+            goCheckAccountStatus(true);
             goHarvestAll();
             // goCycleShop();
             goFinishAllTasks();
@@ -64,11 +64,11 @@ namespace KingsTester
             goCleanBag();
         }
 
-        private void goCheckAccountStatus()
+        private void goCheckAccountStatus(bool forceCheck = false)
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                oGA.CheckStatus();
+                oGA.CheckStatus(forceCheck);
             }
            refreshAccountList();
         }

@@ -38,19 +38,24 @@ namespace KingsTester
         {
             InitializeComponent();
             this.Title = "大重帝輔助測試工具  v" + Assembly.GetExecutingAssembly().GetName().Version;
+
+            lvAccounts.ItemsSource = gameAccounts;
+            // Start Fiddler to retrieve old accounts
+            com.start("KingTester");
+            restoreAccounts();
+
             KingsMonitor.notificationEventHandler += new NotificationEventHandler(this.OnNotificationHandler);
             KingsMonitor.newSidEventHandler += new NewSidEventHandler(this.OnNewSidHandler);
 
-            if (!KingsMonitor.Start("KingsTester"))
+            if (!KingsMonitor.Start())
             {
                 MessageBox.Show("啟動監察器失敗");
                 this.Close();
             }
-            lvAccounts.ItemsSource = gameAccounts;
 
             cboAction.IsEnabled = true;
             btnGoAction.IsEnabled = true;
-            RestoreProfile();
+            /// RestoreProfile();
             UpdateInfo("大重帝輔助測試工具 啟動");
             setUI();
             autoTimer.Elapsed += new System.Timers.ElapsedEventHandler(autoTimerElapsedEventHandler);
@@ -80,7 +85,7 @@ namespace KingsTester
                 if (oExists == null)
                 {
                     GameAccount oGA = new GameAccount(li, oH);
-                    RestoreProfile(oGA);
+                    // RestoreProfile(oGA);
                     gameAccounts.Add(oGA);
                     if (lvAccounts.SelectedIndex == -1) lvAccounts.SelectedIndex = 0;
                     UpdateInfo(String.Format("加入 {0}: {1} - {2} [{3}]", li.account, li.serverTitle, li.nickName, li.sid));
@@ -167,22 +172,7 @@ namespace KingsTester
         {
             UpdateUI(txtResult, info, addTime, resetText);
         }
-
-
-
-        private GameAccount GetSelectedAccount()
-        {
-            if (gameAccounts.Count == 0)
-            {
-                MessageBox.Show("尚未偵測到大皇帝帳戶, 請先登入遊戲.");
-                return null;
-            }
-
-            GameAccount oGA = (GameAccount)lvAccounts.SelectedItem;
-            if (oGA == null) MessageBox.Show("請先選擇帳戶");
-            return oGA;
-        }
-
+        
         private void AddResultColumn(string header, int width, string binding)
         {
             GridViewColumn gvc = new GridViewColumn();
@@ -206,7 +196,7 @@ namespace KingsTester
 
         private void btnGoAction_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             string sAction = cboAction.Text.Split('|')[0].Trim();
             string sBody = null;
@@ -295,7 +285,7 @@ namespace KingsTester
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             action.goSignIn(oGA, UpdateInfoHandler);
         }
@@ -317,14 +307,14 @@ namespace KingsTester
 
         private void btnArchery_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             action.goArcheryShootAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
         }
 
         private void btnPlayerInfo_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             PlayerProperties pp = action.goGetPlayerProperties(oGA.currHeader, oGA.sid);
             if (pp.ready)
@@ -343,7 +333,7 @@ namespace KingsTester
 
         private void btnManorInfo_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             List<ManorInfo> mis = action.goManorGetManorInfo(oGA.currHeader, oGA.sid);
             UpdateResult("封田資料:");
@@ -359,10 +349,31 @@ namespace KingsTester
             goHarvestAll();
         }
 
+        private GameAccount GetSelectedActiveAccount()
+        {
+            if (gameAccounts.Count == 0)
+            {
+                MessageBox.Show("尚未偵測到大皇帝帳戶, 請先登入遊戲.");
+                return null;
+            }
+
+            GameAccount oGA = (GameAccount)lvAccounts.SelectedItem;
+            if (oGA == null) MessageBox.Show("請先選擇帳戶");
+
+            if (oGA.CheckStatus() != AccountStatus.Online)
+            {
+                MessageBox.Show("帳戶已在其他地方登入");
+                return null;
+            }
+            return oGA;
+        }
+
         private void btnHeroList_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
+
+            if (oGA.CheckStatus(true) != AccountStatus.Online) return;
 
             oGA.Heros.Clear();
 
@@ -391,7 +402,7 @@ namespace KingsTester
 
         private void btnDecInfo_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
 
             oGA.DecreeHeros.Clear();
@@ -414,7 +425,7 @@ namespace KingsTester
 
         private void btnBossWarSetting_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
+            GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
 
             if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
@@ -433,7 +444,8 @@ namespace KingsTester
             if (dialogResult == true)
             {
                 refreshAccountList();
-                SaveProfile();
+                // SaveProfile();
+                saveAccounts();
             }
         }
 
@@ -478,27 +490,108 @@ namespace KingsTester
 
         private void btnWorking_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedAccount();
-            if (oGA == null) return;
+            List<util.GenericFileRecord> gfrs = new List<util.GenericFileRecord>();
 
-            util.GenericFileRecord gfr = oGA.toGenericFileRecord();
-
-            if (gfr == null)
+            foreach (GameAccount oGA in gameAccounts)
             {
-                UpdateResult(oGA.msgPrefix() + "Fail converting GFR");
+                gfrs.Add(oGA.toGenericFileRecord());
+            }
+
+            util.saveGenericFileRecords("GFR.DAT", gfrs);
+
+            /*
+
+                        GameAccount oGA = GetSelectedAccount();
+                        if (oGA == null) return;
+
+                        util.GenericFileRecord gfr = oGA.toGenericFileRecord();
+
+                        if (gfr == null)
+                        {
+                            UpdateResult(oGA.msgPrefix() + "Fail converting GFR");
+                            return;
+                        }
+                        UpdateResult(oGA.msgPrefix() + "Convert to GFR OK");
+
+                        GameAccount oGAclone = new GameAccount(gfr);
+                        if (oGAclone == null)
+                        {
+                            UpdateResult(oGA.msgPrefix() + "Fail restore from GFR");
+                            return;
+                        }
+                        UpdateResult(oGA.msgPrefix() + "Restore from GFR OK");
+
+                        UpdateAccountList(oGAclone);
+            */
+        }
+
+        private void btnSaveAccounts_Click(object sender, RoutedEventArgs e)
+        {
+            saveAccounts();
+        }
+
+        private void saveAccounts()
+        {
+            List<util.GenericFileRecord> gfrs = new List<util.GenericFileRecord>();
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                gfrs.Add(oGA.toGenericFileRecord());
+            }
+
+            util.saveGenericFileRecords("GFR.DAT", gfrs);
+        }
+
+        private void btnReadAccounts_Click(object sender, RoutedEventArgs e)
+        {
+            restoreAccounts();
+        }
+
+        private void restoreAccounts()
+        {
+            List<util.GenericFileRecord> gfrs = null;
+            if (util.restoreGenericFileRecords("GFR.DAT", ref gfrs))
+            {
+                lock (gameAccountsLocker)
+                {
+                    gameAccounts.Clear();
+                    refreshAccountList(gfrs);
+                }
+            }
+        }
+
+        private void refreshAccountList(List<util.GenericFileRecord> gfrs)
+        {
+/*
+            // Since gameAccounts is ObservableCollection which will update the list, so it must be running in UI thread
+            if (Dispatcher.FromThread(Thread.CurrentThread) == null)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                  System.Windows.Threading.DispatcherPriority.Normal,
+                  (Action)(() => refreshAccountList(gfrs)));
                 return;
             }
-            UpdateResult(oGA.msgPrefix() + "Convert to GFR OK");
+*/
+            
+            int currSelectedIndex = lvAccounts.SelectedIndex;
 
-            GameAccount oGAclone = new GameAccount(gfr);
-            if (oGAclone == null)
+            lock (gameAccountsLocker)
             {
-                UpdateResult(oGA.msgPrefix() + "Fail restore from GFR");
-                return;
+                gameAccounts.Clear();
+                foreach (util.GenericFileRecord gfr in gfrs)
+                {
+                    gameAccounts.Add(new GameAccount(gfr));
+                }
             }
-            UpdateResult(oGA.msgPrefix() + "Restore from GFR OK");
+            lvAccounts.SelectedIndex = (currSelectedIndex == -1 ? 0 : currSelectedIndex);
+            goCheckAccountStatus(true);
+            refreshAccountList();
 
-            UpdateAccountList(oGAclone);
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            saveAccounts();
         }
     }
 }

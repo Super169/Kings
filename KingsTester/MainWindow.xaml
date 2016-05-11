@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KingsTester"
         mc:Ignorable="d"
-        Title="大重帝輔助測試工具" Height="768" Width="1024">
+        Title="大重帝輔助測試工具" Height="768" Width="1024" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*" MinWidth="400"/>
@@ -121,7 +121,9 @@
                 <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,132,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
                 <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="173,132,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
                 <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,0,10,10" Click="btnGoAuto_Click" Height="20" VerticalAlignment="Bottom"/>
-                <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="87,189,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
+                <Button x:Name="btnSaveAccounts" Content="儲存帳戶資料" HorizontalAlignment="Left" Margin="2,157,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveAccounts_Click"/>
+                <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="173,157,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
+                <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="87,214,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
             </Grid>
         </Grid>
     </Grid>

@@ -12,6 +12,7 @@ namespace KingsTester
 {
     public partial class MainWindow : Window
     {
+/*
         List<GameAccountProfile> gameAccountProfiles = new List<GameAccountProfile>();
 
         [Serializable]
@@ -44,6 +45,7 @@ namespace KingsTester
 
         private void SaveProfile()
         {
+
             if (gameAccounts.Count == 0) return;
 
             foreach (GameAccount oGA in gameAccounts)
@@ -77,7 +79,9 @@ namespace KingsTester
             {
                 if (fs != null) fs.Close();
             }
+
         }
+
 
         private void RestoreProfile()
         {
@@ -112,6 +116,6 @@ namespace KingsTester
             UpdateInfo(oGA.msgPrefix() + "取得神將設定");
             return true;
         }
-
+        */
     }
 }

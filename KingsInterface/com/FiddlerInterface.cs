@@ -13,6 +13,13 @@ namespace KingsInterface
         private const int FIDDLER_PORT = 8899;
         public static bool isSysProxy { get; private set; } = false;
 
+        public static void start(string appName)
+        {
+            // Start Fiddler before starting the monitor, otherwise, it may cause problem when traffic comes before not all monitors started.
+            ConfigFiddler(appName);
+            Startup(false);
+        }
+
         public static void ConfigFiddler(string appName)
         {
             Fiddler.FiddlerApplication.SetAppDisplayName(appName);
