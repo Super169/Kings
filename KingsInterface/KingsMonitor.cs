@@ -111,15 +111,6 @@ namespace KingsInterface
             oH.RequestPath = "/m.do";
             oH.UriScheme = "http";
 
-            dynamic jH = Json.Decode("{}");
-            jH.HTTPMethod = "POST";
-            jH.HTTPVersion = "HTTP/1.1";
-            jH.RawPath = Encoding.UTF8.GetBytes("/m.do"); 
-            jH.RequestPath = "/m.do";
-            jH.UriScheme = "http";
-
-            List<object> jHeader = new List<object>();
-            
             string[] headerStr = p.data.Split('|');
             foreach (string s in headerStr)
             {
@@ -130,24 +121,26 @@ namespace KingsInterface
                     string value = pair[1].Trim();
                     if ((key != "") && (value != ""))
                     {
-                        oH[key] = value;
-                        dynamic jItem = Json.Decode("{}");
-                        jItem.key = key;
-                        jItem.value = value;
-                        jHeader.Add(jItem);
                         // UpdateUI(string.Format("{0} : {1}", key, value));
+                        oH[key] = value;
                     }
                 }
             }
-
-            jH.header = new DynamicJsonArray(jHeader.ToArray());
-            string jString = Json.Encode(jH);
 
             data.LoginInfo li = action.goGetAccountInfo(oH, sid);
             if (!li.ready) return;
 
             li.server = server;
             UpdateUI(string.Format("{0} | {1} - {2}", li.account, li.serverTitle, li.nickName));
+
+            // ************* Testing for save & restore via json *************
+            // Most information is fixed, so only the key-value in headerStr need to be saved
+            string jsonString = util.header2JsonString(oH);
+            oH = null;
+            oH = util.headerFromJsonString(jsonString);
+            // ***************************************************************
+
+
             NewSid(li, oH);
 
         }
