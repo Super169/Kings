@@ -78,6 +78,7 @@
     <Compile Include="data\DecreeInfo.cs" />
     <Compile Include="data\GameAccount.cs" />
     <Compile Include="data\HeroInfo.cs" />
+    <Compile Include="data\IInfoObject.cs" />
     <Compile Include="data\LoginInfo.cs" />
     <Compile Include="data\ManorInfo.cs" />
     <Compile Include="data\PacketKey.cs" />

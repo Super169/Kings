@@ -138,8 +138,25 @@ namespace KingsInterface.data
                 }
             } catch
             {
-                // reset all heros for any error
+                // reset all data for any error
                 this.Heros = new List<HeroInfo>();
+            }
+
+            this.DecreeHeros = new List<DecreeInfo>();
+            try
+            {
+                jsonString = util.getString(gfr.getObject(KEY.DecreeHeros));
+                json = Json.Decode(jsonString);
+                dja = json.data;
+                foreach (dynamic o in dja)
+                {
+                    this.DecreeHeros.Add(new DecreeInfo(o));
+                }
+            }
+            catch
+            {
+                // reset all data for any error
+                this.DecreeHeros = new List<DecreeInfo>();
             }
 
 
@@ -208,14 +225,14 @@ namespace KingsInterface.data
             gfr.saveObject(KEY.BossWarCount, this.BossWarCount);
 
             // Data with array 
-            List<object> jsonArray = null;
+            // List<object> jsonArray = null;
             dynamic json = null;
 
             json = Json.Decode("{}");
             json.data = this.BossWarHeros;
             gfr.saveObject(KEY.BossWarHeros, Json.Encode(json));
 
-
+            /*
             json = Json.Decode("{}");
             jsonArray = new List<dynamic>();
             foreach (HeroInfo hi in this.Heros)
@@ -224,10 +241,23 @@ namespace KingsInterface.data
             }
             json.data = new DynamicJsonArray(jsonArray.ToArray());
             gfr.saveObject(KEY.Heros, Json.Encode(json));
+            */
+            /*
+            json = Json.Decode("{}");
+            jsonArray = new List<dynamic>();
+            foreach (DecreeInfo hi in this.DecreeHeros)
+            {
+                jsonArray.Add(hi.toJson());
+            }
+            json.data = new DynamicJsonArray(jsonArray.ToArray());
+            gfr.saveObject(KEY.DecreeHeros, Json.Encode(json));
+            */
+            gfr.saveObject(KEY.Heros, util.infoBaseListToJsonString(this.Heros.ToArray()));
 
+            gfr.saveObject(KEY.DecreeHeros, util.infoBaseListToJsonString(this.DecreeHeros.ToArray()));
 
-            gfr.saveObject(KEY.DecreeHeros, this.DecreeHeros);
-            gfr.saveObject(KEY.AutoTasks, this.AutoTasks);
+            //gfr.saveObject(KEY.DecreeHeros, this.DecreeHeros);
+            //gfr.saveObject(KEY.AutoTasks, this.AutoTasks);
             return gfr;
         }
 

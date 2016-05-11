@@ -7,7 +7,7 @@ using System.Web.Helpers;
 
 namespace KingsInterface.data
 {
-    public class HeroInfo
+    public class HeroInfo : IInfoObject
     {
         public int idx { get; set;  }
         public string nm { get; set; }
@@ -28,27 +28,28 @@ namespace KingsInterface.data
             idx = 0;
         }
 
-        public HeroInfo(dynamic hero)
+        public HeroInfo(dynamic json)
         {
             try
             {
-                this.idx = hero.idx;
-                this.nm = hero.nm;
-                this.army = hero.army;
-                this.lv = hero.lv;
-                this.power = hero.power;
-                this.cfd = hero.cfd;
-                this.intl = hero.intl;
-                this.strg = hero.strg;
-                this.chrm = hero.chrm;
-                this.attk = hero.attk;
-                this.dfnc = hero.dfnc;
-                this.spd = hero.spd;
+                this.idx = json.idx;
+                this.nm = json.nm;
+                this.army = json.army;
+                this.lv = json.lv;
+                this.power = json.power;
+                this.cfd = json.cfd;
+                this.intl = json.intl;
+                this.strg = json.strg;
+                this.chrm = json.chrm;
+                this.attk = json.attk;
+                this.dfnc = json.dfnc;
+                this.spd = json.spd;
 
-                if (hero.amftLvs is DynamicJsonArray)
+                if (json.amftLvs is DynamicJsonArray)
                 {
-                    DynamicJsonArray s = (DynamicJsonArray)hero.amftLvs;
-                    for (int i = 0; i < 5; i++) this.amftLvs[i] = (int) s.ElementAt(i);
+                    // DynamicJsonArray s = (DynamicJsonArray)json.amftLvs;
+                    // for (int i = 0; i < 5; i++) this.amftLvs[i] = (int) s.ElementAt(i);
+                    this.amftLvs = util.getInts(json.amftLvs);
                 }
             } catch
             {
@@ -56,7 +57,7 @@ namespace KingsInterface.data
             }
         }
 
-        public dynamic toJson()
+        public  dynamic toJson()
         {
             dynamic json = Json.Decode("{}");
             try
@@ -78,5 +79,6 @@ namespace KingsInterface.data
             catch (Exception) { }
             return json;
         }
+
     }
 }

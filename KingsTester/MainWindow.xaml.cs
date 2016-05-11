@@ -97,6 +97,27 @@ namespace KingsTester
             }
         }
 
+        void UpdateAccountList(GameAccount oGA)
+        {
+            if (Dispatcher.FromThread(Thread.CurrentThread) == null)
+            {
+                Application.Current.Dispatcher.BeginInvoke(
+                  System.Windows.Threading.DispatcherPriority.Normal,
+                  (Action)(() => UpdateAccountList(oGA)));
+                return;
+            }
+
+            lock (gameAccountsLocker)
+            {
+                GameAccount oExists = gameAccounts.SingleOrDefault(x => x.account == oGA.account);
+                if (oExists != null) gameAccounts.Remove(oExists);
+                gameAccounts.Add(oGA);
+            }
+            if (lvAccounts.SelectedIndex == -1) lvAccounts.SelectedIndex = 0;
+
+        }
+
+
 
         void refreshAccountList()
         {
@@ -265,7 +286,8 @@ namespace KingsTester
             if (rro.success)
             {
                 ShowActionResult(rro.responseText);
-            } else
+            }
+            else
             {
                 ShowActionResult(rro.msg);
             }
@@ -382,7 +404,7 @@ namespace KingsTester
                 return;
             }
 
-            oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros );
+            oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros);
 
             foreach (DecreeInfo di in oGA.DecreeHeros)
             {
@@ -464,6 +486,7 @@ namespace KingsTester
             if (gfr == null)
             {
                 UpdateResult(oGA.msgPrefix() + "Fail converting GFR");
+                return;
             }
             UpdateResult(oGA.msgPrefix() + "Convert to GFR OK");
 
@@ -471,10 +494,11 @@ namespace KingsTester
             if (oGAclone == null)
             {
                 UpdateResult(oGA.msgPrefix() + "Fail restore from GFR");
+                return;
             }
             UpdateResult(oGA.msgPrefix() + "Restore from GFR OK");
 
-
+            UpdateAccountList(oGAclone);
         }
     }
 }

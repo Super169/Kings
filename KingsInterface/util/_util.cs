@@ -1,4 +1,5 @@
 ﻿using Fiddler;
+using KingsInterface.data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,28 @@ namespace KingsInterface
 {
     public partial class util
     {
+
+        public static string infoBaseListToJsonString(IInfoObject[] data)
+        {
+            string retJson = "{}";
+            try
+            {
+                dynamic json = Json.Decode("{}");
+                List<object> jsonArray = new List<dynamic>();
+                foreach (IInfoObject ibo in data)
+                {
+                    jsonArray.Add(ibo.toJson());
+                }
+                json.data = new DynamicJsonArray(jsonArray.ToArray());
+                retJson = Json.Encode(json);
+            } catch
+            {
+                retJson = "{}";
+            }
+            return retJson;
+        }
+
+        #region "Get data from dynamic"
 
         public static int getInt(dynamic o, string key, int defValue = -1)
         {
@@ -65,7 +88,6 @@ namespace KingsInterface
 
         }
 
-
         public static DateTime getDateTime(dynamic o, string key)
         {
             if (o[key] == null) return DateTime.Now;
@@ -111,6 +133,10 @@ namespace KingsInterface
             return retValue;
         }
 
+        #endregion
+
+        #region "Get Array data from DynamicJsonArray"
+
         public static byte[] getBytes(DynamicJsonArray json)
         {
             byte[] getBytes = null;
@@ -133,7 +159,20 @@ namespace KingsInterface
             return getInts;
         }
 
+        public static string[] getStrings(DynamicJsonArray json)
+        {
+            string[] getStrings = null;
+            try
+            {
+                getStrings = Array.ConvertAll<dynamic, string>(json, x => (string)x);
+            }
+            catch { }
+            return getStrings;
+        }
 
+        #endregion
+
+        #region "GenericFileRecords"
 
         public static bool saveGenericFileRecords(string fileName, List<util.GenericFileRecord> data)
         {
@@ -144,7 +183,8 @@ namespace KingsInterface
                 fs = new FileStream(fileName, FileMode.OpenOrCreate);
                 formatter.Serialize(fs, data);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return false;
             }
             finally
@@ -164,7 +204,8 @@ namespace KingsInterface
                 fs = new FileStream(fileName, FileMode.Open);
                 data = (List<util.GenericFileRecord>)formatter.Deserialize(fs);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return false;
             }
             finally
@@ -173,6 +214,10 @@ namespace KingsInterface
             }
             return true;
         }
+
+        #endregion
+
+        #region "HTTPRequestHeader covnersion"
 
         public static string header2JsonString(HTTPRequestHeaders oH)
         {
@@ -202,7 +247,8 @@ namespace KingsInterface
                 retString = Json.Encode(json);
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
             return retString;
@@ -226,11 +272,13 @@ namespace KingsInterface
                     oH[o.key] = o.value;
                 }
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 oH = null;
             }
             return oH;
         }
 
+        #endregion
     }
 }
