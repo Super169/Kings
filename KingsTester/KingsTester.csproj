@@ -65,7 +65,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainWindow_BossWar.cs" />
-    <Compile Include="MainWindow_Profile.cs" />
     <Compile Include="MainWindow_AutoTasks.cs" />
     <Compile Include="ui\BossWarSettings.xaml.cs">
       <DependentUpon>BossWarSettings.xaml</DependentUpon>

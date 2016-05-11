@@ -498,31 +498,6 @@ namespace KingsTester
             }
 
             util.saveGenericFileRecords("GFR.DAT", gfrs);
-
-            /*
-
-                        GameAccount oGA = GetSelectedAccount();
-                        if (oGA == null) return;
-
-                        util.GenericFileRecord gfr = oGA.toGenericFileRecord();
-
-                        if (gfr == null)
-                        {
-                            UpdateResult(oGA.msgPrefix() + "Fail converting GFR");
-                            return;
-                        }
-                        UpdateResult(oGA.msgPrefix() + "Convert to GFR OK");
-
-                        GameAccount oGAclone = new GameAccount(gfr);
-                        if (oGAclone == null)
-                        {
-                            UpdateResult(oGA.msgPrefix() + "Fail restore from GFR");
-                            return;
-                        }
-                        UpdateResult(oGA.msgPrefix() + "Restore from GFR OK");
-
-                        UpdateAccountList(oGAclone);
-            */
         }
 
         private void btnSaveAccounts_Click(object sender, RoutedEventArgs e)
@@ -562,17 +537,6 @@ namespace KingsTester
 
         private void refreshAccountList(List<util.GenericFileRecord> gfrs)
         {
-/*
-            // Since gameAccounts is ObservableCollection which will update the list, so it must be running in UI thread
-            if (Dispatcher.FromThread(Thread.CurrentThread) == null)
-            {
-                Application.Current.Dispatcher.BeginInvoke(
-                  System.Windows.Threading.DispatcherPriority.Normal,
-                  (Action)(() => refreshAccountList(gfrs)));
-                return;
-            }
-*/
-            
             int currSelectedIndex = lvAccounts.SelectedIndex;
 
             lock (gameAccountsLocker)
