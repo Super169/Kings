@@ -453,5 +453,28 @@ namespace KingsTester
         {
             goReadEmail();
         }
+
+        private void btnWorking_Click(object sender, RoutedEventArgs e)
+        {
+            GameAccount oGA = GetSelectedAccount();
+            if (oGA == null) return;
+
+            util.GenericFileRecord gfr = oGA.toGenericFileRecord();
+
+            if (gfr == null)
+            {
+                UpdateResult(oGA.msgPrefix() + "Fail converting GFR");
+            }
+            UpdateResult(oGA.msgPrefix() + "Convert to GFR OK");
+
+            GameAccount oGAclone = new GameAccount(gfr);
+            if (oGAclone == null)
+            {
+                UpdateResult(oGA.msgPrefix() + "Fail restore from GFR");
+            }
+            UpdateResult(oGA.msgPrefix() + "Restore from GFR OK");
+
+
+        }
     }
 }

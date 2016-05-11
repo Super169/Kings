@@ -55,5 +55,28 @@ namespace KingsInterface.data
                 idx = 0;
             }
         }
+
+        public dynamic toJson()
+        {
+            dynamic json = Json.Decode("{}");
+            try
+            {
+                json.idx = this.idx;
+                json.nm = this.nm;
+                json.army = this.army;
+                json.lv = this.lv;
+                json.power = this.power;
+                json.cfd = this.cfd;
+                json.intl = this.intl;
+                json.strg = this.strg;
+                json.chrm = this.chrm;
+                json.attk = this.attk;
+                json.dfnc = this.dfnc;
+                json.spd = this.spd;
+                json.amftLvs = this.amftLvs;
+            }
+            catch (Exception) { }
+            return json;
+        }
     }
 }

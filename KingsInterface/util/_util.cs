@@ -110,7 +110,30 @@ namespace KingsInterface
             catch { }
             return retValue;
         }
-        
+
+        public static byte[] getBytes(DynamicJsonArray json)
+        {
+            byte[] getBytes = null;
+            try
+            {
+                getBytes = Array.ConvertAll<dynamic, byte>(json, x => (byte)x);
+            }
+            catch { }
+            return getBytes;
+        }
+
+        public static int[] getInts(DynamicJsonArray json)
+        {
+            int[] getInts = null;
+            try
+            {
+                getInts = Array.ConvertAll<dynamic, int>(json, x => (int)x);
+            }
+            catch { }
+            return getInts;
+        }
+
+
 
         public static bool saveGenericFileRecords(string fileName, List<util.GenericFileRecord> data)
         {
