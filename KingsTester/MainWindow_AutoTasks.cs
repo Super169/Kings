@@ -55,13 +55,14 @@ namespace KingsTester
         private void goAutoTasks()
         {
             goCheckAccountStatus(true);
-            goHarvestAll();
+            goTaskHarvestAll();
             // goCycleShop();
-            goFinishAllTasks();
-            goSingInAll();
-            goReadEmail();
-            goSLBuyFood();
-            goCleanBag();
+            goTaskFinishAllTasks();
+            goTaskSingInAll();
+            goTaskReadEmail();
+            goTaskSLBuyFood();
+            goTaskCleanBag();
+            goTasksIndustryBuyAll();
         }
 
         private void goCheckAccountStatus(bool forceCheck = false)
@@ -73,7 +74,7 @@ namespace KingsTester
            refreshAccountList();
         }
 
-        private void goHarvestAll()
+        private void goTaskHarvestAll()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -81,7 +82,7 @@ namespace KingsTester
             }
         }
 
-        private void goCycleShop()
+        private void goTaskCycleShop()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -110,7 +111,7 @@ namespace KingsTester
             }
         }
 
-        private void goFinishAllTasks()
+        private void goTaskFinishAllTasks()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -118,7 +119,7 @@ namespace KingsTester
             }
         }
 
-        private void goSingInAll()
+        private void goTaskSingInAll()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -126,7 +127,7 @@ namespace KingsTester
             }
         }
 
-        private void goReadEmail()
+        private void goTaskReadEmail()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -138,7 +139,7 @@ namespace KingsTester
             }
         }
 
-        private void goSLBuyFood()
+        private void goTaskSLBuyFood()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -150,7 +151,7 @@ namespace KingsTester
             }
         }
 
-        private void goCleanBag()
+        private void goTaskCleanBag()
         {
             foreach (GameAccount oGA in gameAccounts)
             {
@@ -160,6 +161,23 @@ namespace KingsTester
                 }
             }
         }
+
+        private void goTasksIndustryBuyAll()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    // go buy food first, then silver
+                    int buyCnt = action.goIndustryBuyAll(oGA, null, true, false);
+                    // can buy food if any
+                    buyCnt += action.goIndustryBuyAll(oGA, null, true, true);
+                    UpdateResult(oGA.msgPrefix() + string.Format("在產業中購買了{0}次", buyCnt));
+                }
+            }
+
+        }
+
 
     }
 }

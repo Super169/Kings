@@ -1,0 +1,55 @@
+// check 狀況
+{"act":"Travel.getStatus","sid":"678a531931fcadae7842da25d74db809288cddcb"}
+{"isIn":true,"canBuyTimes":0,"nextPrice":-1,"canPlayTimes":1}
+
+// 讀地圖: 好似唔知 size, maybe based on playerLevel (need to get number of control dice in other request)
+{"act":"Travel.getMapInfo","sid":"678a531931fcadae7842da25d74db809288cddcb"}
+{"playerLevel":91,"currStep":37,"remainSteps":0,"diceNum":21,"nextDicePrice":-1,"chipsNum":5,"avaBuyDice":0,"total":0,"simpleMap":{"0":"ZHANDOU","1":"KONG","2":"KONG","3":"SHANGDIAN","4":"KONG","5":"FANPAI","6":"BAOXIANG","7":"KONG","8":"FANPAI","9":"KONG","10":"BAOXIANG","11":"KONG","12":"KONG","13":"SHANGDIAN","14":"FANPAI","15":"KONG","16":"KONG","17":"FANPAI","18":"KONG","19":"KONG","20":"BAOXIANG","21":"FANPAI","22":"KONG","23":"BAOXIANG","24":"FANPAI","25":"KONG","26":"KONG","27":"BAOXIANG","28":"SHANGDIAN","29":"KONG","30":"FANPAI","31":"KONG","32":"KONG","33":"BAOXIANG","34":"FANPAI","35":"KONG","36":"BAOXIANG","37":"FANPAI","38":"SHANGDIAN","39":"KONG","40":"BAOXIANG","41":"KONG","42":"FANPAI","43":"BAOXIANG","44":"KONG","45":"KONG","46":"BAOXIANG","47":"KONG","48":"FANPAI","49":"BAOXIANG","50":"KONG","51":"BAOXIANG","52":"SHANGDIAN","53":"KONG","54":"FANPAI","55":"BAOXIANG","56":"KONG","57":"FANPAI","58":"KONG","59":"KONG","60":"BAOXIANG","61":"KONG","62":"FANPAI","63":"BAOXIANG","64":"KONG","65":"BAOXIANG","66":"SHANGDIAN","67":"KONG","68":"FANPAI","69":"KONG","70":"BAOXIANG","71":"FANPAI","72":"KONG","73":"SHANGDIAN","74":"BAOXIANG","75":"KONG","76":"FANPAI","77":"KONG","78":"BAOXIANG","79":"KONG","80":"SHANGDIAN","81":"FANPAI","82":"BAOXIANG","83":"KONG","84":"FANPAI"}}
+
+// Control dice - 好似要自己計結果.  37+(6) -> 43  (不過, 可以行完, getMapInfo 知道地點)
+{"act":"Travel.controlDice","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"num\":6}"}
+{"ok":1}
+{"act":"Travel.arriveStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":43}"}
+{"index":43,"step":{"stepId":43,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"SILVER":24000},"itemDefs":[{"name":"金色宝物包","num":2}]},"enemies":[]}}
+
+// Random - 會比埋結果. 43+(4)+(2) -> 49
+{"act":"Travel.dice","sid":"678a531931fcadae7842da25d74db809288cddcb"}
+{"num1":4,"num2":2,"nextStep":49}
+{"act":"Travel.arriveStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":49}"}
+{"index":49,"step":{"stepId":49,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"SILVER":6670},"itemDefs":[{"name":"金色军械包","num":3}]},"enemies":[]}}
+
+// 亂睇野:
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":36}"}
+{"index":36,"step":{"stepId":36,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"IRON":2400},"itemDefs":[{"name":"拜帖","num":2}]},"enemies":[]}}
+
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":37}"}
+{"index":37,"step":{"stepId":37,"stepOver":false,"stepType":"FANPAI","limitId":-1,"enemies":[]}}
+
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":38}"}
+{"index":38,"step":{"stepId":38,"stepOver":false,"stepType":"SHANGDIAN","limitId":-1,"enemies":[]}}
+
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":39}"}
+{"index":39,"step":{"stepId":39,"stepOver":false,"stepType":"KONG","limitId":-1,"enemies":[]}}
+
+// 睇 49 (已取)
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":49}"}
+-- 未取
+{"index":49,"step":{"stepId":49,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"SILVER":6670},"itemDefs":[{"name":"金色军械包","num":3}]},"enemies":[]}}
+-- 已取
+{"index":49,"step":{"stepId":49,"stepOver":false,"stepType":"KONG","limitId":-1,"reward":{"resources":{"SILVER":6670},"itemDefs":[{"name":"金色军械包","num":3}]},"enemies":[]}}
+
+
+// 睇最後一格
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":84}"}
+{"index":84,"step":{"stepId":84,"stepOver":false,"stepType":"FANPAI","limitId":-1,"enemies":[]}}
+
+// 超出最後一格
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":85}"}
+{"style":"ERROR","prompt":"ERR_COMMON_NOT_SUPPORTED","_type":"SCPrompt","_rs":1}
+
+// 強行話自己到左:
+{"act":"Travel.arriveStep","sid":"678a531931fcadae7842da25d74db809288cddcb","body":"{\"step\":46}"}
+{"style":"ERROR","prompt":"ERR_COMMON_REQUEST_INVALID","_type":"SCPrompt","_rs":1}
+
+// 再睇 map, 43, 49 開左都仲有, 不過會叫 "KONG", 唔再係 "BAOXIANG"
+{"playerLevel":91,"currStep":52,"remainSteps":0,"diceNum":19,"nextDicePrice":-1,"chipsNum":5,"avaBuyDice":0,"total":0,"simpleMap":{"0":"ZHANDOU","1":"KONG","2":"KONG","3":"SHANGDIAN","4":"KONG","5":"FANPAI","6":"BAOXIANG","7":"KONG","8":"FANPAI","9":"KONG","10":"BAOXIANG","11":"KONG","12":"KONG","13":"SHANGDIAN","14":"FANPAI","15":"KONG","16":"KONG","17":"FANPAI","18":"KONG","19":"KONG","20":"BAOXIANG","21":"FANPAI","22":"KONG","23":"BAOXIANG","24":"FANPAI","25":"KONG","26":"KONG","27":"BAOXIANG","28":"SHANGDIAN","29":"KONG","30":"FANPAI","31":"KONG","32":"KONG","33":"BAOXIANG","34":"FANPAI","35":"KONG","36":"BAOXIANG","37":"FANPAI","38":"SHANGDIAN","39":"KONG","40":"BAOXIANG","41":"KONG","42":"FANPAI","43":"KONG","44":"KONG","45":"KONG","46":"BAOXIANG","47":"KONG","48":"FANPAI","49":"KONG","50":"KONG","51":"BAOXIANG","52":"SHANGDIAN","53":"KONG","54":"FANPAI","55":"BAOXIANG","56":"KONG","57":"FANPAI","58":"KONG","59":"KONG","60":"BAOXIANG","61":"KONG","62":"FANPAI","63":"BAOXIANG","64":"KONG","65":"BAOXIANG","66":"SHANGDIAN","67":"KONG","68":"FANPAI","69":"KONG","70":"BAOXIANG","71":"FANPAI","72":"KONG","73":"SHANGDIAN","74":"BAOXIANG","75":"KONG","76":"FANPAI","77":"KONG","78":"BAOXIANG","79":"KONG","80":"SHANGDIAN","81":"FANPAI","82":"BAOXIANG","83":"KONG","84":"FANPAI"}}

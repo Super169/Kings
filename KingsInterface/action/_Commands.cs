@@ -15,11 +15,16 @@ namespace KingsInterface
 
         public const string CMD_Bag_getBagInfo = "Bag.getBagInfo";
         public const string CMD_Bag_useItem = "Bag.useItem";
-
-
+        
         public const string CMD_BossWar_enterWar = "BossWar.enterWar";
         public const string CMD_BossWar_leaveWar = "BossWar.leaveWar";
         public const string CMD_BossWar_sendTroop = "BossWar.sendTroop";
+
+        public const string CMD_City_buyProduct = "City.buyProduct";
+        public const string CMD_City_getIndustryInfo = "City.getIndustryInfo";
+
+        public const string CMD_Corps_personIndustryList = "Corps.personIndustryList";
+        
 
         public const string CMD_Email_read = "Email.read";
         public const string CMD_Email_openInBox = "Email.openInBox";

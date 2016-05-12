@@ -56,6 +56,7 @@
     <Compile Include="action\Archery.cs" />
     <Compile Include="action\BossWar.cs" />
     <Compile Include="action\Email.cs" />
+    <Compile Include="action\Industry.cs" />
     <Compile Include="action\Manor.cs" />
     <Compile Include="action\Player.cs" />
     <Compile Include="action\Shop.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="data\GameAccount.cs" />
     <Compile Include="data\HeroInfo.cs" />
     <Compile Include="data\IInfoObject.cs" />
+    <Compile Include="data\Industry.cs" />
+    <Compile Include="data\IndustryInfo.cs" />
     <Compile Include="data\LoginInfo.cs" />
     <Compile Include="data\ManorInfo.cs" />
     <Compile Include="data\PacketKey.cs" />

@@ -172,7 +172,7 @@ namespace KingsTester
         {
             UpdateUI(txtResult, info, addTime, resetText);
         }
-        
+
         private void AddResultColumn(string header, int width, string binding)
         {
             GridViewColumn gvc = new GridViewColumn();
@@ -346,7 +346,7 @@ namespace KingsTester
 
         private void btnHarvestAll_Click(object sender, RoutedEventArgs e)
         {
-            goHarvestAll();
+            goTaskHarvestAll();
         }
 
         private GameAccount GetSelectedActiveAccount()
@@ -456,7 +456,7 @@ namespace KingsTester
 
         private void btnCycleShop_Click(object sender, RoutedEventArgs e)
         {
-            goCycleShop();
+            goTaskCycleShop();
         }
 
         private void setUI()
@@ -485,20 +485,9 @@ namespace KingsTester
 
         private void btnReadMail_Click(object sender, RoutedEventArgs e)
         {
-            goReadEmail();
+            goTaskReadEmail();
         }
 
-        private void btnWorking_Click(object sender, RoutedEventArgs e)
-        {
-            List<util.GenericFileRecord> gfrs = new List<util.GenericFileRecord>();
-
-            foreach (GameAccount oGA in gameAccounts)
-            {
-                gfrs.Add(oGA.toGenericFileRecord());
-            }
-
-            util.saveGenericFileRecords("GFR.DAT", gfrs);
-        }
 
         private void btnSaveAccounts_Click(object sender, RoutedEventArgs e)
         {
@@ -557,5 +546,18 @@ namespace KingsTester
         {
             saveAccounts();
         }
+
+        private void btnCheckStatus_Click(object sender, RoutedEventArgs e)
+        {
+            goCheckAccountStatus();
+        }
+
+
+        private void btnWorking_Click(object sender, RoutedEventArgs e)
+        {
+            goTasksIndustryBuyAll();
+
+        }
+
     }
 }

@@ -61,6 +61,32 @@ namespace KingsInterface
 
         #endregion
 
+        #region "City"
+
+        public static RequestReturnObject go_City_buyProduct(HTTPRequestHeaders oH, string sid, int industryId, int index)
+        {
+            string body = "{\"industryId\":" + industryId.ToString() + ", \"index\":" + index.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_City_buyProduct, true, body);
+        }
+
+        public static RequestReturnObject go_City_getIndustryInfo(HTTPRequestHeaders oH, string sid, int industryId)
+        {
+            string body = "{\"industryId\":" + industryId.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_City_getIndustryInfo, true, body);
+        }
+
+        #endregion
+
+        #region "Corps"
+
+        public static RequestReturnObject go_Corps_personIndustryList(HTTPRequestHeaders oH, string sid, string type)
+        {
+            string body = "{\"industryId\":\"" + type + "\"}";
+            return com.SendGenericRequest(oH, sid, CMD_Corps_personIndustryList, true, body);
+        }
+
+        #endregion
+
         #region "Email"
 
         public static RequestReturnObject go_Email_getAttachment(HTTPRequestHeaders oH, string sid, int emailId)
