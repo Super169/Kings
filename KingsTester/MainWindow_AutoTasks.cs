@@ -170,9 +170,11 @@ namespace KingsTester
                 {
                     // go buy food first, then silver
                     int buyCnt = action.goIndustryBuyAll(oGA, null, true, false);
-                    // can buy food if any
+                    
+                    // can also buy food if possible
                     buyCnt += action.goIndustryBuyAll(oGA, null, true, true);
-                    UpdateResult(oGA.msgPrefix() + string.Format("在產業中購買了{0}次", buyCnt));
+
+                    if (buyCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("在產業中購買了{0}次", buyCnt));
                 }
             }
 
