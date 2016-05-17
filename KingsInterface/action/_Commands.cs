@@ -46,6 +46,7 @@ namespace KingsInterface
         public const string CMD_Naval_killRank = "Naval.killRank";
         public const string CMD_Naval_leaveWar = "Naval.leaveWar";
         public const string CMD_Naval_rewardCfg = "Naval.rewardCfg";
+        public const string CMD_Naval_sendTroops = "Naval.sendTroops";
 
         public const string CMD_Player_getProperties = "Player.getProperties";
 

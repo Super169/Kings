@@ -1,0 +1,7 @@
+﻿--------------------------------------------------------------------------------------------------
+Check if event available (in general, cityId 1,2 available in Monday, cityId 3,4,5 available in Tuesday
+--------------------------------------------------------------------------------------------------
+
+{"act":"Naval.getInfo","sid":"359dbb7f932ac9acd283bb76ad19247a0fede23d"}
+{"openTime":1462755600,"battles":["P","P","P","P","P"],"lServer":{"sid":"2077310045","nm":"S45 眾志成城"},"rServer":{"sid":"2077310042","nm":"S42 名聲鵲起"},"minHeroLv":50,"todayBattleNo":[1,2]}
+

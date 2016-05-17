@@ -150,7 +150,7 @@ namespace KingsInterface
         public static RequestReturnObject go_Naval_enterWar(HTTPRequestHeaders oH, string sid, int n)
         {
             string body = "{\"n\":" + n.ToString() + "}";
-            return com.SendGenericRequest(oH, sid, CMD_Naval_enterWar);
+            return com.SendGenericRequest(oH, sid, CMD_Naval_enterWar, true, body);
         }
 
         public static RequestReturnObject go_Naval_getInfo(HTTPRequestHeaders oH, string sid)
@@ -176,6 +176,14 @@ namespace KingsInterface
         public static RequestReturnObject go_Naval_rewardCfg(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Naval_rewardCfg);
+        }
+
+        public static RequestReturnObject go_Naval_sendTroops(HTTPRequestHeaders oH, string sid, int cityId, string heros)
+        {
+            // string body = "{\"save\":" + heros + ",\"type\":\"NAVAL\",\"cityId\":" + cityId.ToString() + "}";
+            string body = string.Format("{{\"save\":{0},\"type\":\"NAVAL\",\"cityId\":{1}}}", heros, cityId);
+            
+            return com.SendGenericRequest(oH, sid, CMD_Naval_sendTroops, true, body);
         }
 
         #endregion

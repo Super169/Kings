@@ -19,6 +19,7 @@ namespace KingsInterface
         public class TaskInfo
         {
             public string id { get; set; }
+            public bool isEnabled { get; set; }
             public List<int> dow { get; set; } = new List<int>();
             public TimeSpan? startTime { get; set; } = null;
             public TimeSpan? endTime { get; set; } = null;
@@ -26,6 +27,19 @@ namespace KingsInterface
             public List<TimeSpan> executionTimes { get; set; } = new List<TimeSpan>();
             public DateTime? lastExecutionTime = null;
             public DateTime? nextExecutionTime = null;
+
+            public TaskInfo(string taskId)
+            {
+                this.id = taskId;
+                isEnabled = false;
+                dow = new List<int>();
+                startTime = null;
+                endTime = null;
+                elapseMin = -1;
+                executionTimes = new List<TimeSpan>();
+                lastExecutionTime = null;
+                nextExecutionTime = null;
+            }
 
             public DateTime getDailyRefTime(DateTime baseTime, TimeSpan refTS)
             {
@@ -93,6 +107,7 @@ namespace KingsInterface
             public bool readyToGo()
             {
                 DateTime now = DateTime.Now;
+                if (!isEnabled) return false;
                 if (now < this.nextExecutionTime) return false;
                 return (validActionTime(now));
             }

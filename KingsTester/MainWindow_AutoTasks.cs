@@ -63,6 +63,7 @@ namespace KingsTester
             goTaskSLBuyFood();
             goTaskCleanBag();
             goTasksIndustryBuyAll();
+            goTaskNavalWar();
         }
 
         private void goCheckAccountStatus(bool forceCheck = false)
@@ -182,6 +183,23 @@ namespace KingsTester
 
         }
 
+        private void goTaskNavalWar()
+        {
+            DateTime now = DateTime.Now;
+            int dow = (int)now.DayOfWeek;
 
+            if ((dow != 1) && (dow != 2)) return;
+            int cityId = (dow == 1 ? 1 : 3);
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    bool sendOK = action.sendNavalTroops(oGA, cityId, oGA.BossWarBody);
+                    UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
+
+                }
+            }
+        }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="action\Email.cs" />
     <Compile Include="action\Industry.cs" />
     <Compile Include="action\Manor.cs" />
+    <Compile Include="action\Naval.cs" />
     <Compile Include="action\Player.cs" />
     <Compile Include="action\Shop.cs" />
     <Compile Include="action\Task.cs" />

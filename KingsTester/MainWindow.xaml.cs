@@ -555,8 +555,10 @@ namespace KingsTester
 
         private void btnWorking_Click(object sender, RoutedEventArgs e)
         {
-            goTasksIndustryBuyAll();
-
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            bool sendOK = action.sendNavalTroops(oGA, 3, oGA.BossWarBody);
+            UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
         }
 
     }
