@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyUtil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,16 +29,10 @@ namespace KingsInterface.data
         {
             try
             {
-                this.decId = json.decId;
+                decId = JSON.getInt(json, "decId");
+                heroIdx = JSON.getIntArray(json, "heroIdx");
+                heroName = JSON.getStringArray(json, "heroName");
 
-                if (json.heroIdx is DynamicJsonArray)
-                {
-                    heroIdx = util.getInts(json.heroIdx);
-                }
-                if (json.heroName is DynamicJsonArray)
-                {
-                    heroIdx = util.getStrings(json.heroName);
-                }
             }
             catch
             {

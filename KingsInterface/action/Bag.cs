@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,12 @@ namespace KingsInterface
 			foreach (dynamic item in items)
             {
                 BagInfo bi = new BagInfo();
-                bi.idx = util.getInt(item, "idx");
+                bi.idx = JSON.getInt(item, "idx");
                 if (bi.idx >= 0)
                 {
                     bi.nm = item["nm"];
-                    bi.n = util.getInt(item, "n");
-                    bi.us = util.getBool(item, "us");
+                    bi.n = JSON.getInt(item, "n");
+                    bi.us = JSON.getBool(item, "us");
                     bis.Add(bi);
                 }
             }

@@ -13,7 +13,6 @@ namespace KingsInterface
 {
     public partial class util
     {
-
         public static string infoBaseListToJsonString(IInfoObject[] data)
         {
             string retJson = "{}";
@@ -27,150 +26,13 @@ namespace KingsInterface
                 }
                 json.data = new DynamicJsonArray(jsonArray.ToArray());
                 retJson = Json.Encode(json);
-            } catch
+            }
+            catch
             {
                 retJson = "{}";
             }
             return retJson;
         }
-
-        #region "Get data from dynamic"
-
-        public static int getInt(dynamic o, string key, int defValue = -1)
-        {
-            if (o[key] == null) return defValue;
-            return getInt(o[key], defValue);
-        }
-
-        public static int getInt(object o, int defValue = -1)
-        {
-            int retValue = defValue;
-            try
-            {
-                retValue = Convert.ToInt32(o);
-            }
-            catch { }
-            return retValue;
-        }
-
-        public static double getDouble(dynamic o, string key, double defValue = -1.0)
-        {
-            if (o[key] == null) return defValue;
-            return getDouble(o[key], defValue);
-        }
-
-        public static double getDouble(object o, double defValue = -1.0)
-        {
-            double retValue = defValue;
-            try
-            {
-                retValue = Convert.ToDouble(o);
-            }
-            catch { }
-            return retValue;
-        }
-
-        public static bool getBool(dynamic o, string key, bool defValue = false)
-        {
-            if (o[key] == null) return defValue;
-            return getBool(o[key], defValue);
-        }
-
-        public static bool getBool(object o, bool defValue = false)
-        {
-            bool retValue = defValue;
-            try
-            {
-                retValue = Convert.ToBoolean(o);
-            }
-            catch { }
-            return retValue;
-
-        }
-
-        public static DateTime getDateTime(dynamic o, string key)
-        {
-            if (o[key] == null) return DateTime.Now;
-            return getDateTime(o[key], DateTime.Now);
-        }
-
-        public static DateTime getDateTime(dynamic o, string key, DateTime defValue)
-        {
-            if (o[key] == null) return defValue;
-            return getDateTime(o[key], defValue);
-        }
-
-        public static DateTime getDateTime(object o)
-        {
-            return getDateTime(o, DateTime.Now);
-        }
-
-        public static DateTime getDateTime(object o, DateTime defValue)
-        {
-            DateTime retValue = defValue;
-            try
-            {
-                retValue = Convert.ToDateTime(o);
-            }
-            catch { }
-            return retValue;
-        }
-
-        public static string getString(dynamic o, string key, string defValue = null)
-        {
-            if (o[key] == null) return defValue;
-            return getString(o[key], defValue);
-        }
-
-        public static string getString(object o, string defValue = null)
-        {
-            String retValue = defValue;
-            try
-            {
-                retValue = Convert.ToString(o);
-            }
-            catch { }
-            return retValue;
-        }
-
-        #endregion
-
-        #region "Get Array data from DynamicJsonArray"
-
-        public static byte[] getBytes(DynamicJsonArray json)
-        {
-            byte[] getBytes = null;
-            try
-            {
-                getBytes = Array.ConvertAll<dynamic, byte>(json, x => (byte)x);
-            }
-            catch { }
-            return getBytes;
-        }
-
-        public static int[] getInts(DynamicJsonArray json)
-        {
-            int[] getInts = null;
-            try
-            {
-                getInts = Array.ConvertAll<dynamic, int>(json, x => (int)x);
-            }
-            catch { }
-            return getInts;
-        }
-
-        public static string[] getStrings(DynamicJsonArray json)
-        {
-            string[] getStrings = null;
-            try
-            {
-                getStrings = Array.ConvertAll<dynamic, string>(json, x => (string)x);
-            }
-            catch { }
-            return getStrings;
-        }
-
-        #endregion
 
         #region "GenericFileRecords"
 

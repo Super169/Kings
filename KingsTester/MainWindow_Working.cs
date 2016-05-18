@@ -15,7 +15,28 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            go_TestTravel();
+            go_TestAuto();
+        }
+
+        private void go_TestAuto()
+        {
+            auto.ScheduleInfo schedule = new auto.ScheduleInfo();
+            /*
+            schedule.startTime = new TimeSpan(10, 15, 0);
+            schedule.endTime = new TimeSpan(23, 0, 0);
+            schedule.dow.Add(1);
+            schedule.dow.Add(2);
+            schedule.executionTimes.Add(new TimeSpan(5, 25, 0));
+            schedule.executionTimes.Add(new TimeSpan(9, 25, 0));
+            schedule.executionTimes.Add(new TimeSpan(12,25, 0));
+            schedule.executionTimes.Add(new TimeSpan(18, 25, 0));
+            */
+            dynamic json = schedule.toJson();
+            UpdateResult(json.ToString());
+            string jsonString = schedule.toJsonString();
+            UpdateResult(jsonString);
+            schedule.fromJson(json);
+            schedule.fromJsonString(jsonString);
         }
 
         private void go_TestNavalWar()

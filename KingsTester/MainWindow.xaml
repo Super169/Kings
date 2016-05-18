@@ -52,9 +52,26 @@
                 <ListView x:Name="lvAccounts" Margin="2,2,2,2">
                     <ListView.View>
                         <GridView >
+                            <GridViewColumn Header="狀態" Width="60">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type ListViewItem}">
+                                        <TextBlock Name="TextBlockName" Text="{Binding Path=status}"></TextBlock>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding status}" Value="Online">
+                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightGreen" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="Offline">
+                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightGray" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="Unknown">
+                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightBlue" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding serverTitle}"/>
                             <GridViewColumn Header="主公名稱" Width="110"  DisplayMemberBinding="{Binding nickName}"/>
-                            <GridViewColumn Header="狀態" Width="80"  DisplayMemberBinding="{Binding status}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

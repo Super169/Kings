@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyUtil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,7 +50,7 @@ namespace KingsInterface.data
                 {
                     // DynamicJsonArray s = (DynamicJsonArray)json.amftLvs;
                     // for (int i = 0; i < 5; i++) this.amftLvs[i] = (int) s.ElementAt(i);
-                    this.amftLvs = util.getInts(json.amftLvs);
+                    this.amftLvs = JSON.getIntArray(json, "amftLvs");
                 }
             } catch
             {

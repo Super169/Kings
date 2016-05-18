@@ -10,6 +10,7 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public const string CMD_Archery_archeryOpenInfo = "Archery.archeryOpenInfo"; // Not implemented
         public const string CMD_Archery_getArcheryInfo = "Archery.getArcheryInfo";
         public const string CMD_Archery_shoot = "Archery.shoot";
 
@@ -18,6 +19,7 @@ namespace KingsInterface
         
         public const string CMD_BossWar_enterWar = "BossWar.enterWar";
         public const string CMD_BossWar_leaveWar = "BossWar.leaveWar";
+        public const string CMD_BossWar_openInfo = "BossWar.openInfo";  // Not implemented
         public const string CMD_BossWar_sendTroop = "BossWar.sendTroop";
 
         public const string CMD_City_buyProduct = "City.buyProduct";

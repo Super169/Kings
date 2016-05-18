@@ -47,6 +47,7 @@ namespace SingleApp
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+
             if (System.Diagnostics.Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Count() > 1)
             {
                 MessageBox.Show("Find process");

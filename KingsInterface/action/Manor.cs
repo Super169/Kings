@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,7 +111,7 @@ namespace KingsInterface
             {
                 return 0;
             }
-            int outProduct = util.getInt(rro.responseJson, "out");
+            int outProduct = JSON.getInt(rro.responseJson, "out");
             return outProduct;
         }
 

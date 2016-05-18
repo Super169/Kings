@@ -1,4 +1,5 @@
 ﻿using Fiddler;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,37 +90,76 @@ namespace KingsInterface.data
             if (gfr == null) return;
             if ((this.account != null) && (gfr.key != this.account)) return;
 
-            this.sid = util.getString(gfr.getObject(KEY.sid));
-            this.account = util.getString(gfr.getObject(KEY.account));
+            this.sid = JSON.getString(gfr.getObject(KEY.sid));
+            this.account = JSON.getString(gfr.getObject(KEY.account));
             // Set to unknown and wait for first call to check status
-            // this.status = (AccountStatus)util.getInt(gfr.getObject(KEY.status));
+            // this.status = (AccountStatus)JSON.getInt(gfr.getObject(KEY.status));
             this.status = AccountStatus.Unknown;
-            this.timeAdjust = util.getInt(gfr.getObject(KEY.timeAdjust));
-            this.server = util.getString(gfr.getObject(KEY.server));
-            this.serverTitle = util.getString(gfr.getObject(KEY.serverTitle));
-            this.nickName = util.getString(gfr.getObject(KEY.nickName));
-            this.corpsName = util.getString(gfr.getObject(KEY.corpsName));
-            this.level = util.getString(gfr.getObject(KEY.level));
-            this.vipLevel = util.getString(gfr.getObject(KEY.vipLevel));
-            this.currHeader = util.headerFromJsonString(util.getString(gfr.getObject(KEY.currHeader)));
-            this.lastUpdateDTM = util.getDateTime(gfr.getObject(KEY.lastUpdateDTM));
-            // this.Heros = util.getString(gfr.getObject(KEY.Heros));
-            // this.DecreeHeros = util.getString(gfr.getObject(KEY.DecreeHeros));
-            // this.BossWarHeros = util.getInts(util.getString(gfr.getObject(KEY.BossWarHeros)));
-            this.BossWarChiefIdx = util.getInt(gfr.getObject(KEY.BossWarChiefIdx));
-            this.BossWarBody = util.getString(gfr.getObject(KEY.BossWarBody));
-            this.BossWarCount = util.getInt(gfr.getObject(KEY.BossWarCount));
-            //this.AutoTasks = util.getString(gfr.getObject(KEY.AutoTasks));
+            this.timeAdjust = JSON.getInt(gfr.getObject(KEY.timeAdjust));
+            this.server = JSON.getString(gfr.getObject(KEY.server));
+            this.serverTitle = JSON.getString(gfr.getObject(KEY.serverTitle));
+            this.nickName = JSON.getString(gfr.getObject(KEY.nickName));
+            this.corpsName = JSON.getString(gfr.getObject(KEY.corpsName));
+            this.level = JSON.getString(gfr.getObject(KEY.level));
+            this.vipLevel = JSON.getString(gfr.getObject(KEY.vipLevel));
+            this.currHeader = util.headerFromJsonString(JSON.getString(gfr.getObject(KEY.currHeader)));
+            this.lastUpdateDTM = JSON.getDateTime(gfr.getObject(KEY.lastUpdateDTM));
+
+
+            // this.Heros = JSON.getString(gfr.getObject(KEY.Heros));
+            // this.DecreeHeros = JSON.getString(gfr.getObject(KEY.DecreeHeros));
+            // this.BossWarHeros = JSON.getIntArray(JSON.getString(gfr.getObject(KEY.BossWarHeros)));
+            this.BossWarChiefIdx = JSON.getInt(gfr.getObject(KEY.BossWarChiefIdx));
+            this.BossWarBody = JSON.getString(gfr.getObject(KEY.BossWarBody));
+            this.BossWarCount = JSON.getInt(gfr.getObject(KEY.BossWarCount));
+            //this.AutoTasks = JSON.getString(gfr.getObject(KEY.AutoTasks));
 
             dynamic json = null;
             DynamicJsonArray dja = null;
             string jsonString = "";
 
+
+            this.Heros = new List<HeroInfo>();
             try
             {
-                jsonString = util.getString(gfr.getObject(KEY.BossWarHeros));
+                jsonString = JSON.getString(gfr.getObject(KEY.Heros));
                 json = Json.Decode(jsonString);
-                this.BossWarHeros = util.getInts(json.data);
+                if ((json["data"] != null) && (json["data"].GetType() == typeof(DynamicJsonArray))) {
+                    foreach (dynamic o in json["data"])
+                    {
+                        this.Heros.Add(new HeroInfo(o));
+                    }
+                }
+            }
+            catch
+            {
+                this.Heros = new List<HeroInfo>();
+            }
+
+
+            this.DecreeHeros = new List<DecreeInfo>();
+            try
+            {
+                jsonString = JSON.getString(gfr.getObject(KEY.DecreeHeros));
+                json = Json.Decode(jsonString);
+                if ((json["data"] != null) && (json["data"].GetType() == typeof(DynamicJsonArray)))
+                {
+                    foreach (dynamic o in json["data"])
+                    {
+                        this.DecreeHeros.Add(new DecreeInfo(o));
+                    }
+                }
+            }
+            catch
+            {
+                this.DecreeHeros = new List<DecreeInfo>();
+            }
+
+            try
+            {
+                jsonString = JSON.getString(gfr.getObject(KEY.BossWarHeros));
+                json = Json.Decode(jsonString);
+                this.BossWarHeros = JSON.getIntArray(json, "data");
             }
             catch
             {
@@ -129,7 +169,7 @@ namespace KingsInterface.data
             this.Heros = new List<HeroInfo>();
             try
             {
-                jsonString = util.getString(gfr.getObject(KEY.Heros));
+                jsonString = JSON.getString(gfr.getObject(KEY.Heros));
                 json = Json.Decode(jsonString);
                 dja = json.data;
                 foreach (dynamic o in dja)
@@ -145,7 +185,7 @@ namespace KingsInterface.data
             this.DecreeHeros = new List<DecreeInfo>();
             try
             {
-                jsonString = util.getString(gfr.getObject(KEY.DecreeHeros));
+                jsonString = JSON.getString(gfr.getObject(KEY.DecreeHeros));
                 json = Json.Decode(jsonString);
                 dja = json.data;
                 foreach (dynamic o in dja)

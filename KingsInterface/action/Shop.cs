@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace KingsInterface
                 foreach (dynamic item in items)
                 {
                     CycleShopInfo csi = new CycleShopInfo();
-                    csi.pos = util.getInt(item, "pos");
+                    csi.pos = JSON.getInt(item, "pos");
                     csi.res = item["res"];
                     csi.nm = item["nm"];
-                    csi.amount = util.getInt(item, "amount");
+                    csi.amount = JSON.getInt(item, "amount");
                     csi.sold = (bool) item["sold"];
                     csis.Add(csi);
                 }
@@ -40,7 +41,7 @@ namespace KingsInterface
         {
             RequestReturnObject rro = action.go_Shop_buyCycleShopItem(oH, sid, pos);
             if (!rro.SuccessWithJson("pos") || (rro.style == "ERROR")) return false;
-            int retPos = util.getInt(rro.responseJson, "pos", -1);
+            int retPos = JSON.getInt(rro.responseJson, "pos", -1);
             return (retPos == pos);
         }
 
@@ -53,7 +54,7 @@ namespace KingsInterface
             if (!rro.SuccessWithJson("remainBuyCount")) return 0;
 
             int coins = pp.EXPLOIT;
-            int remainCount = util.getInt(rro.responseJson, "remainBuyCount");
+            int remainCount = JSON.getInt(rro.responseJson, "remainBuyCount");
             int buyCount = 0;
             bool error = false;
 

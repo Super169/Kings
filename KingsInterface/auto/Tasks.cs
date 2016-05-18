@@ -21,18 +21,18 @@ namespace KingsInterface
 
                     ti = new TaskInfo(TID_CLEAN_BAG);
                     // Default setting for TID_CLEAN_BAG, clean the bag every hour (i.e. 60min)
-                    ti.elapseMin = 60;
-                    ti.startTime = new TimeSpan(6, 5, 0);
-                    ti.endTime = new TimeSpan(3, 55, 0);
-                    ti.setNextExecutionTime();
+                    ti.schedule.elapseMin = 60;
+                    ti.schedule.startTime = new TimeSpan(6, 5, 0);
+                    ti.schedule.endTime = new TimeSpan(3, 55, 0);
+                    ti.schedule.setNextExecutionTime();
                     oGA.AutoTasks.Add(ti);
                 }
 
                 if (ti.readyToGo())
                 {
                     int cleanUpCount = action.goBagCleanUp(oGA, updateInfo);
-                    ti.lastExecutionTime = now;
-                    ti.setNextExecutionTime();
+                    ti.schedule.lastExecutionTime = now;
+                    ti.schedule.setNextExecutionTime();
                 }
 
                 return true;
@@ -47,12 +47,12 @@ namespace KingsInterface
                 {
                     ti = new TaskInfo(TID_NAVAL_WAR);
                     // Default setting for TID_CLEAN_BAG
-                    ti.dow = new List<int>();
-                    ti.dow.Add(1);
-                    ti.dow.Add(2);
-                    ti.startTime = new TimeSpan(9, 15, 0);
-                    ti.endTime = new TimeSpan(7, 55, 0);
-                    ti.setNextExecutionTime();
+                    ti.schedule.dow = new List<int>();
+                    ti.schedule.dow.Add(1);
+                    ti.schedule.dow.Add(2);
+                    ti.schedule.startTime = new TimeSpan(9, 15, 0);
+                    ti.schedule.endTime = new TimeSpan(7, 55, 0);
+                    ti.schedule.setNextExecutionTime();
                     oGA.AutoTasks.Add(ti);
                 }
 

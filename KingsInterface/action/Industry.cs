@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,9 @@ namespace KingsInterface
                     foreach (dynamic item in items)
                     {
                         Industry industry = new Industry();
-                        industry.industryId = util.getInt(item.industryId);
-                        industry.city = util.getString(item.city);
-                        industry.type = util.getString(item.type);
+                        industry.industryId = JSON.getInt(item.industryId);
+                        industry.city = JSON.getString(item.city);
+                        industry.type = JSON.getString(item.type);
                         industrys.Add(industry);
                     }
                 }
@@ -53,9 +54,9 @@ namespace KingsInterface
                 foreach (dynamic item in items)
                 {
                     IndustryInfo ii = new IndustryInfo();
-                    ii.config = util.getInt(item, "config");
-                    ii.discount = util.getInt(item, "discount");
-                    ii.sold = util.getBool(item, "sold");
+                    ii.config = JSON.getInt(item, "config");
+                    ii.discount = JSON.getInt(item, "discount");
+                    ii.sold = JSON.getBool(item, "sold");
                     iis.Add(ii);
                 }
             }

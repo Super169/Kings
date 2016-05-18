@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace KingsInterface
                 foreach (dynamic task in tasks)
                 {
                     TaskTraceInfo tti = new TaskTraceInfo();
-                    tti.id = util.getInt(task, "id");
+                    tti.id = JSON.getInt(task, "id");
                     tti.status = task["status"];
                     tti.done = (tti.status == "FIN");
                     ttis.Add(tti);
@@ -46,7 +47,7 @@ namespace KingsInterface
                     RequestReturnObject rro = action.go_Task_finishTask(oGA.currHeader, oGA.sid, tti.id);
                     if ((rro.success) && (rro.responseJson != null) && (rro.responseJson["taskId"] !=null))
                     {
-                        int rroTaskId = util.getInt(rro.responseJson, "taskId", -1);
+                        int rroTaskId = JSON.getInt(rro.responseJson, "taskId", -1);
                         if (rroTaskId == tti.id) finCount++;
                     }
                 }
