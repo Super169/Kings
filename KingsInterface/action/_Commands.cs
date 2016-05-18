@@ -66,6 +66,13 @@ namespace KingsInterface
         public const string CMD_Task_finishTask = "Task.finishTask";
         public const string CMD_Task_getTaskTraceInfo = "Task.getTaskTraceInfo";
 
+        public const string CMD_Travel_getStatus = "Travel.getStatus";
+        public const string CMD_Travel_getMapInfo = "Travel.getMapInfo";
+        public const string CMD_Travel_controlDice = "Travel.controlDice";
+        public const string CMD_Travel_dice = "Travel.dice";
+        public const string CMD_Travel_viewStep = "Travel.viewStep";
+        public const string CMD_Travel_arriveStep = "Travel.arriveStep";
+
     }
 
 }

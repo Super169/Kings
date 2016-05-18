@@ -66,6 +66,7 @@
     </ApplicationDefinition>
     <Compile Include="MainWindow_BossWar.cs" />
     <Compile Include="MainWindow_AutoTasks.cs" />
+    <Compile Include="MainWindow_Working.cs" />
     <Compile Include="ui\BossWarSettings.xaml.cs">
       <DependentUpon>BossWarSettings.xaml</DependentUpon>
     </Compile>

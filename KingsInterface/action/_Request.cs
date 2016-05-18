@@ -252,13 +252,13 @@ namespace KingsInterface
 
         public static RequestReturnObject go_Shop2_shop2Info(HTTPRequestHeaders oH, string sid, string shop2Type)
         {
-            string body = "{\"shop2Type\":\"" + shop2Type.ToString() + "\"}";
+            string body = "{\"shop2Type\":\"" + shop2Type + "\"}";
             return com.SendGenericRequest(oH, sid, CMD_Shop2_shop2Info, true, body);
         }
 
         public static RequestReturnObject go_Shop2_buyItem(HTTPRequestHeaders oH, string sid, int id, string shop2Type)
         {
-            string body = "{\"id\":" + id.ToString() + ", \"shop2Type\":\"" + shop2Type.ToString() + "\"}";
+            string body = "{\"id\":" + id.ToString() + ", \"shop2Type\":\"" + shop2Type + "\"}";
             return com.SendGenericRequest(oH, sid, CMD_Shop2_buyItem, true, body);
         }
 
@@ -295,5 +295,43 @@ namespace KingsInterface
 
         #endregion
 
+        #region "Travel"
+
+        public static RequestReturnObject go_Travel_getStatus(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Travel_getStatus);
+        }
+
+        public static RequestReturnObject go_Travel_getMapInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Travel_getMapInfo);
+        }
+
+        public static RequestReturnObject go_Travel_controlDice(HTTPRequestHeaders oH, string sid, int num)
+        {
+            string body = "{\"num\":" + num.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Travel_controlDice, true, body);
+        }
+
+        public static RequestReturnObject go_Travel_dice(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Travel_dice);
+        }
+
+        public static RequestReturnObject go_Travel_viewStep(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Travel_viewStep);
+        }
+
+        public static RequestReturnObject go_Travel_arriveStep(HTTPRequestHeaders oH, string sid, int step)
+        {
+            string body = "{\"step\":" + step.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Travel_arriveStep, true, body);
+        }
+
+        #endregion
+
+
     }
+
 }

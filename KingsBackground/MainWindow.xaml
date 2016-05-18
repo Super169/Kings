@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KingsBackground"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="lblCount" Content="0" HorizontalAlignment="Left" Margin="72,31,0,0" VerticalAlignment="Top" Height="71" Width="380" FontSize="48" HorizontalContentAlignment="Right"/>
         <Button x:Name="btnGo" Content="Go" HorizontalAlignment="Left" Margin="225,192,0,0" VerticalAlignment="Top" Width="75" Click="btnGo_Click"/>

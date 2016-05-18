@@ -1,0 +1,46 @@
+周遊戰鬥:
+當前 : step: 7
+{"act":"Travel.dice","sid":"678a531931fcadae7842da25aeed47b78f8b0b00"}
+{"num1":6,"num2":5,"nextStep":9}
+-- nextStep 原本 7+6+5 = 18, 但回傳為 9 (原因 step 9 為 ZHANDOU 而且未成功)
+
+戰前:  step.stepType = "KONG"
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25aeed47b78f8b0b00","body":"{\"step\":9}"}
+{"index":9,"step":{"stepId":9,"stepOver":false,"stepType":"ZHANDOU","limitId":-1,"reward":{"resources":{"SILVER":12000},"itemDefs":[{"name":"经验丹（金）","num":1},{"name":"金色军械包","num":3}]},"enemies":[{"nm":"马超","clr":"GOL","phs":0,"star":5,"lv":92,"hpp":100,"morp":50,"sta":"NULL"},{"nm":"赵云","clr":"GOL","phs":0,"star":5,"lv":92,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"周泰","clr":"GOL","phs":0,"star":5,"lv":92,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"庞统","clr":"GOL","phs":0,"star":5,"lv":92,"hpp":100,"morp":0,"sta":"NULL"},{"nm":"徐庶","clr":"GOL","phs":0,"star":5,"lv":92,"hpp":100,"morp":0,"sta":"NULL"}]}}
+
+戰後:  step.stepType = KONG
+{"index":9,"step":{"stepId":9,"stepOver":true,"stepType":"KONG","limitId":-1,"reward":{"resources":{"SILVER":12000},"itemDefs":[{"name":"经验丹（金）","num":1},{"name":"金色军械包","num":3}]},"enemies":[]}}
+
+
+開戰過程:
+1) Travel.attack
+{"act":"Travel.attack","sid":"678a531931fcadae7842da25aeed47b78f8b0b00","body":"{\"step\":9}"}
+未打前:
+{"data":{"state":"PREPARE","heroStatus":[{"index":24,"hp":52465,"mor":0},{"index":36,"hp":43008,"mor":0},{"index":3,"hp":38593,"mor":50},{"index":8,"hp":66374,"mor":0},{"index":4,"hp":58904,"mor":0}],"allEnemies":[]},"mtype":"TRAVEL","title":"扫荡土匪","stg":1,"stgNum":1,"cid":0,"specInfo":{"maxHeroNum":0,"minHeroNum":0},"_type":"SCEnterCampaign","_rs":1}
+
+打完再出 (但位置唔同左, 唔知有無影響):
+{"style":"ERROR","prompt":"ERR_COMMON_REQUEST_INVALID","_type":"SCPrompt","_rs":1}
+
+2) Campaign.getAttFormation 相信可以 ignore
+{"act":"Campaign.getAttFormation","sid":"678a531931fcadae7842da25aeed47b78f8b0b00","body":"{\"march\":\"TRAVEL\"}"}
+{"heros":[{"index":4,"x":-2,"y":0},{"index":24,"x":-3,"y":-1},{"index":8,"x":-3,"y":1},{"index":36,"x":-5,"y":-1},{"index":3,"x":-5,"y":1}],"power":83914,"costFd":0,"chief":3}
+
+3) Campaign.nextEnemies 相信可以 ignore
+{"act":"Campaign.nextEnemies","sid":"678a531931fcadae7842da25aeed47b78f8b0b00"}
+{"enemies":[{"idx":0,"nm":"马超","dsp":"马超","lv":92,"exp":0,"intl":98,"strg":131,"chrm":123,"attk":13060,"dfnc":5502,"spd":295,"hp":48157,"mxHp":48157,"mor":50,"army":"西凉铁骑","amftLvs":[92,92,92,92,92],"x":2,"y":0,"skill":"骑行","clr":"GOL","star":5,"phs":0,"power":17658,"cfd":5588,"flags":1,"so":"E","talentInfo":{"point":0,"level":0,"talents":[]},"afi":{"sta":"NULL","col":"GRE","lvl":0}},{"idx":0,"nm":"赵云","dsp":"赵云","lv":92,"exp":0,"intl":118,"strg":130,"chrm":112,"attk":9661,"dfnc":5694,"spd":321,"hp":61980,"mxHp":61980,"mor":0,"army":"陷阵兵","amftLvs":[92,92,92,92,92],"x":3,"y":1,"skill":"无双","clr":"GOL","star":5,"phs":0,"power":17199,"cfd":6578,"flags":0,"so":"E","talentInfo":{"point":0,"level":0,"talents":[]},"afi":{"sta":"NULL","col":"GRE","lvl":0}},{"idx":0,"nm":"周泰","dsp":"周泰","lv":92,"exp":0,"intl":95,"strg":125,"chrm":120,"attk":10332,"dfnc":7177,"spd":329,"hp":50476,"mxHp":50476,"mor":0,"army":"重盾兵","amftLvs":[92,92,92,92,92],"x":3,"y":-1,"skill":"不屈","clr":"GOL","star":5,"phs":0,"power":17367,"cfd":5878,"flags":0,"so":"E","talentInfo":{"point":0,"level":0,"talents":[]},"afi":{"sta":"NULL","col":"GRE","lvl":0}},{"idx":0,"nm":"庞统","dsp":"庞统","lv":92,"exp":0,"intl":134,"strg":100,"chrm":120,"attk":18353,"dfnc":4587,"spd":238,"hp":21403,"mxHp":21403,"mor":0,"army":"重弩兵","amftLvs":[92,92,92,92,92],"x":4,"y":0,"skill":"连锁","clr":"GOL","star":5,"phs":0,"power":17427,"cfd":3573,"flags":0,"so":"E","talentInfo":{"point":0,"level":0,"talents":[]},"afi":{"sta":"NULL","col":"GRE","lvl":0}},{"idx":0,"nm":"徐庶","dsp":"徐庶","lv":92,"exp":0,"intl":127,"strg":91,"chrm":123,"attk":18353,"dfnc":4587,"spd":238,"hp":21403,"mxHp":21403,"mor":0,"army":"重弩兵","amftLvs":[92,92,92,92,92],"x":5,"y":1,"skill":"莫言","clr":"GOL","star":5,"phs":0,"power":17427,"cfd":3573,"flags":0,"so":"E","talentInfo":{"point":0,"level":0,"talents":[]},"afi":{"sta":"NULL","col":"GRE","lvl":0}}]}
+
+4) Campaign.evalMarchFormation 佈兵
+{"act":"Campaign.evalMarchFormation","sid":"678a531931fcadae7842da25aeed47b78f8b0b00","body":"{\"heros\":[{\"x\":-2,\"y\":0,\"index\":41},{\"x\":-3,\"y\":-1,\"index\":25},{\"x\":-5,\"y\":-1,\"index\":11},{\"x\":-3,\"y\":1,\"index\":34},{\"x\":-5,\"y\":1,\"index\":10}],\"chief\":-1}"}
+{"food":0,"power":132165}
+
+5) Campaign.saveFormation 儲存
+{"act":"Campaign.saveFormation","sid":"678a531931fcadae7842da25aeed47b78f8b0b00","body":"{\"heros\":[{\"x\":-2,\"y\":0,\"index\":41},{\"x\":-3,\"y\":-1,\"index\":25},{\"x\":-5,\"y\":-1,\"index\":11},{\"x\":-3,\"y\":1,\"index\":34},{\"x\":-5,\"y\":1,\"index\":10}],\"chief\":25}"}
+{"food":0,"power":132165}
+
+6) Campaign.fightNext 打
+{"act":"Campaign.fightNext","sid":"678a531931fcadae7842da25aeed47b78f8b0b00"}
+{"ok":1}
+
+7) Campaign.quitCampaign 走得
+{"act":"Campaign.quitCampaign","sid":"678a531931fcadae7842da25aeed47b78f8b0b00"}
+{"ok":1}

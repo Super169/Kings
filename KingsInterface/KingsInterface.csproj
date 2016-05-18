@@ -62,6 +62,7 @@
     <Compile Include="action\Player.cs" />
     <Compile Include="action\Shop.cs" />
     <Compile Include="action\Task.cs" />
+    <Compile Include="action\Travel.cs" />
     <Compile Include="action\_Prompt.cs" />
     <Compile Include="action\_Request.cs" />
     <Compile Include="action\SignInReward.cs" />

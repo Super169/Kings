@@ -149,7 +149,7 @@ namespace KingsTester
             if (Dispatcher.FromThread(Thread.CurrentThread) == null)
             {
                 // Time must be added here, otherwise, there will have longer delay
-                if (addTime) info = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ") + info;
+                if (addTime) info = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss | ") + info;
 
                 Application.Current.Dispatcher.BeginInvoke(
                   System.Windows.Threading.DispatcherPriority.Normal,
@@ -157,7 +157,7 @@ namespace KingsTester
                 return;
             }
             if (resetText) tb.Text = "";
-            if (addTime) tb.Text += DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ");
+            if (addTime) tb.Text += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss | ");
             tb.Text += info + "\n";
             tb.ScrollToEnd();
 
@@ -538,6 +538,10 @@ namespace KingsTester
             }
             lvAccounts.SelectedIndex = (currSelectedIndex == -1 ? 0 : currSelectedIndex);
             goCheckAccountStatus(true);
+            foreach(GameAccount oGA in gameAccounts)
+            {
+                KingsMonitor.addAccount(oGA.account, oGA.sid);
+            }
             refreshAccountList();
 
         }
@@ -555,10 +559,7 @@ namespace KingsTester
 
         private void btnWorking_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedActiveAccount();
-            if (oGA == null) return;
-            bool sendOK = action.sendNavalTroops(oGA, 3, oGA.BossWarBody);
-            UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
+            kingsWorkingTester();
         }
 
     }

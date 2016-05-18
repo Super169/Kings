@@ -27,6 +27,12 @@ namespace KingsInterface
         public delegate void NotificationEventHandler(string info);
         public static event NotificationEventHandler notificationEventHandler;
 
+        public static void addAccount(string account, string sid)
+        {
+            accounts.Add(new PacketKey() { account = account, sid = sid});
+            return;
+        }
+
         public static bool Start()
         {
             monitorList.Clear();
