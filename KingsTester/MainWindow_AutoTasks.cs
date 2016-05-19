@@ -56,7 +56,7 @@ namespace KingsTester
         {
             goCheckAccountStatus(true);
             goTaskHarvestAll();
-            // goCycleShop();
+            goTaskCycleShop();
             goTaskFinishAllTasks();
             goTaskSingInAll();
             goTaskReadEmail();
@@ -85,6 +85,9 @@ namespace KingsTester
 
         private void goTaskCycleShop()
         {
+            int dow = (int)DateTime.Now.DayOfWeek;
+            // CycleShop only available on Sunday and Wednesday
+            if ((dow != 0) && (dow != 3)) return;
             foreach (GameAccount oGA in gameAccounts)
             {
                 if (oGA.IsOnline())

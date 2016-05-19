@@ -476,6 +476,7 @@ namespace KingsTester
             btnPlayerInfo.IsEnabled = normalMode;
             btnReadMail.IsEnabled = normalMode;
             btnSignIn.IsEnabled = normalMode;
+            lblAutoRunning.Visibility = (normalMode ? Visibility.Hidden : Visibility.Visible);
         }
 
         private void btnGoAuto_Click(object sender, RoutedEventArgs e)

@@ -49,7 +49,7 @@
                 <RowDefinition Height="600*" MinHeight="200" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <ListView x:Name="lvAccounts" Margin="2,2,2,2">
+                <ListView x:Name="lvAccounts" Margin="2,2,5,2">
                     <ListView.View>
                         <GridView >
                             <GridViewColumn Header="狀態" Width="60">
@@ -78,7 +78,7 @@
             </Grid>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
             <Grid Grid.Row="2">
-                <ComboBox x:Name="cboAction" Margin="2,2,2,0" VerticalAlignment="Top">
+                <ComboBox x:Name="cboAction" Margin="2,34,5,0" VerticalAlignment="Top">
                     <ComboBoxItem Content="Archery.getArcheryInfo | 百步穿楊 資料"/>
                     <ComboBoxItem Content="Bag.getBagInfo | 倉庫資料"/>
                     <ComboBoxItem Content="BossWar.bossInfo | 神將無雙 資料"/>
@@ -124,24 +124,25 @@
                     <ComboBoxItem Content="World.getAllTransportingUnits"/>
                     <ComboBoxItem Content="World.worldSituation | 地圖全城市資料"/>
                 </ComboBox>
-                <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,32,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="btnGoAction" Content="執行指令" VerticalAlignment="Top" Margin="173,29,0,0" Click="btnGoAction_Click" HorizontalAlignment="Left" Width="75" />
-                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,57,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
-                <Button x:Name="btnSignIn" Content="簽到" HorizontalAlignment="Left" Margin="87,57,0,0" VerticalAlignment="Top" Width="75" Click="btnSignIn_Click"/>
-                <Button x:Name="btnArchery" Content="百步穿楊" HorizontalAlignment="Left" Margin="173,57,0,0" VerticalAlignment="Top" Width="75" Click="btnArchery_Click"/>
-                <Button x:Name="btnPlayerInfo" Content="主公資料" HorizontalAlignment="Left" Margin="2,82,0,0" VerticalAlignment="Top" Width="75" Click="btnPlayerInfo_Click"/>
-                <Button x:Name="btnManorInfo" Content="封田資料" HorizontalAlignment="Left" Margin="87,82,0,0" VerticalAlignment="Top" Width="75" Click="btnManorInfo_Click"/>
-                <Button x:Name="btnHarvestAll" Content="一鍵全收" HorizontalAlignment="Left" Margin="173,82,0,0" VerticalAlignment="Top" Width="75" Click="btnHarvestAll_Click"/>
-                <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,107,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
-                <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="87,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
-                <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="173,107,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
-                <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,132,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
-                <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="173,132,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
-                <Button x:Name="btnSaveAccounts" Content="儲存帳戶資料" HorizontalAlignment="Left" Margin="2,157,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveAccounts_Click"/>
-                <Button x:Name="btnCheckStatus" Content="檢查帳戶" HorizontalAlignment="Left" Margin="87,157,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckStatus_Click"/>
-                <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="173,157,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
-                <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="87,214,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
+                <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,64,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="btnGoAction" Content="執行指令" VerticalAlignment="Top" Margin="220,61,5,0" Click="btnGoAction_Click" />
+                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,89,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
+                <Button x:Name="btnSignIn" Content="簽到" HorizontalAlignment="Left" Margin="115,89,0,0" VerticalAlignment="Top" Width="75" Click="btnSignIn_Click"/>
+                <Button x:Name="btnArchery" Content="百步穿楊" Margin="220,89,5,0" VerticalAlignment="Top" Click="btnArchery_Click"/>
+                <Button x:Name="btnPlayerInfo" Content="主公資料" HorizontalAlignment="Left" Margin="2,114,0,0" VerticalAlignment="Top" Width="75" Click="btnPlayerInfo_Click"/>
+                <Button x:Name="btnManorInfo" Content="封田資料" HorizontalAlignment="Left" Margin="115,114,0,0" VerticalAlignment="Top" Width="75" Click="btnManorInfo_Click"/>
+                <Button x:Name="btnHarvestAll" Content="一鍵全收" Margin="220,114,5,0" VerticalAlignment="Top" Click="btnHarvestAll_Click"/>
+                <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,139,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
+                <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="115,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
+                <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="220,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
+                <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,164,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
+                <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="220,164,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
+                <Button x:Name="btnSaveAccounts" Content="儲存帳戶資料" HorizontalAlignment="Left" Margin="2,189,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveAccounts_Click"/>
+                <Button x:Name="btnCheckStatus" Content="檢查帳戶" HorizontalAlignment="Left" Margin="115,189,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckStatus_Click"/>
+                <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="220,189,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
+                <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="115,228,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
                 <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,300,10,0" Click="btnGoAuto_Click" RenderTransformOrigin="0.502,-0.95" Height="20" VerticalAlignment="Top"/>
+                <Label x:Name="lblAutoRunning" Content="自動大皇帝已啟動" Margin="2,3,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>
             </Grid>
         </Grid>
     </Grid>
