@@ -15,7 +15,7 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            go_TestAuto();
+            go_TestTravel();
         }
 
         private void go_TestAuto()
@@ -52,10 +52,7 @@ namespace KingsTester
             GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
 
-            RequestReturnObject rro;
-            rro = action.go_Travel_getMapInfo(oGA.currHeader, oGA.sid);
-            UpdateResult("\n" + rro.responseText);
-
+            action.goTravel(oGA);
         }
     }
 }

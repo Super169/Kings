@@ -206,7 +206,7 @@ namespace MyUtil
 
         #region "String data"
 
-        public static string getString(dynamic json, string key, string defValue = null)
+        public static string getString(dynamic json, string key, string defValue)
         {
             if (json == null) return defValue;
             return getString(json[key], defValue);

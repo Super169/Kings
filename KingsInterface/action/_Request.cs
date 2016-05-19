@@ -61,6 +61,33 @@ namespace KingsInterface
 
         #endregion
 
+        public static RequestReturnObject go_Campaign_getAttFormation(HTTPRequestHeaders oH, string sid)
+        {
+            string body = "{\"march\":\"TRAVEL\"}";
+            return com.SendGenericRequest(oH, sid, CMD_Campaign_getAttFormation, true, body);
+        }
+
+        public static RequestReturnObject go_Campaign_nextEnemies(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Campaign_nextEnemies);
+        }
+
+        public static RequestReturnObject go_Campaign_saveFormation(HTTPRequestHeaders oH, string sid, string body)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Campaign_saveFormation, true, body);
+        }
+
+        public static RequestReturnObject go_Campaign_fightNext(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Campaign_fightNext);
+        }
+
+        public static RequestReturnObject go_Campaign_quitCampaign(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Campaign_quitCampaign);
+        }
+
+
         #region "City"
 
         public static RequestReturnObject go_City_buyProduct(HTTPRequestHeaders oH, string sid, int industryId, int index)
@@ -115,6 +142,13 @@ namespace KingsInterface
         {
             return com.SendGenericRequest(oH, sid, CMD_Hero_getPlayerHeroList);
         }
+
+        public static RequestReturnObject go_Hero_getScoreHero(HTTPRequestHeaders oH, string sid, string body)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Hero_getScoreHero, true, body);
+        }
+
+
 
         #endregion "Hero"
 
@@ -182,7 +216,7 @@ namespace KingsInterface
         {
             // string body = "{\"save\":" + heros + ",\"type\":\"NAVAL\",\"cityId\":" + cityId.ToString() + "}";
             string body = string.Format("{{\"save\":{0},\"type\":\"NAVAL\",\"cityId\":{1}}}", heros, cityId);
-            
+
             return com.SendGenericRequest(oH, sid, CMD_Naval_sendTroops, true, body);
         }
 
@@ -235,10 +269,22 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_Shop_getCycleShopInfo);
         }
 
+        public static RequestReturnObject go_Shop_getTravelShopInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_Shop_getTravelShopInfo);
+        }
+
         public static RequestReturnObject go_Shop_buyCycleShopItem(HTTPRequestHeaders oH, string sid, int pos)
         {
             string body = "{\"pos\":" + pos.ToString() + "}";
             return com.SendGenericRequest(oH, sid, CMD_Shop_buyCycleShopItem, true, body);
+        }
+
+
+        public static RequestReturnObject go_Shop_buyTravelShopItem(HTTPRequestHeaders oH, string sid, int idx)
+        {
+            string body = "{\"idx\":" + idx.ToString() + ", \"type\":\"TRAVEL\"}";
+            return com.SendGenericRequest(oH, sid, CMD_Shop_buyTravelShopItem, true, body);
         }
 
         #endregion "Shop"
@@ -297,6 +343,12 @@ namespace KingsInterface
 
         #region "Travel"
 
+        public static RequestReturnObject go_Travel_attack(HTTPRequestHeaders oH, string sid, int step)
+        {
+            string body = "{\"step\":" + step.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Travel_attack, true, body);
+        }
+
         public static RequestReturnObject go_Travel_getStatus(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_Travel_getStatus);
@@ -318,9 +370,10 @@ namespace KingsInterface
             return com.SendGenericRequest(oH, sid, CMD_Travel_dice);
         }
 
-        public static RequestReturnObject go_Travel_viewStep(HTTPRequestHeaders oH, string sid)
+        public static RequestReturnObject go_Travel_viewStep(HTTPRequestHeaders oH, string sid, int step)
         {
-            return com.SendGenericRequest(oH, sid, CMD_Travel_viewStep);
+            string body = "{\"step\":" + step.ToString() + "}";
+            return com.SendGenericRequest(oH, sid, CMD_Travel_viewStep, true, body);
         }
 
         public static RequestReturnObject go_Travel_arriveStep(HTTPRequestHeaders oH, string sid, int step)
@@ -330,6 +383,12 @@ namespace KingsInterface
         }
 
         #endregion
+
+
+        public static RequestReturnObject go_TurnCardReward_getTurnCardRewards(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_TurnCardReward_getTurnCardRewards);
+        }
 
 
     }

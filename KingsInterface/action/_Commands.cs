@@ -22,6 +22,12 @@ namespace KingsInterface
         public const string CMD_BossWar_openInfo = "BossWar.openInfo";  // Not implemented
         public const string CMD_BossWar_sendTroop = "BossWar.sendTroop";
 
+        public const string CMD_Campaign_getAttFormation = "Campaign.getAttFormation";
+        public const string CMD_Campaign_nextEnemies = "Campaign.nextEnemies";
+        public const string CMD_Campaign_saveFormation = "Campaign.saveFormation";
+        public const string CMD_Campaign_fightNext = "Campaign.fightNext";
+        public const string CMD_Campaign_quitCampaign = "Campaign.quitCampaign";
+
         public const string CMD_City_buyProduct = "City.buyProduct";
         public const string CMD_City_getIndustryInfo = "City.getIndustryInfo";
 
@@ -35,6 +41,7 @@ namespace KingsInterface
         public const string CMD_Login_login = "Login.login";
 
         public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
+        public const string CMD_Hero_getScoreHero = "Hero.getScoreHero";
 
         public const string CMD_Manor_decreeInfo = "Manor.decreeInfo";
         public const string CMD_Manor_getManorInfo = "Manor.getManorInfo";
@@ -57,7 +64,9 @@ namespace KingsInterface
         public const string CMD_SignInReward_signInMultiple = "SignInReward.signInMultiple";
 
         public const string CMD_Shop_getCycleShopInfo = "Shop.getCycleShopInfo";
+        public const string CMD_Shop_getTravelShopInfo = "Shop.getTravelShopInfo";
         public const string CMD_Shop_buyCycleShopItem = "Shop.buyCycleShopItem";
+        public const string CMD_Shop_buyTravelShopItem = "Shop.buyTravelShopItem";
 
         public const string CMD_Shop2_availableShops = "Shop2.availableShops";
         public const string CMD_Shop2_shop2Info = "Shop2.shop2Info";
@@ -68,12 +77,16 @@ namespace KingsInterface
         public const string CMD_Task_finishTask = "Task.finishTask";
         public const string CMD_Task_getTaskTraceInfo = "Task.getTaskTraceInfo";
 
+        public const string CMD_Travel_attack = "Travel.attack";
         public const string CMD_Travel_getStatus = "Travel.getStatus";
         public const string CMD_Travel_getMapInfo = "Travel.getMapInfo";
         public const string CMD_Travel_controlDice = "Travel.controlDice";
         public const string CMD_Travel_dice = "Travel.dice";
         public const string CMD_Travel_viewStep = "Travel.viewStep";
         public const string CMD_Travel_arriveStep = "Travel.arriveStep";
+
+        public const string CMD_TurnCardReward_getTurnCardRewards = "TurnCardReward.getTurnCardRewards";
+
 
     }
 

@@ -78,6 +78,7 @@
     <Compile Include="data\ArcheryInfo.cs" />
     <Compile Include="data\BagInfo.cs" />
     <Compile Include="data\BossWarInfo.cs" />
+    <Compile Include="data\TravelMapInfo.cs" />
     <Compile Include="data\CycleShopInfo.cs" />
     <Compile Include="data\DecreeInfo.cs" />
     <Compile Include="data\GameAccount.cs" />
