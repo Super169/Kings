@@ -52,7 +52,7 @@ namespace KingsTester
             GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
 
-            action.goTravel(oGA);
+            action.goTravel(oGA, UpdateInfoHandler);
         }
     }
 }

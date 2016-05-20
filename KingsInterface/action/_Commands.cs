@@ -40,9 +40,6 @@ namespace KingsInterface
 
         public const string CMD_Login_login = "Login.login";
 
-        public const string CMD_Hero_getPlayerHeroList = "Hero.getPlayerHeroList";
-        public const string CMD_Hero_getScoreHero = "Hero.getScoreHero";
-
         public const string CMD_Manor_decreeInfo = "Manor.decreeInfo";
         public const string CMD_Manor_getManorInfo = "Manor.getManorInfo";
         public const string CMD_Manor_harvestProduct = "Manor.harvestProduct";
@@ -63,30 +60,10 @@ namespace KingsInterface
         public const string CMD_SignInReward_signIn = "SignInReward.signIn";
         public const string CMD_SignInReward_signInMultiple = "SignInReward.signInMultiple";
 
-        public const string CMD_Shop_getCycleShopInfo = "Shop.getCycleShopInfo";
-        public const string CMD_Shop_getTravelShopInfo = "Shop.getTravelShopInfo";
-        public const string CMD_Shop_buyCycleShopItem = "Shop.buyCycleShopItem";
-        public const string CMD_Shop_buyTravelShopItem = "Shop.buyTravelShopItem";
-
-        public const string CMD_Shop2_availableShops = "Shop2.availableShops";
-        public const string CMD_Shop2_shop2Info = "Shop2.shop2Info";
-        public const string CMD_Shop2_buyItem = "Shop2.buyItem";
-        
         public const string CMD_System_ping = "System.ping";
         
         public const string CMD_Task_finishTask = "Task.finishTask";
         public const string CMD_Task_getTaskTraceInfo = "Task.getTaskTraceInfo";
-
-        public const string CMD_Travel_attack = "Travel.attack";
-        public const string CMD_Travel_getStatus = "Travel.getStatus";
-        public const string CMD_Travel_getMapInfo = "Travel.getMapInfo";
-        public const string CMD_Travel_controlDice = "Travel.controlDice";
-        public const string CMD_Travel_dice = "Travel.dice";
-        public const string CMD_Travel_viewStep = "Travel.viewStep";
-        public const string CMD_Travel_arriveStep = "Travel.arriveStep";
-
-        public const string CMD_TurnCardReward_getTurnCardRewards = "TurnCardReward.getTurnCardRewards";
-
 
     }
 

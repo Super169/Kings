@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using KingsInterface.request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace KingsInterface
             List<HeroInfo> heroList = new List<HeroInfo>();
             try
             {
-                RequestReturnObject rro = go_Hero_getPlayerHeroList(oH, sid);
+                RequestReturnObject rro = Hero.getPlayerHeroList(oH, sid);
                 if (rro.SuccessWithJson("heros"))
                 {
                     DynamicJsonArray heros = rro.responseJson.heros;

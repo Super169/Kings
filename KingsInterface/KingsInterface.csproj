@@ -53,6 +53,70 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="action\Travel.cs" />
+    <Compile Include="request\Activity.cs" />
+    <Compile Include="request\Archery.cs" />
+    <Compile Include="request\Bag.cs" />
+    <Compile Include="request\BaiGuanYu.cs" />
+    <Compile Include="request\BossWar.cs" />
+    <Compile Include="request\Campaign.cs" />
+    <Compile Include="request\ChristmasTree.cs" />
+    <Compile Include="request\Circle.cs" />
+    <Compile Include="request\City.cs" />
+    <Compile Include="request\Corps.cs" />
+    <Compile Include="request\CorpsWar.cs" />
+    <Compile Include="request\Country.cs" />
+    <Compile Include="request\CrossCamp.cs" />
+    <Compile Include="request\DaqiaoActivity.cs" />
+    <Compile Include="request\Drama.cs" />
+    <Compile Include="request\EightTrigrams.cs" />
+    <Compile Include="request\Email.cs" />
+    <Compile Include="request\Emperor.cs" />
+    <Compile Include="request\Firecracker.cs" />
+    <Compile Include="request\Gamble.cs" />
+    <Compile Include="request\GmActivity.cs" />
+    <Compile Include="request\God.cs" />
+    <Compile Include="request\GrassArrow.cs" />
+    <Compile Include="request\Hero.cs" />
+    <Compile Include="request\KingRoad.cs" />
+    <Compile Include="request\Login.cs" />
+    <Compile Include="request\LongMarch.cs" />
+    <Compile Include="request\LordGodUp.cs" />
+    <Compile Include="request\Lottery.cs" />
+    <Compile Include="request\LuckyCycle.cs" />
+    <Compile Include="request\Major.cs" />
+    <Compile Include="request\Manor.cs" />
+    <Compile Include="request\MonthSignIn.cs" />
+    <Compile Include="request\NationalWar.cs" />
+    <Compile Include="request\Naval.cs" />
+    <Compile Include="request\NorthMarch.cs" />
+    <Compile Include="request\Notice.cs" />
+    <Compile Include="request\NpcCorps.cs" />
+    <Compile Include="request\OneYear.cs" />
+    <Compile Include="request\Patrol.cs" />
+    <Compile Include="request\Platform.cs" />
+    <Compile Include="request\Player.cs" />
+    <Compile Include="request\Pray.cs" />
+    <Compile Include="request\Rank.cs" />
+    <Compile Include="request\RedEnvelope.cs" />
+    <Compile Include="request\RewardActivity.cs" />
+    <Compile Include="request\Rogue.cs" />
+    <Compile Include="request\Shop.cs" />
+    <Compile Include="request\Shop2.cs" />
+    <Compile Include="request\SignInReward.cs" />
+    <Compile Include="request\StarGazing.cs" />
+    <Compile Include="request\System.cs" />
+    <Compile Include="request\Task.cs" />
+    <Compile Include="request\TeamDuplicate.cs" />
+    <Compile Include="request\Travel.cs" />
+    <Compile Include="request\TurnCardReward.cs" />
+    <Compile Include="request\Valentine.cs" />
+    <Compile Include="request\Vip.cs" />
+    <Compile Include="request\VipAuthentication.cs" />
+    <Compile Include="request\WelfareLottery.cs" />
+    <Compile Include="request\World.cs" />
+    <Compile Include="request\YunYou.cs" />
+    <Compile Include="request\ZaJinDan.cs" />
     <Compile Include="action\Archery.cs" />
     <Compile Include="action\BossWar.cs" />
     <Compile Include="action\Email.cs" />
@@ -62,7 +126,6 @@
     <Compile Include="action\Player.cs" />
     <Compile Include="action\Shop.cs" />
     <Compile Include="action\Task.cs" />
-    <Compile Include="action\Travel.cs" />
     <Compile Include="action\_Prompt.cs" />
     <Compile Include="action\_Request.cs" />
     <Compile Include="action\SignInReward.cs" />
@@ -112,6 +175,7 @@
       <Name>MyUtil</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

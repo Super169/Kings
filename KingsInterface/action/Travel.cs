@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using KingsInterface.request;
 using MyUtil;
 using System;
 using System.Collections.Generic;
@@ -20,15 +21,15 @@ namespace KingsInterface
 
         private static TravelMapInfo goGetMapInfo(HTTPRequestHeaders oH, string sid)
         {
-            RequestReturnObject rro = go_Travel_getMapInfo(oH, sid);
+            RequestReturnObject rro = Travel.getMapInfo(oH, sid);
             if (!rro.SuccessWithJson("simpleMap")) return new TravelMapInfo();
             return new TravelMapInfo(rro.responseJson);
         }
 
 
-        public static int goOneStep(HTTPRequestHeaders oH, string sid, ref TravelMapInfo mapInfo, string heros, int[] heroList)
+        public static int goOneStep(HTTPRequestHeaders oH, string sid, ref TravelMapInfo mapInfo, string heros, int[] heroList, DelegateUpdateInfo updateInfo)
         {
-            RequestReturnObject rro = go_Travel_dice(oH, sid);
+            RequestReturnObject rro = Travel.dice(oH, sid);
             if (!rro.SuccessWithJson()) return -1;
             int num1 = JSON.getInt(rro.responseJson, "num1");
             int num2 = JSON.getInt(rro.responseJson, "num2");
@@ -53,34 +54,36 @@ namespace KingsInterface
                     }
                 }
                 heroBody += "]}";
-                rro = go_Travel_viewStep(oH, sid, nextStep);
-                rro = go_Travel_attack(oH, sid, nextStep);
-                rro = go_Campaign_getAttFormation(oH, sid);
-                rro = go_Campaign_nextEnemies(oH, sid);
-                rro = go_Campaign_saveFormation(oH, sid, heros);
-                rro = go_Campaign_fightNext(oH, sid);
-                rro = go_Hero_getScoreHero(oH, sid, heroBody);
-                rro = go_Campaign_quitCampaign(oH, sid);
-                rro = go_Travel_getMapInfo(oH, sid);
-                rro = go_Travel_viewStep(oH, sid, nextStep);
+                rro = Travel.viewStep(oH, sid, nextStep);
+                rro = Travel.attack(oH, sid, nextStep);
+                rro = Campaign.getAttFormation(oH, sid);
+                rro = Campaign.nextEnemies(oH, sid);
+                rro = Campaign.saveFormation(oH, sid, heros);
+                rro = Campaign.fightNext(oH, sid);
+                rro = Hero.getScoreHero(oH, sid, heroBody);
+                rro = Campaign.quitCampaign(oH, sid);
+                rro = Travel.getMapInfo(oH, sid);
+                rro = Travel.viewStep(oH, sid, nextStep);
                 nextStep = actStep;
                 stepType = mapInfo.simpleMap[nextStep];
             }
 
             /*
-            rro = go_Travel_arriveStep(oH, sid, nextStep);
+            rro = Travel.arriveStep(oH, sid, nextStep);
             if (!rro.SuccessWithJson("step", "stepId")) return -1;
             dynamic step = rro.responseJson["step"];
             int stepId = JSON.getInt(step, "stepId");
             if (nextStep != stepId) return -1;
             */
 
+            if (updateInfo != null) updateInfo(string.Format("到達 {0} - {1}", nextStep, stepType));
+
             switch (stepType)
             {
                 case "KONG":
                     break;
                 case "BAOXIANG":
-                    rro = go_Travel_arriveStep(oH, sid, nextStep);
+                    rro = Travel.arriveStep(oH, sid, nextStep);
                     if (!rro.SuccessWithJson("step", "stepType")) return -1;
                     if (rro.responseJson["step"]["stepType"] == "BAOXIANG")
                     {
@@ -88,15 +91,15 @@ namespace KingsInterface
                     }
                     break;
                 case "FANPAI":
-                    rro = go_Travel_arriveStep(oH, sid, nextStep);
-                    rro = go_TurnCardReward_getTurnCardRewards(oH, sid);
-                    rro = go_TurnCardReward_getTurnCardRewards(oH, sid);
+                    rro = Travel.arriveStep(oH, sid, nextStep);
+                    rro = TurnCardReward.getTurnCardRewards(oH, sid);
+                    rro = TurnCardReward.getTurnCardRewards(oH, sid);
                     break;
                 case "SHANGDIAN":
-                    rro = go_Shop_getTravelShopInfo(oH, sid);
-                    rro = go_Shop_buyTravelShopItem(oH, sid, 0);
-                    rro = go_Shop_buyTravelShopItem(oH, sid, 1);
-                    rro = go_Shop_buyTravelShopItem(oH, sid, 2);
+                    rro = Shop.getTravelShopInfo(oH, sid);
+                    rro = Shop.buyTravelShopItem(oH, sid, 0);
+                    rro = Shop.buyTravelShopItem(oH, sid, 1);
+                    rro = Shop.buyTravelShopItem(oH, sid, 2);
                     break;
 
             }
@@ -105,7 +108,7 @@ namespace KingsInterface
         }
 
 
-        public static bool goTravel(GameAccount oGA)
+        public static bool goTravel(GameAccount oGA, DelegateUpdateInfo updateInfo)
         {
             HTTPRequestHeaders oH = oGA.currHeader;
             string sid = oGA.sid;
@@ -114,7 +117,7 @@ namespace KingsInterface
             if (mapInfo.simpleMap.Length == 0) return false;
             while (mapInfo.diceNum > 0)
             {
-                goOneStep(oH, sid, ref mapInfo, oGA.BossWarBody, oGA.BossWarHeros);
+                goOneStep(oH, sid, ref mapInfo, oGA.BossWarBody, oGA.BossWarHeros, updateInfo);
             }
             return true;
         }

@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using KingsInterface.request;
 using MyUtil;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace KingsInterface
         {
 
             List<CycleShopInfo> csis = new List<CycleShopInfo>();
-            RequestReturnObject rro = action.go_Shop_getCycleShopInfo(oH, sid);
+            RequestReturnObject rro = request.Shop.getCycleShopInfo(oH, sid);
             if (!rro.SuccessWithJson("items")) return csis;
             try
             {
@@ -39,7 +40,7 @@ namespace KingsInterface
 
         public static bool goShopbuyCycleShopItem(HTTPRequestHeaders oH, string sid, int pos)
         {
-            RequestReturnObject rro = action.go_Shop_buyCycleShopItem(oH, sid, pos);
+            RequestReturnObject rro = request.Shop.buyCycleShopItem(oH, sid, pos);
             if (!rro.SuccessWithJson("pos") || (rro.style == "ERROR")) return false;
             int retPos = JSON.getInt(rro.responseJson, "pos", -1);
             return (retPos == pos);
@@ -50,7 +51,7 @@ namespace KingsInterface
             PlayerProperties pp = action.goGetPlayerProperties(oGA.currHeader, oGA.sid);
             if ((!pp.ready) || (pp.EXPLOIT < 92)) return 0;
 
-            RequestReturnObject rro = action.go_Shop2_shop2Info(oGA.currHeader, oGA.sid, "SL_SHOP");
+            RequestReturnObject rro = Shop2.shop2Info(oGA.currHeader, oGA.sid, "SL_SHOP");
             if (!rro.SuccessWithJson("remainBuyCount")) return 0;
 
             int coins = pp.EXPLOIT;
@@ -60,7 +61,7 @@ namespace KingsInterface
 
             while ((!error) && (coins >= 92) && (remainCount > 0))
             {
-                rro = go_Shop2_buyItem(oGA.currHeader, oGA.sid, 1, "SL_SHOP");
+                rro = Shop2.buyItem(oGA.currHeader, oGA.sid, 1, "SL_SHOP");
                 error = (rro.ok != 1);
                 if (!error)
                 {
