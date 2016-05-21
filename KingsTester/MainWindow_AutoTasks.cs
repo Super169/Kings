@@ -65,6 +65,7 @@ namespace KingsTester
             goTasksIndustryBuyAll();
             goTaskNavalWar();
             goTaskLuckyCycle();
+            goTaskTuanGou();
         }
 
         private void goCheckAccountStatus(bool forceCheck = false)
@@ -225,6 +226,20 @@ namespace KingsTester
             }
         }
 
+        private void goTaskTuanGou()
+        {
+            DateTime now = DateTime.Now;
+            int dow = auto.ScheduleInfo.getGameDOW();
+            if ((dow != 0) && (dow != 6)) return;
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goTuanGou(oGA, UpdateInfoHandler);
+                }
+            }
+        }
 
     }
 }

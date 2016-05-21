@@ -78,13 +78,5 @@ namespace KingsTester
             bool sendOK = action.sendNavalTroops(oGA, 3, oGA.BossWarBody);
             UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
         }
-
-        private void go_TestTravel()
-        {
-            GameAccount oGA = GetSelectedActiveAccount();
-            if (oGA == null) return;
-
-            action.goTravel(oGA, UpdateInfoHandler);
-        }
     }
 }

@@ -24,9 +24,11 @@ namespace KingsInterface.request
         private const string CMD_getRedPointActivityInfo = "Activity.getRedPointActivityInfo";
         private const string CMD_getShuangShiyiActivityInfo = "Activity.getShuangShiyiActivityInfo";
         private const string CMD_getShuangShiyiActivityReward = "Activity.getShuangShiyiActivityReward";
+        private const string CMD_getTuanGouInfo = "Activity.getTuanGouInfo";
         private const string CMD_getTuanGouOpenInfo = "Activity.getTuanGouOpenInfo";
         private const string CMD_serverOpenTime = "Activity.serverOpenTime";
         private const string CMD_showIconForServerOpenActivity = "Activity.showIconForServerOpenActivity";
+        private const string CMD_tuanGouReward = "Activity.tuanGouReward";
 
         public static RequestReturnObject drawCompanyAnniversaryLoginReward(HTTPRequestHeaders oH, string sid)
         {
@@ -94,6 +96,10 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_getShuangShiyiActivityReward);
         }
 
+        public static RequestReturnObject getTuanGouInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getTuanGouInfo);
+        }
         public static RequestReturnObject getTuanGouOpenInfo(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_getTuanGouOpenInfo);
@@ -109,6 +115,12 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_showIconForServerOpenActivity);
         }
 
+        public static RequestReturnObject tuanGouReward(HTTPRequestHeaders oH, string sid, int bagId)
+        {
+            // string body = "{\"bagId\":" + bagId.ToString() + "}";
+            string body = string.Format("{{\"bagId\":{0}}}", bagId);
+            return com.SendGenericRequest(oH, sid, CMD_tuanGouReward, true, body);
+        }
 
 
 
