@@ -23,6 +23,7 @@ namespace KingsInterface.request
         private const string CMD_getRationActivity = "Activity.getRationActivity";
         private const string CMD_getRedPointActivityInfo = "Activity.getRedPointActivityInfo";
         private const string CMD_getShuangShiyiActivityInfo = "Activity.getShuangShiyiActivityInfo";
+        private const string CMD_getShuangShiyiActivityReward = "Activity.getShuangShiyiActivityReward";
         private const string CMD_getTuanGouOpenInfo = "Activity.getTuanGouOpenInfo";
         private const string CMD_serverOpenTime = "Activity.serverOpenTime";
         private const string CMD_showIconForServerOpenActivity = "Activity.showIconForServerOpenActivity";
