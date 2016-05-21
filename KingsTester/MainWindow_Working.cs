@@ -17,7 +17,15 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goLuckyCycle();
+            goTravel();
+        }
+
+        private void goTravel()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            if (!oGA.IsOnline()) return;
+            action.goTravel(oGA, UpdateInfoHandler);
         }
 
         private void goLuckyCycle()

@@ -39,9 +39,9 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_fightNext);
         }
 
-        public static RequestReturnObject getAttFormation(HTTPRequestHeaders oH, string sid)
+        public static RequestReturnObject getAttFormation(HTTPRequestHeaders oH, string sid, string march)
         {
-            string body = "{\"march\":\"TRAVEL\"}";
+            string body = string.Format("{{\"march\":\"{0}\"}}", march);
             return com.SendGenericRequest(oH, sid, CMD_getAttFormation, true, body);
         }
         

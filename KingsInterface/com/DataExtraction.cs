@@ -1,4 +1,5 @@
 ﻿using Fiddler;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,11 +53,18 @@ namespace KingsInterface
             try
             {
                 string jsonString = (cleanUp ? CleanUpResponse(responseText) : responseText);
-                json = Json.Decode(jsonString);
+                if ((jsonString == null) || (jsonString == ""))
+                {
+                    json = JSON.Empty();
+                } else
+                {
+                    json = Json.Decode(jsonString);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error getting response:\n{0}", ex.Message);
+                json = JSON.Empty();
             }
             return json;
         }

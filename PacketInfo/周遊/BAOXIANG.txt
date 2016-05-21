@@ -1,0 +1,9 @@
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25e4e7e40ddc931ece","body":"{\"step\":49}"}
+
+{"index":49,"step":{"stepId":49,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"SILVER":24000},"itemDefs":[{"name":"金色宝物包","num":2}]},"enemies":[]}}
+
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25e4e7e40ddc931ece","body":"{\"step\":55}"}
+{"index":55,"step":{"stepId":55,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"IRON":2740},"itemDefs":[{"name":"金色军械包","num":3}]},"enemies":[]}}
+
+{"act":"Travel.viewStep","sid":"678a531931fcadae7842da25e4e7e40ddc931ece","body":"{\"step\":63}"}
+{"index":63,"step":{"stepId":63,"stepOver":false,"stepType":"BAOXIANG","limitId":-1,"reward":{"resources":{"SILVER":24000},"itemDefs":[{"name":"金色宝物包","num":2}]},"enemies":[]}}

@@ -20,6 +20,7 @@ namespace KingsInterface.data
         public int avaBuyDice { get; set; }
         public int total { get; set; }
         public string[] simpleMap { get; set; }
+        public int[] boxInfo { get; set; }
         public int mapSize { get; set; }
 
         public TravelMapInfo()
@@ -49,6 +50,7 @@ namespace KingsInterface.data
             {
                 this.simpleMap[i] = JSON.getString(json["simpleMap"], i.ToString(), "");
             }
+            boxInfo = new int[mapSize + 1];
             this.ready = true;
 
         }
