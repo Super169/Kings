@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,31 @@ namespace KingsInterface.request
         private const string CMD_retireAll = "Manor.retireAll";
         private const string CMD_trainHeroInfo = "Manor.trainHeroInfo";
         private const string CMD_upgradeArmsTechnology = "Manor.upgradeArmsTechnology";
+
+        public static RequestReturnObject armsTechnology(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_armsTechnology);
+        }
+
+        public static RequestReturnObject decreeInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_decreeInfo);
+        }
+
+        public static RequestReturnObject getManorInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getManorInfo);
+        }
+
+        public static RequestReturnObject refreshManor(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_refreshManor);
+        }
+
+        public static RequestReturnObject resHourOutput(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_resHourOutput);
+        }
 
     }
 }

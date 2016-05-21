@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,37 @@ namespace KingsInterface.request
         private const string CMD_getMyStatus = "LongMarch.getMyStatus";
         private const string CMD_getUnpassBuff = "LongMarch.getUnpassBuff";
         private const string CMD_restart = "LongMarch.restart";
+
+        public static RequestReturnObject getBuyResetTimes(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getBuyResetTimes);
+        }
+
+        public static RequestReturnObject getFinishedReward(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getFinishedReward);
+        }
+
+        public static RequestReturnObject getHeroStatus(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getHeroStatus);
+        }
+
+        public static RequestReturnObject getMyStatus(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getMyStatus);
+        }
+
+        public static RequestReturnObject getUnpassBuff(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getUnpassBuff);
+        }
+
+        public static RequestReturnObject restart(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_restart);
+        }
+
 
     }
 }

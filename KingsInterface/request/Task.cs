@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,17 @@ namespace KingsInterface.request
         private const string CMD_finishTask = "Task.finishTask";
         private const string CMD_getAchievementInfo = "Task.getAchievementInfo";
         private const string CMD_getTaskTraceInfo = "Task.getTaskTraceInfo";
+
+        public static RequestReturnObject getAchievementInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getAchievementInfo);
+        }
+
+        public static RequestReturnObject getTaskTraceInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getTaskTraceInfo);
+        }
+
 
     }
 }

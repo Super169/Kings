@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,33 @@ namespace KingsInterface.request
         private const string CMD_getBuyInfo = "Emperor.getBuyInfo";
         private const string CMD_getGameInfo = "Emperor.getGameInfo";
         private const string CMD_isFloat = "Emperor.isFloat";
+
+        public static RequestReturnObject collected(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_collected);
+        }
+
+        public static RequestReturnObject draw(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_draw);
+        }
+
+        public static RequestReturnObject getBuyInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getBuyInfo);
+        }
+
+        public static RequestReturnObject getGameInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getGameInfo);
+        }
+
+        public static RequestReturnObject isFloat(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_isFloat);
+        }
+
+
 
     }
 }

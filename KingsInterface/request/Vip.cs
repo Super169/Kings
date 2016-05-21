@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,17 @@ namespace KingsInterface.request
         private const string CMD_firstChargeInfo = "Vip.firstChargeInfo";
         private const string CMD_monthCard = "Vip.monthCard";
         private const string CMD_vipPrivilegeLevel = "Vip.vipPrivilegeLevel";
+
+        public static RequestReturnObject firstChargeInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_firstChargeInfo);
+        }
+
+        public static RequestReturnObject monthCard(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_monthCard);
+        }
+
 
     }
 }

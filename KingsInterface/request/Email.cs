@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,11 @@ namespace KingsInterface.request
         private const string CMD_getAttachment = "Email.getAttachment";
         private const string CMD_openInBox = "Email.openInBox";
         private const string CMD_read = "Email.read";
+
+        public static RequestReturnObject openInBox(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_openInBox);
+        }
 
     }
 }

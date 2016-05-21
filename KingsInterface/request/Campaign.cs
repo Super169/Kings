@@ -24,10 +24,35 @@ namespace KingsInterface.request
         private const string CMD_saveFormation = "Campaign.saveFormation";
         private const string CMD_trialsBuyTimes = "Campaign.trialsBuyTimes";
 
+        public static RequestReturnObject eliteBuyTime(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_eliteBuyTime);
+        }
+
+        public static RequestReturnObject eliteGetAllInfos(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_eliteGetAllInfos);
+        }
+
+        public static RequestReturnObject fightNext(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_fightNext);
+        }
+
         public static RequestReturnObject getAttFormation(HTTPRequestHeaders oH, string sid)
         {
             string body = "{\"march\":\"TRAVEL\"}";
             return com.SendGenericRequest(oH, sid, CMD_getAttFormation, true, body);
+        }
+        
+        public static RequestReturnObject getLeftTimes(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getLeftTimes);
+        }
+
+        public static RequestReturnObject getTrialsInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getTrialsInfo);
         }
 
         public static RequestReturnObject nextEnemies(HTTPRequestHeaders oH, string sid)
@@ -40,15 +65,11 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_saveFormation, true, body);
         }
 
-        public static RequestReturnObject fightNext(HTTPRequestHeaders oH, string sid)
-        {
-            return com.SendGenericRequest(oH, sid, CMD_fightNext);
-        }
-
         public static RequestReturnObject quitCampaign(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_quitCampaign);
         }
 
+        
     }
 }

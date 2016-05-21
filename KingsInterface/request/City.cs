@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,11 @@ namespace KingsInterface.request
         private const string CMD_buyProduct = "City.buyProduct";
         private const string CMD_getIndustryInfo = "City.getIndustryInfo";
         private const string CMD_getPlayerCityInfo = "City.getPlayerCityInfo";
+
+        public static RequestReturnObject getPlayerCityInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getPlayerCityInfo);
+        }
 
     }
 }

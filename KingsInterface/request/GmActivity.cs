@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,11 @@ namespace KingsInterface.request
     class GmActivity
     {
         private const string CMD_superPackageInfo = "GmActivity.superPackageInfo";
+
+        public static RequestReturnObject superPackageInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_superPackageInfo);
+        }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,16 @@ namespace KingsInterface.request
     {
         private const string CMD_draw = "LuckyCycle.draw";
         private const string CMD_info = "LuckyCycle.info";
+
+        public static RequestReturnObject draw(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_draw);
+        }
+
+        public static RequestReturnObject info(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_info);
+        }
 
     }
 }

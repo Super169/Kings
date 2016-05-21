@@ -33,6 +33,83 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_drawCompanyAnniversaryLoginReward);
         }
 
+        public static RequestReturnObject drawCompanyAnniversaryRechargeReward(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_drawCompanyAnniversaryRechargeReward);
+        }
+
+        public static RequestReturnObject drawExchangeHoliday(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_drawExchangeHoliday);
+        }
+
+        public static RequestReturnObject drawStrategicFundInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_drawStrategicFundInfo);
+        }
+
+        public static RequestReturnObject getActivityList(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getActivityList);
+        }
+
+        public static RequestReturnObject getAnnouncement(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getAnnouncement);
+        }
+
+        public static RequestReturnObject getBookHeroInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getBookHeroInfo);
+        }
+
+        public static RequestReturnObject getCloudSellerInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getCloudSellerInfo);
+        }
+
+        public static RequestReturnObject getPlayerGoBackActivityInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getPlayerGoBackActivityInfo);
+        }
+
+        public static RequestReturnObject getRankInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getRankInfo);
+        }
+
+        public static RequestReturnObject getRationActivity(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getRationActivity);
+        }
+
+
+        public static RequestReturnObject getShuangShiyiActivityInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getShuangShiyiActivityInfo);
+        }
+
+        public static RequestReturnObject getShuangShiyiActivityReward(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getShuangShiyiActivityReward);
+        }
+
+        public static RequestReturnObject getTuanGouOpenInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getTuanGouOpenInfo);
+        }
+
+        public static RequestReturnObject serverOpenTime(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_serverOpenTime);
+        }
+
+        public static RequestReturnObject showIconForServerOpenActivity(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_showIconForServerOpenActivity);
+        }
+
+
 
 
     }

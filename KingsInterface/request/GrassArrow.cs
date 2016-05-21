@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,17 @@ namespace KingsInterface.request
         private const string CMD_doGrassArrowFight = "GrassArrow.doGrassArrowFight";
         private const string CMD_drawStageReward = "GrassArrow.drawStageReward";
         private const string CMD_exchangeGrassArrow = "GrassArrow.exchangeGrassArrow";
+
+        public static RequestReturnObject acquireGrassArrowInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_acquireGrassArrowInfo);
+        }
+
+        public static RequestReturnObject doGrassArrowFight(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_doGrassArrowFight);
+        }
+
 
     }
 }

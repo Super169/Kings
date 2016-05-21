@@ -22,6 +22,31 @@ namespace KingsInterface.request
         private const string CMD_matchHero = "Hero.matchHero";
 
 
+        public static RequestReturnObject assessScore(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_assessScore);
+        }
+
+        public static RequestReturnObject getConvenientFormations(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getConvenientFormations);
+        }
+
+        public static RequestReturnObject getCurrRecommendActivityInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getCurrRecommendActivityInfo);
+        }
+
+        public static RequestReturnObject getFeastInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getFeastInfo);
+        }
+
+        public static RequestReturnObject getHeroIconInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getHeroIconInfo);
+        }
+
         public static RequestReturnObject getPlayerHeroList(HTTPRequestHeaders oH, string sid)
         {
             return com.SendGenericRequest(oH, sid, CMD_getPlayerHeroList);
@@ -31,6 +56,13 @@ namespace KingsInterface.request
         {
             return com.SendGenericRequest(oH, sid, CMD_getScoreHero, true, body);
         }
+
+        public static RequestReturnObject getWineInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getWineInfo);
+        }
+
+
 
 
     }

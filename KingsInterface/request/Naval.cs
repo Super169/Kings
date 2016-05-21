@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,32 @@ namespace KingsInterface.request
         private const string CMD_retreatAllTroops = "Naval.retreatAllTroops";
         private const string CMD_rewardCfg = "Naval.rewardCfg";
         private const string CMD_sendTroops = "Naval.sendTroops";
+
+        public static RequestReturnObject getInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getInfo);
+        }
+
+        public static RequestReturnObject inMissionHeros(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_inMissionHeros);
+        }
+
+        public static RequestReturnObject killRank(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_killRank);
+        }
+
+        public static RequestReturnObject leaveWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_leaveWar);
+        }
+
+        public static RequestReturnObject rewardCfg(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_rewardCfg);
+        }
+
 
     }
 }

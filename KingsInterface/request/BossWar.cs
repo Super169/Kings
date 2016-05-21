@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,49 @@ namespace KingsInterface.request
         private const string CMD_pk = "BossWar.pk ";
         private const string CMD_rankInfo = "BossWar.rankInfo ";
         private const string CMD_sendTroop = "BossWar.sendTroop ";
+
+        public static RequestReturnObject bossInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_bossInfo);
+        }
+
+        public static RequestReturnObject bossLineup(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_bossLineup);
+        }
+
+        public static RequestReturnObject enterWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_enterWar);
+        }
+
+        public static RequestReturnObject keyKillInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_keyKillInfo);
+        }
+
+        public static RequestReturnObject leaveWar(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_leaveWar);
+        }
+
+        public static RequestReturnObject openInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_openInfo);
+        }
+
+        public static RequestReturnObject pk(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_pk);
+        }
+
+        public static RequestReturnObject rankInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_rankInfo);
+        }
+
+
+
 
     }
 }

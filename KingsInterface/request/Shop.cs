@@ -24,15 +24,6 @@ namespace KingsInterface.request
         private const string CMD_shopNextRefreshTime = "Shop.shopNextRefreshTime";
         private const string CMD_tradeResource = "Shop.tradeResource";
 
-        public static RequestReturnObject getCycleShopInfo(HTTPRequestHeaders oH, string sid)
-        {
-            return com.SendGenericRequest(oH, sid, CMD_getCycleShopInfo);
-        }
-
-        public static RequestReturnObject getTravelShopInfo(HTTPRequestHeaders oH, string sid)
-        {
-            return com.SendGenericRequest(oH, sid, CMD_getTravelShopInfo);
-        }
 
         public static RequestReturnObject buyCycleShopItem(HTTPRequestHeaders oH, string sid, int pos)
         {
@@ -45,6 +36,39 @@ namespace KingsInterface.request
         {
             string body = "{\"idx\":" + idx.ToString() + ", \"type\":\"TRAVEL\"}";
             return com.SendGenericRequest(oH, sid, CMD_buyTravelShopItem, true, body);
+        }
+
+
+        public static RequestReturnObject getCycleShopInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getCycleShopInfo);
+        }
+
+        public static RequestReturnObject getResourceTradeInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getResourceTradeInfo);
+        }
+
+
+        public static RequestReturnObject getShuangShiyiShopInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getShuangShiyiShopInfo);
+        }
+
+        public static RequestReturnObject getTravelShopInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getTravelShopInfo);
+        }
+
+        public static RequestReturnObject otherShopsRefreshTime(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_otherShopsRefreshTime);
+        }
+
+
+        public static RequestReturnObject shopNextRefreshTime(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_shopNextRefreshTime);
         }
     }
 }

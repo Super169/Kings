@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fiddler;
+using KingsInterface.data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,16 @@ namespace KingsInterface.request
         private const string CMD_getInfo = "SignInReward.getInfo";
         private const string CMD_signIn = "SignInReward.signIn";
         private const string CMD_signInMultiple = "SignInReward.signInMultiple";
+
+        public static RequestReturnObject getInfo(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_getInfo);
+        }
+
+        public static RequestReturnObject signIn(HTTPRequestHeaders oH, string sid)
+        {
+            return com.SendGenericRequest(oH, sid, CMD_signIn);
+        }
 
     }
 }
