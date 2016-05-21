@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class RedEnvelope
+    public static class RedEnvelope
     {
         private const string CMD_activityTime = "RedEnvelope.activityTime";
 

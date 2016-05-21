@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Country
+    public static class Country
     {
         private const string CMD_corpsCountry = "Country.corpsCountry";
         private const string CMD_viewCountry = "Country.viewCountry";

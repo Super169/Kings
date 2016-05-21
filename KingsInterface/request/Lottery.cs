@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Lottery
+    public static class Lottery
     {
         private const string CMD_drawLottery = "Lottery.drawLottery";
         private const string CMD_freeLottery = "Lottery.freeLottery";

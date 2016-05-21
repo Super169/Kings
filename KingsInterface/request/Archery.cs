@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Archery
+    public static class Archery
     {
         private const string CMD_archeryOpenInfo = "Archery.archeryOpenInfo";
         private const string CMD_getArcheryInfo = "Archery.getArcheryInfo";

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Rank
+    public static class Rank
     {
         private const string CMD_findAllPowerRank = "Rank.findAllPowerRank";
 

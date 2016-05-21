@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class NpcCorps
+    public static class NpcCorps
     {
         private const string CMD_getNpcWars = "NpcCorps.getNpcWars";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Platform
+    public static class Platform
     {
         private const string CMD_getPlatformInfo = "Platform.getPlatformInfo";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class God
+    public static class God
     {
         private const string CMD_godActToStren = "God.godActToStren";
         private const string CMD_godStrenInfo = "God.godStrenInfo";

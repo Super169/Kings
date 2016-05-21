@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class LongMarch
+    public static class LongMarch
     {
         private const string CMD_getBuyResetTimes = "LongMarch.getBuyResetTimes";
         private const string CMD_getFinishedReward = "LongMarch.getFinishedReward";

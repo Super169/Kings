@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class System
+    public static class System
     {
         private const string CMD_ping = "System.ping";
 

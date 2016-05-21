@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class TurnCardReward
+    public static class TurnCardReward
     {
         private const string CMD_getTurnCardRewards = "TurnCardReward.getTurnCardRewards";
         private const string CMD_turnCard = "TurnCardReward.turnCard";

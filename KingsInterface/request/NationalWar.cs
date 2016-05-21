@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class NationalWar
+    public static class NationalWar
     {
         private const string CMD_acquireCityCommandInfo = "NationalWar.acquireCityCommandInfo";
         private const string CMD_acquireNationCardPanelInfo = "NationalWar.acquireNationCardPanelInfo";

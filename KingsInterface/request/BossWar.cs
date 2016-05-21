@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class BossWar
+    public static class BossWar
     {
         private const string CMD_bossInfo = "BossWar.bossInfo ";
         private const string CMD_bossLineup = "BossWar.bossLineup ";

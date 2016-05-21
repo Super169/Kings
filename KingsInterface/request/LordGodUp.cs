@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class LordGodUp
+    public static class LordGodUp
     {
         private const string CMD_getDispInfo = "LordGodUp.getDispInfo";
 

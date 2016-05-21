@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Email
+    public static class Email
     {
         private const string CMD_getAttachment = "Email.getAttachment";
         private const string CMD_openInBox = "Email.openInBox";

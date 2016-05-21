@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class OneYear
+    public static class OneYear
     {
         private const string CMD_cityStatus = "OneYear.cityStatus";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class BaiGuanYu
+    public static class BaiGuanYu
     {
         private const string CMD_getTimeInfo = "BaiGuanYu.getTimeInfo";
 

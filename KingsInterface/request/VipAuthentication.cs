@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class VipAuthentication
+    public static class VipAuthentication
     {
         private const string CMD_isGotMobileGift = "VipAuthentication.isGotMobileGift";
 

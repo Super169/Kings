@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Notice
+    public static class Notice
     {
         private const string CMD_queryAllMarqueeMessage = "Notice.queryAllMarqueeMessage";
 

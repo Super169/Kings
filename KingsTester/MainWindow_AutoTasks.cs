@@ -64,6 +64,7 @@ namespace KingsTester
             goTaskCleanBag();
             goTasksIndustryBuyAll();
             goTaskNavalWar();
+            goTaskLuckyCycle();
         }
 
         private void goCheckAccountStatus(bool forceCheck = false)
@@ -85,7 +86,9 @@ namespace KingsTester
 
         private void goTaskCycleShop()
         {
-            int dow = (int)DateTime.Now.DayOfWeek;
+            int dow = auto.ScheduleInfo.getGameDOW();
+            DateTime now = DateTime.Now;
+
             // CycleShop only available on Sunday and Wednesday
             if ((dow != 0) && (dow != 3)) return;
             foreach (GameAccount oGA in gameAccounts)
@@ -188,12 +191,12 @@ namespace KingsTester
 
         private void goTaskNavalWar()
         {
+            int dow = auto.ScheduleInfo.getGameDOW();
             DateTime now = DateTime.Now;
-            int dow = (int)now.DayOfWeek;
-
             if ((dow != 1) && (dow != 2)) return;
-            int cityId = (dow == 1 ? 1 : 3);
+            if ((now.Hour < 9) || (now.Hour > 21)) return;
 
+            int cityId = (dow == 1 ? 1 : 3);
             foreach (GameAccount oGA in gameAccounts)
             {
                 if (oGA.IsOnline())
@@ -204,5 +207,24 @@ namespace KingsTester
                 }
             }
         }
+
+        private void goTaskLuckyCycle()
+        {
+            DateTime now = DateTime.Now;
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    int drawCount = action.goLuckyCycle(oGA);
+                    if (drawCount > 0)
+                    {
+                        UpdateResult(oGA.msgPrefix() + string.Format("轉了{0}次幸運轉盤.", drawCount));
+                    }
+                }
+            }
+        }
+
+
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class EightTrigrams
+    public static class EightTrigrams
     {
         private const string CMD_attack = "EightTrigrams.attack";
         private const string CMD_getInfo = "EightTrigrams.getInfo";

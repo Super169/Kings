@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Vip
+    public static class Vip
     {
         private const string CMD_firstChargeInfo = "Vip.firstChargeInfo";
         private const string CMD_monthCard = "Vip.monthCard";

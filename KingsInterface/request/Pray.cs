@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Pray
+    public static class Pray
     {
         private const string CMD_getPrayTime = "Pray.getPrayTime";
 

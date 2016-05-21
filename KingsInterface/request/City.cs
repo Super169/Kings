@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class City
+    public static class City
     {
         private const string CMD_buyProduct = "City.buyProduct";
         private const string CMD_getIndustryInfo = "City.getIndustryInfo";

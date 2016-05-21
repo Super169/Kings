@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Major
+    public static class Major
     {
         private const string CMD_getMyMajorInfo = "Major.getMyMajorInfo";
 

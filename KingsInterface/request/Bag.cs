@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Bag
+    public static class Bag
     {
         private const string CMD_getBagInfo = "Bag.getBagInfo";
         private const string CMD_useItem = "Bag.useItem";

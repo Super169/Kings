@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class DaqiaoActivity
+    public static class DaqiaoActivity
     {
         private const string CMD_getCurrActivityInfo = "DaqiaoActivity.getCurrActivityInfo";
 

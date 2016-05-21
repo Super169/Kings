@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class CrossCamp
+    public static class CrossCamp
     {
         private const string CMD_getInfo = "CrossCamp.getInfo";
         private const string CMD_getJackpotInfo = "CrossCamp.getJackpotInfo";

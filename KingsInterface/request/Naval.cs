@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Naval
+    public static class Naval
     {
         private const string CMD_enterWar = "Naval.enterWar";
         private const string CMD_getInfo = "Naval.getInfo";

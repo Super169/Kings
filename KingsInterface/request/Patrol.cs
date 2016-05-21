@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Patrol
+    public static class Patrol
     {
         private const string CMD_dealPatroledEvent = "Patrol.dealPatroledEvent";
         private const string CMD_getPatrolInfo = "Patrol.getPatrolInfo";

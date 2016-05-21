@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Circle
+    public static class Circle
     {
         private const string CMD_challenge = "Circle.challenge";
         private const string CMD_drawPassRewards = "Circle.drawPassRewards";

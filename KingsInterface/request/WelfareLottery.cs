@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class WelfareLottery
+    public static class WelfareLottery
     {
         private const string CMD_time = "WelfareLottery.time";
 

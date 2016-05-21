@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Rogue
+    public static class Rogue
     {
         private const string CMD_startRogueGangKill = "Rogue.startRogueGangKill";
         private const string CMD_takeRogueInfo = "Rogue.takeRogueInfo";

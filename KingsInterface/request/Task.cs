@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Task
+    public static class Task
     {
         private const string CMD_finishTask = "Task.finishTask";
         private const string CMD_getAchievementInfo = "Task.getAchievementInfo";

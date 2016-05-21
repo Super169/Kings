@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Campaign
+    public static class Campaign
     {
         private const string CMD_eliteBuyTime = "Campaign.eliteBuyTime";
         private const string CMD_eliteFight = "Campaign.eliteFight";

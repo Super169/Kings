@@ -53,6 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="action\LuckyCycle.cs" />
     <Compile Include="action\Travel.cs" />
     <Compile Include="request\Activity.cs" />
     <Compile Include="request\Archery.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class ZaJinDan
+    public static class ZaJinDan
     {
         private const string CMD_getTimeInfo = "ZaJinDan.getTimeInfo";
 

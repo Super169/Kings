@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Gamble
+    public static class Gamble
     {
         private const string CMD_chouqianOpenInfo = "Gamble.chouqianOpenInfo";
 

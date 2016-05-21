@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class YunYou
+    public static class YunYou
     {
         private const string CMD_getYunYouInfo = "YunYou.getYunYouInfo";
 

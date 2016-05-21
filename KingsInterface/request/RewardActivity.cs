@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class RewardActivity
+    public static class RewardActivity
     {
         private const string CMD_getSevenDayFundRewardInfo = "RewardActivity.getSevenDayFundRewardInfo";
 

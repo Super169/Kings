@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class GmActivity
+    public static class GmActivity
     {
         private const string CMD_superPackageInfo = "GmActivity.superPackageInfo";
 

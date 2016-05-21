@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class ChristmasTree
+    public static class ChristmasTree
     {
         private const string CMD_time = "ChristmasTree.time";
 

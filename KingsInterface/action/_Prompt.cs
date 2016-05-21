@@ -13,6 +13,7 @@ namespace KingsInterface
         public const string PROMPT_RELOGIN = "ERR_COMMON_RELOGIN";
 
         public const string PROMPT_ACTIVITY_NOT_OPEN = "ACTIVITY_IS_NOT_OPEN";
+        public const string PROMPT_GOT_REWARD_ALREADY = "GOT_REWARD_ALREADY";
 
         public const string PROMPT_RESOURCE_FULL = "RESOURCE_FULL";
     }

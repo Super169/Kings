@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Hero
+    public static class Hero
     {
         private const string CMD_assessScore = "Hero.assessScore";
         private const string CMD_getConvenientFormations = "Hero.getConvenientFormations";

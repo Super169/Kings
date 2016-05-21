@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class SignInReward
+    public static class SignInReward
     {
         private const string CMD_getInfo = "SignInReward.getInfo";
         private const string CMD_signIn = "SignInReward.signIn";

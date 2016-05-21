@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Login
+    public static class Login
     {
         private const string CMD_getOfflineConpensate = "Login.getOfflineConpensate";
         private const string CMD_login = "Login.login";

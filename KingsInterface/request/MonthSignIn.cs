@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class MonthSignIn
+    public static class MonthSignIn
     {
         private const string CMD_getOpenInfo = "MonthSignIn.getOpenInfo";
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class KingRoad
+    public static class KingRoad
     {
         private const string CMD_afterSeasonEnemy = "KingRoad.afterSeasonEnemy";
         private const string CMD_kingroadEnd = "KingRoad.kingroadEnd";

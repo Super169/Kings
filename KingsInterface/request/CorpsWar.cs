@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class CorpsWar
+    public static class CorpsWar
     {
         private const string CMD_getInfo = "CorpsWar.getInfo";
         public static RequestReturnObject getInfo(HTTPRequestHeaders oH, string sid)

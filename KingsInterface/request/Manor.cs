@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Manor
+    public static class Manor
     {
         private const string CMD_appointHero = "Manor.appointHero";
         private const string CMD_appointInfo = "Manor.appointInfo";

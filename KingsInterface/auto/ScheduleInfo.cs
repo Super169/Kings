@@ -109,7 +109,20 @@ namespace KingsInterface
                 }
             }
 
-            public DateTime getRefTime(DateTime baseTime, TimeSpan refTS)
+
+
+            public static int getGameDOW()
+            {
+                return getGameDOW(DateTime.Now);
+            }
+
+            public static int getGameDOW(DateTime baseTime)
+            {
+                DateTime gameDate = getRefTime(baseTime, new TimeSpan(12, 00, 00));
+                return (int)gameDate.DayOfWeek;
+            }
+
+            public static DateTime getRefTime(DateTime baseTime, TimeSpan refTS)
             {
                 DateTime refTime = new DateTime(baseTime.Year, baseTime.Month, baseTime.Day) + refTS;
                 if (baseTime.Hour < DAY_START_HOUR)

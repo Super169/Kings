@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Player
+    public static class Player
     {
         private const string CMD_getProperties = "Player.getProperties";
         private const string CMD_getSpecialState = "Player.getSpecialState";

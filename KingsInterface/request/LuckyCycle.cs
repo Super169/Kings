@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class LuckyCycle
+    public static class LuckyCycle
     {
         private const string CMD_draw = "LuckyCycle.draw";
         private const string CMD_info = "LuckyCycle.info";

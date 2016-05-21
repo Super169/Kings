@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Emperor
+    public static class Emperor
     {
         private const string CMD_collect = "Emperor.collect";
         private const string CMD_collected = "Emperor.collected";

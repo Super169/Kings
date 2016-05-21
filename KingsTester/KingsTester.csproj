@@ -129,6 +129,10 @@
       <Project>{73b41588-1c57-47d4-9bd3-48264f20830f}</Project>
       <Name>KingsInterface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyUtil\MyUtil.csproj">
+      <Project>{985258bc-294e-4255-9878-848fd56a7387}</Project>
+      <Name>MyUtil</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Valentine
+    public static class Valentine
     {
         private const string CMD_getActivityInfo = "Valentine.getActivityInfo";
         public static RequestReturnObject getActivityInfo(HTTPRequestHeaders oH, string sid)

@@ -1,5 +1,7 @@
 ﻿using KingsInterface;
 using KingsInterface.data;
+using KingsInterface.request;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +17,37 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            go_TestTravel();
+            goLuckyCycle();
+        }
+
+        private void goLuckyCycle()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            RequestReturnObject rro;
+            rro = LuckyCycle.info(oGA.currHeader, oGA.sid);
+            if (!rro.SuccessWithJson("remainCount")) return;
+            int remainCount = JSON.getInt(rro.responseJson, "remainCount");
+            while (remainCount > 0)
+            {
+                rro = LuckyCycle.draw(oGA.currHeader, oGA.sid);
+                if (!rro.SuccessWithJson("id")) break;
+                remainCount--;
+                rro = Player.getProperties(oGA.currHeader, oGA.sid);
+            }
+        }
+
+        private void goReward()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            RequestReturnObject rro;
+            rro = Activity.getShuangShiyiActivityReward(oGA.currHeader, oGA.sid);
+            if (rro.ok == 1)
+            {
+                Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
+            }
+
         }
 
         private void go_TestAuto()

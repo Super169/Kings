@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class StarGazing
+    public static class StarGazing
     {
         private const string CMD_activityInfo = "StarGazing.activityInfo";
         private const string CMD_myFirecrackerInfo = "StarGazing.myFirecrackerInfo";

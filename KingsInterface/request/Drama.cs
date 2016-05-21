@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class Drama
+    public static class Drama
     {
         private const string CMD_getDramaInfo = "Drama.getDramaInfo";
         public static RequestReturnObject getDramaInfo(HTTPRequestHeaders oH, string sid)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KingsInterface.request
 {
-    class GrassArrow
+    public static class GrassArrow
     {
         private const string CMD_acquireGrassArrowInfo = "GrassArrow.acquireGrassArrowInfo";
         private const string CMD_doGrassArrowFight = "GrassArrow.doGrassArrowFight";
