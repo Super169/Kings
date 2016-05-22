@@ -1,10 +1,12 @@
 ﻿using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -158,9 +160,8 @@ namespace KingsTester.ui
             }
             oGA.BossWarChiefIdx = chiefIdx;
 
-
+/*
             // sBody = "{\"type\":\"WEB_BROWSER\",\"loginCode\":\"" + txtSId.Text + "\"}";
-
             // "body":"{\"chief\":12,\"heros\":[{\"x\":-2,\"y\":0,\"index\":12},{\"x\":-4,\"y\":0,\"index\":3},{\"x\":-3,\"y\":-1,\"index\":15},{\"x\":-5,\"y\":-1,\"index\":7},{\"x\":-3,\"y\":1,\"index\":4}]}"
             string BossWarBody = "{\"chief\":" + warHeros[chiefIdx].heroIdx + ",\"heros\":[";
             heroCnt = 0;
@@ -199,7 +200,30 @@ namespace KingsTester.ui
                 }
             }
             BossWarBody += "]}";
-            oGA.BossWarBody = BossWarBody;
+*/
+
+
+            // The JSON to build the body string
+            dynamic json = JSON.Empty();
+            List<dynamic> heros = new List<dynamic>();
+
+            int[,] warPos = { { -5, -1 }, { -3, -1 }, { -6, 0 }, { -4, 0 }, { -2, 0 }, { -5, 1 }, { -3, 1 } };
+            for (int i = 0; i < 7; i++)
+            {
+                if (warHeros[i].heroIdx > 0)
+                {
+                    dynamic o = JSON.Empty();
+                    o.x = warPos[i, 0];
+                    o.y = warPos[i, 1];
+                    o.index = warHeros[i].heroIdx;
+                    heros.Add(o);
+                }
+            }
+            json["chief"] = warHeros[chiefIdx].heroIdx;
+            json["heros"] = heros;
+            string body = Json.Encode(json);
+
+            oGA.BossWarBody = body;
             this.DialogResult = true;
             this.Close();
         }

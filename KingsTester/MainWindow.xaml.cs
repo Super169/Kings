@@ -352,7 +352,7 @@ namespace KingsTester
             goTaskHarvestAll();
         }
 
-        private GameAccount GetSelectedActiveAccount()
+        private GameAccount GetSelectedActiveAccount(bool allowOffline = false)
         {
             if (gameAccounts.Count == 0)
             {
@@ -365,25 +365,32 @@ namespace KingsTester
 
             if (oGA.CheckStatus() != AccountStatus.Online)
             {
-                MessageBox.Show("帳戶已在其他地方登入");
-                return null;
+                if (!allowOffline)
+                {
+                    MessageBox.Show("帳戶已在其他地方登入");
+                    return null;
+                }
             }
             return oGA;
         }
 
         private void btnHeroList_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedActiveAccount();
+            GameAccount oGA = GetSelectedActiveAccount(true);
             if (oGA == null) return;
 
-            if (oGA.CheckStatus(true) != AccountStatus.Online) return;
+            bool onlineData = (oGA.CheckStatus(true) == AccountStatus.Online);
 
-            oGA.Heros.Clear();
+            if (onlineData)
+            {
+                oGA.Heros.Clear();
 
-            oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
-            if (oGA.Heros == null) return;
+                oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+                if (oGA.Heros == null) return;
+            }
 
             StringBuilder sb = new StringBuilder();
+            if (!onlineData) sb.Append("#### 帳戶已在其他地方登入, 以下顯示資料可能已過時 ####\n");
             sb.Append("Hero List:\n");
 
             foreach (HeroInfo hi in oGA.Heros)
@@ -405,20 +412,29 @@ namespace KingsTester
 
         private void btnDecInfo_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedActiveAccount();
+            GameAccount oGA = GetSelectedActiveAccount(true);
             if (oGA == null) return;
 
-            oGA.DecreeHeros.Clear();
+            bool onlineData = (oGA.CheckStatus(true) == AccountStatus.Online);
 
-            if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
-            // Fail to get hero info
-            if (oGA.Heros.Count == 0)
+            if (onlineData)
             {
-                UpdateResult("讀取英雄資料失敗");
-                return;
-            }
+                oGA.DecreeHeros.Clear();
 
-            oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros);
+                if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+                // Fail to get hero info
+                if (oGA.Heros.Count == 0)
+                {
+                    UpdateResult("讀取英雄資料失敗");
+                    return;
+                }
+
+                oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros);
+
+            } else
+            {
+                UpdateResult("#### 帳戶已在其他地方登入, 以下顯示資料可能已過時 ####");
+            }
 
             foreach (DecreeInfo di in oGA.DecreeHeros)
             {
@@ -428,15 +444,27 @@ namespace KingsTester
 
         private void btnBossWarSetting_Click(object sender, RoutedEventArgs e)
         {
-            GameAccount oGA = GetSelectedActiveAccount();
+            GameAccount oGA = GetSelectedActiveAccount(true);
             if (oGA == null) return;
 
-            if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
-            // Fail to get hero info
-            if (oGA.Heros.Count == 0)
+            bool onlineData = (oGA.CheckStatus(true) == AccountStatus.Online);
+
+            if (onlineData)
             {
-                UpdateResult("讀取英雄資料失敗");
-                return;
+                if (oGA.Heros.Count == 0) oGA.Heros = action.goGetHerosInfo(oGA.currHeader, oGA.sid);
+                // Fail to get hero info
+                if (oGA.Heros.Count == 0)
+                {
+                    UpdateResult("讀取英雄資料失敗");
+                    return;
+                }
+            } else
+            {
+                if (oGA.Heros.Count == 0)
+                {
+                    UpdateResult("#### 帳戶已在其他地方登入, 沒有英雄資料可用");
+                    return;
+                }
             }
 
             ui.BossWarSettings Window = new ui.BossWarSettings();
