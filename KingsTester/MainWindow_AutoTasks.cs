@@ -52,6 +52,8 @@ namespace KingsTester
             goTaskTuanGou();
             // 拆紅包
             goTaskShuangShiyiActivityReward();
+            // 周遊天下
+            goTaskTravel();
         }
 
         private void goAutoKings()
@@ -383,6 +385,20 @@ namespace KingsTester
                 }
             }
         }
+
+
+        private void goTaskTravel()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goTravel(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
+
 
     }
 }

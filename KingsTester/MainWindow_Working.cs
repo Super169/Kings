@@ -17,7 +17,7 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goReward();
+            goTravel();
         }
 
         private void goTravel()
