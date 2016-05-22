@@ -16,6 +16,44 @@ namespace KingsTester
     {
         System.Timers.Timer autoTimer = new System.Timers.Timer(1000);
 
+        private bool bossWarDay()
+        {
+            DateTime now = DateTime.Now;
+            int dow = (int)now.DayOfWeek;
+            if ((dow != 0) && (dow != 5)) return false;
+            return true;
+        }
+
+        private void goAutoTasks()
+        {
+            // 檢查帳戶
+            goCheckAccountStatus(true);
+            // 封地收獲
+            goTaskHarvestAll();
+            // 東瀛寶船
+            goTaskCycleShop();
+            // 取得已完成任務的獎勵
+            goTaskFinishAllTasks();
+            // 每日簽到
+            goTaskSingInAll();
+            // 讀取郵件並取得附件
+            goTaskReadEmail();
+            // 勢力商店購買糧食
+            goTaskSLBuyFood();
+            // 清理背包
+            goTaskCleanBag();
+            // 產業購買
+            goTasksIndustryBuyAll();
+            // 佈置跨服入侵
+            goTaskNavalWar();
+            // 幸運轉盤
+            goTaskLuckyCycle();
+            // 領取團購寶箱
+            goTaskTuanGou();
+            // 拆紅包
+            goTaskShuangShiyiActivityReward();
+        }
+
         private void goAutoKings()
         {
             normalMode = !normalMode;
@@ -41,32 +79,79 @@ namespace KingsTester
             autoTimer.Enabled = false;
             UpdateResult(string.Format("自動大皇帝 - 開始執行"));
 
-            DateTime minNext = DateTime.Now.AddMinutes(1);
-            DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 00, 00).AddHours(1);
+            DateTime minNext;
+            DateTime nextActionTime;
             // DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, minNext.Minute, 00).AddMinutes(1);
 
-            goAutoTasks();
+            DateTime now = DateTime.Now;
+            int dow = (int)now.DayOfWeek;
+            bool goBossWar = false;
+            bool waitForBossWar = false;
+            bool skipAction = false;
 
-            autoTimer.Interval = (int)(nextActionTime - DateTime.Now).TotalSeconds * 1000;
+            TimeSpan bossWarStart = new TimeSpan(19, 59, 0);
+            TimeSpan bossWarEnd = new TimeSpan(20, 31, 0);
+
+            if ((dow == 0) || (dow == 5))
+            {
+                TimeSpan currTS = new TimeSpan(now.Hour, now.Minute, now.Second);
+                if (currTS < bossWarEnd)
+                {
+                    if (currTS > bossWarStart)
+                    {
+                        goBossWar = true;
+                    }
+                    else
+                    {
+                        TimeSpan waitTime = (bossWarStart - currTS);
+                        int waitMin = (int)waitTime.TotalMinutes;
+                        if (waitMin < 70)
+                        {
+                            waitForBossWar = true;
+                            if (waitMin < 10) skipAction = true;
+                        }
+                    }
+                }
+            }
+
+            if (goBossWar)
+            {
+                goTaskBossWar();
+                nextActionTime = now.AddSeconds(31);
+
+            }
+            else if (skipAction)
+            {
+                UpdateResult(string.Format("是次行動取消, 直接等待神將無雙."));
+                // For safety, add 1 more seconds here.
+                nextActionTime = new DateTime(now.Year, now.Month, now.Day).Add(bossWarStart).AddSeconds(1);
+            }
+            else
+            {
+                goAutoTasks();
+                if (waitForBossWar)
+                {
+                    UpdateResult(string.Format("下次行動設定為 神將無雙 開始時間."));
+                    // For safety, add 1 more seconds here.
+                    nextActionTime = new DateTime(now.Year, now.Month, now.Day).Add(bossWarStart).AddSeconds(1);
+                }
+                else
+                {
+                    minNext = DateTime.Now.AddMinutes(1);
+                    nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 00, 00).AddHours(1);
+                }
+
+            }
+
+            double waitMS = (nextActionTime - DateTime.Now).TotalSeconds * 1000;
+            if (waitMS < 0) waitMS = 1000;
+
+            autoTimer.Interval = waitMS;
             autoTimer.Enabled = true;
             UpdateResult(string.Format("自動大皇帝 - 執行完成, 下次執行時候為: {0:yyyy-MM-dd hh:mm:ss}", nextActionTime));
+
         }
 
-        private void goAutoTasks()
-        {
-            goCheckAccountStatus(true);
-            goTaskHarvestAll();
-            goTaskCycleShop();
-            goTaskFinishAllTasks();
-            goTaskSingInAll();
-            goTaskReadEmail();
-            goTaskSLBuyFood();
-            goTaskCleanBag();
-            goTasksIndustryBuyAll();
-            goTaskNavalWar();
-            goTaskLuckyCycle();
-            goTaskTuanGou();
-        }
 
         private void goCheckAccountStatus(bool forceCheck = false)
         {
@@ -74,7 +159,7 @@ namespace KingsTester
             {
                 oGA.CheckStatus(forceCheck);
             }
-           refreshAccountList();
+            refreshAccountList();
         }
 
         private void goTaskHarvestAll()
@@ -178,9 +263,9 @@ namespace KingsTester
                 {
                     // go buy food first, then silver
                     int buyCnt = 0;
-                    
+
                     if (buyFood) buyCnt = action.goIndustryBuyAll(oGA, null, true, false);
-                    
+
                     // can also buy food if possible
                     if (buySilver) buyCnt += action.goIndustryBuyAll(oGA, null, buyFood, true);
 
@@ -237,6 +322,64 @@ namespace KingsTester
                 if (oGA.IsOnline())
                 {
                     action.goTuanGou(oGA, UpdateInfoHandler);
+                }
+            }
+        }
+
+        private void goTaskShuangShiyiActivityReward()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goShuangShiyiActivityReward(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
+
+        private void goTaskBossWar()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    if ((oGA.BossWarBody == null) || (oGA.BossWarBody == ""))
+                    {
+                        UpdateResult(oGA.msgPrefix() + "神將無雙尚未設定");
+                    }
+                    else
+                    {
+                        BossWarInfo bwi = action.goBossWarOnce(oGA.currHeader, oGA.sid, oGA.BossWarBody, UpdateInfoHandler);
+                        string info = oGA.msgPrefix();
+                        if (bwi.enterFail)
+                        {
+                            info += "進入戰場失敗";
+                        }
+                        else if (!bwi.bossAvailable)
+                        {
+                            info += "沒有神將無雙";
+                        }
+                        else
+                        {
+                            info += string.Format("神將 HP: {0}, 第 {1} 次出兵: ", bwi.bossHP, bwi.beforeCnt + 1);
+                            if (bwi.sendFail)
+                            {
+                                info += "失敗";
+
+                            }
+                            else
+                            {
+                                info += "成功";
+                                if (bwi.leavelFail)
+                                {
+                                    info += ", 但離開時出錯";
+                                }
+                            }
+                        }
+
+                        UpdateResult(info);
+                    }
                 }
             }
         }

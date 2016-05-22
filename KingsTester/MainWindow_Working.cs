@@ -17,7 +17,7 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goTravel();
+            goReward();
         }
 
         private void goTravel()
@@ -53,7 +53,11 @@ namespace KingsTester
             rro = Activity.getShuangShiyiActivityReward(oGA.currHeader, oGA.sid);
             if (rro.ok == 1)
             {
-                Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
+                rro = Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
+                if (rro.success)
+                {
+                    UpdateResult(string.Format("{0}領取紅包", oGA.msgPrefix()));
+                }
             }
 
         }

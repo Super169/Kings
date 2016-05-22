@@ -1,0 +1,26 @@
+{"act":"Shop.getTravelShopInfo","sid":"3fc3b84cbd46610e7363daf5914007c5eca9ffd0"}
+
+寶物 (上, 左, 右, 下:
+金: 獸面連環鎧, 龍舌弓,     孫子兵法,   和氏璧
+紫: 倚天劍 ,    祖乙尊,     金鏤玉衣,   兵書廿四篇
+藍: 青釭劍,     太平清領道, 夜明珠,     焦尾琴
+青: 雌雄雙股劍, 貂  ,       翡翠珊瑚,   青囊書
+白: 古錠刀,     孟德新書,   羽扇,       龍紋鏡
+
+S35:
+{"items":[{"config":305,"discount":100,"sold":true},{"config":4,"discount":100,"sold":false},{"config":61,"discount":100,"sold":true},{"config":371,"discount":100,"sold":false},{"config":442,"discount":100,"sold":false},{"config":781,"discount":100,"sold":false}],"refreshSeconds":1760,"buyTimes":0,"todayTimes":0,"refreshTimes":0}
+=> 305 - 紫右，　4 - 高級經驗書，　61 - 精鐵 5000
+
+{"items":[{"config":39,"discount":100,"sold":false},{"config":26,"discount":100,"sold":false},{"config":305,"discount":100,"sold":false},{"config":396,"discount":100,"sold":false},{"config":388,"discount":100,"sold":false},{"config":781,"discount":100,"sold":false}],"refreshSeconds":21353,"buyTimes":0,"todayTimes":0,"refreshTimes":0}
+=> 39 - 糧 40000, 26 - 烈酒 5, 305 - 紫右
+
+S37:
+{"items":[{"config":21,"discount":100,"sold":false},{"config":69,"discount":100,"sold":false},{"config":8,"discount":100,"sold":false},{"config":418,"discount":100,"sold":false},{"config":346,"discount":100,"sold":false},{"config":775,"discount":100,"sold":false}],"refreshSeconds":1592,"buyTimes":0,"todayTimes":0,"refreshTimes":0}
+=> 21 - 烈酒,  69 - 虎, 8 - 中級經驗書
+=> 418 - 糧 30000, 346 - 糧 10000, 775 - 紫下
+
+{"items":[{"config":8,"discount":100,"sold":false},{"config":308,"discount":100,"sold":false},{"config":62,"discount":100,"sold":false},{"config":419,"discount":100,"sold":false},{"config":327,"discount":100,"sold":false},{"config":694,"discount":100,"sold":false}],"refreshSeconds":21212,"buyTimes":0,"todayTimes":0,"refreshTimes":0}
+=> 8 - 中級經驗書, 308 0 金右, 62 - 精鐵 5000
+
+
+高级经验书

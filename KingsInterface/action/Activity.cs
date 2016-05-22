@@ -8,6 +8,23 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public static void goShuangShiyiActivityReward(GameAccount oGA, DelegateUpdateInfo updateInfo)
+        {
+            RequestReturnObject rro;
+            if (oGA.IsOnline())
+            {
+                rro = request.Activity.getShuangShiyiActivityReward(oGA.currHeader, oGA.sid);
+                if (rro.ok == 1)
+                {
+                    rro = request.Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
+                    if (rro.success)
+                    {
+                        if (updateInfo != null) updateInfo(string.Format("{0}領取紅包", oGA.msgPrefix()));
+                    }
+                }
+            }
+        }
+
         public static void goTuanGou(GameAccount oGA, DelegateUpdateInfo updateInfo)
         {
             RequestReturnObject rro = request.Activity.getTuanGouInfo(oGA.currHeader, oGA.sid);
