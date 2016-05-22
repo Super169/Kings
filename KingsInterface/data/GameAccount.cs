@@ -42,6 +42,8 @@ namespace KingsInterface.data
         public int timeAdjust { get; set; }
         public string server { get; set; }
         public string serverTitle { get; set; }
+        public string adjServerCode { get; set; }
+        public string adjServerTitle { get; set; }
         public string nickName { get; set; }
         public string corpsName { get; set; }
         public string level { get; set; }
@@ -55,6 +57,7 @@ namespace KingsInterface.data
         public string BossWarBody { get; set; }
         public int BossWarCount { get; set; }
         public List<auto.TaskInfo> AutoTasks { get; set; }
+        public string msgPrefix { get; set; }
 
         #region "Constructors"
 
@@ -82,6 +85,7 @@ namespace KingsInterface.data
                 this.BossWarBody = "";
                 this.BossWarCount = 0;
                 this.AutoTasks = new List<auto.TaskInfo>();
+                setInfo();
             }
         }
 
@@ -105,6 +109,7 @@ namespace KingsInterface.data
             this.currHeader = util.headerFromJsonString(JSON.getString(gfr.getObject(KEY.currHeader)));
             this.lastUpdateDTM = JSON.getDateTime(gfr.getObject(KEY.lastUpdateDTM));
 
+            setInfo();
 
             // this.Heros = JSON.getString(gfr.getObject(KEY.Heros));
             // this.DecreeHeros = JSON.getString(gfr.getObject(KEY.DecreeHeros));
@@ -199,22 +204,40 @@ namespace KingsInterface.data
                 this.DecreeHeros = new List<DecreeInfo>();
             }
 
+        }
 
+        private int adjServerId(int id)
+        {
+            return (id > 9 ? id - 9 : id);
+        }
 
+        public void setInfo()
+        {
+            int pos = this.serverTitle.IndexOf(" ");
+            if (pos >= 2)
+            {
+                try
+                {
+                    int serverId = Convert.ToInt32(this.serverTitle.Substring(1, pos - 1));
+                    serverId = adjServerId(serverId);
+                    this.adjServerCode = this.serverTitle.Substring(0,1) + serverId.ToString();
+                    this.adjServerTitle = adjServerCode + this.serverTitle.Substring(3);
+                }
+                catch {
+                    this.adjServerCode = this.serverTitle.Substring(0, pos);
+                    this.adjServerTitle = this.serverTitle;
+                }
+            }
+            else
+            {
+                this.adjServerCode = this.serverTitle;
+                this.adjServerTitle = this.serverTitle;
+            }
+
+            msgPrefix = string.Format("【{0}: {1}】", this.adjServerCode, this.nickName);
         }
 
         #endregion
-
-        public string accInfo()
-        {
-            return string.Format("{0} - {1}", this.serverTitle, this.nickName);
-        }
-
-        public string msgPrefix()
-
-        {
-            return string.Format("【{0} - {1}】", this.serverTitle, this.nickName);
-        }
 
         public AccountStatus CheckStatus(bool forceCheck = false)
         {

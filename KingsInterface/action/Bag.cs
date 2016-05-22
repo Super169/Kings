@@ -52,11 +52,11 @@ namespace KingsInterface
                     if (rro.SuccessWithJson("deleted"))
                     {
                         cleanUpCount++;
-                        if (updateInfo != null) updateInfo(oGA.msgPrefix() + string.Format("倉庫中 {0} 個 {1} 全部使用了", bi.n, bi.nm));
+                        if (updateInfo != null) updateInfo(oGA.msgPrefix + string.Format("倉庫中 {0} 個 {1} 全部使用了", bi.n, bi.nm));
                     } else if (rro.SuccessWithJson("updated"))
                     {
                         cleanUpCount++;
-                        if (updateInfo != null) updateInfo(oGA.msgPrefix() + string.Format("倉庫中使用了 {0} 個 {1}", bi.n, bi.nm));
+                        if (updateInfo != null) updateInfo(oGA.msgPrefix + string.Format("倉庫中使用了 {0} 個 {1}", bi.n, bi.nm));
                     }
                     // nothing can do even failed or anything not match
                 }

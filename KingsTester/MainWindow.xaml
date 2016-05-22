@@ -70,7 +70,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding serverTitle}"/>
+                            <GridViewColumn Header="伺服器" Width="90"  DisplayMemberBinding="{Binding adjServerTitle}"/>
                             <GridViewColumn Header="主公名稱" Width="110"  DisplayMemberBinding="{Binding nickName}"/>
                         </GridView>
                     </ListView.View>

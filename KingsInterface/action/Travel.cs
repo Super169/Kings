@@ -79,7 +79,7 @@ namespace KingsInterface
                 if (rro.ok != 1) return false;
                 nextStep = mapInfo.currStep + goStep;
                 if (nextStep > mapInfo.mapSize) nextStep -= mapInfo.mapSize;
-                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 指定擲出 {2}, 將會前進到 {3}", oGA.msgPrefix(), mapInfo.diceNum, goStep, nextStep));
+                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 指定擲出 {2}, 將會前進到 {3}", oGA.msgPrefix, mapInfo.diceNum, goStep, nextStep));
                 actStep = nextStep;
             }
             else
@@ -92,7 +92,7 @@ namespace KingsInterface
                 actStep = mapInfo.currStep + num1 + num2;
                 if (actStep > mapInfo.mapSize) actStep -= mapInfo.mapSize;
                 nextStep = JSON.getInt(rro.responseJson, "nextStep");
-                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 擲出 {2} {3}, 將會前進到 {4} - {5}", oGA.msgPrefix(), mapInfo.diceNum, num1, num2, nextStep, actStep));
+                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 擲出 {2} {3}, 將會前進到 {4} - {5}", oGA.msgPrefix, mapInfo.diceNum, num1, num2, nextStep, actStep));
                 if (nextStep < 0)
                 {
                     // Invalid dice (i.e. not allow die at this moment, e.g. dice before battle completed
@@ -205,7 +205,7 @@ namespace KingsInterface
                         errCount++;
                         if (errCount > 0)
                         {
-                            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 出現多次錯誤離開", oGA.msgPrefix()));
+                            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 出現多次錯誤離開", oGA.msgPrefix));
                             break;
                         }
                     }
@@ -231,7 +231,7 @@ namespace KingsInterface
                             errCount++;
                             if (errCount > 0)
                             {
-                                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 出現多次錯誤, 暫時放棄", oGA.msgPrefix()));
+                                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 出現多次錯誤, 暫時放棄", oGA.msgPrefix));
                                 break;
                             }
                         } else
@@ -241,7 +241,7 @@ namespace KingsInterface
                                 tryCnt++;
                                 if (tryCnt > 5)
                                 {
-                                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 未能到達商店, 暫時放棄", oGA.msgPrefix()));
+                                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 未能到達商店, 暫時放棄", oGA.msgPrefix));
                                     break;
                                 }
                             }
@@ -271,7 +271,7 @@ namespace KingsInterface
             int nextStep = mapInfo.currStep;
             if (mapInfo.simpleMap[nextStep] != MAP_ZHANDOU) return AttackResult.ready;
 
-            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 在 {1} 進行戰鬥", oGA.msgPrefix(), nextStep));
+            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 在 {1} 進行戰鬥", oGA.msgPrefix, nextStep));
             RequestReturnObject rro;
 
             bool goBattle = true;
@@ -300,7 +300,7 @@ namespace KingsInterface
                     failCount++;
                     if (failCount >= 3)
                     {
-                        if (updateInfo != null) updateInfo(string.Format("{0}周遊: 逃避 {1} 的戰鬥", oGA.msgPrefix(), nextStep));
+                        if (updateInfo != null) updateInfo(string.Format("{0}周遊: 逃避 {1} 的戰鬥", oGA.msgPrefix, nextStep));
                         rro = Travel.escape(oH, sid);
                         // unexpected fail, nothing can do if it cannot escape
                         if (rro.ok != 1) return AttackResult.failEscape;
@@ -309,7 +309,7 @@ namespace KingsInterface
                 }
                 else
                 {
-                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 在 {1} 的戰鬥中獲勝", oGA.msgPrefix(), nextStep));
+                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 在 {1} 的戰鬥中獲勝", oGA.msgPrefix, nextStep));
                     mapInfo.simpleMap[nextStep] = MAP_KONG;
                     goBattle = false;
                 }
@@ -334,7 +334,7 @@ namespace KingsInterface
             RequestReturnObject rro;
             string stepType = mapInfo.simpleMap[nextStep];
 
-            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 到達 {1} - {2}", oGA.msgPrefix(), nextStep, stepType));
+            if (updateInfo != null) updateInfo(string.Format("{0}周遊: 到達 {1} - {2}", oGA.msgPrefix, nextStep, stepType));
             switch (stepType)
             {
                 case MAP_KONG:
@@ -378,7 +378,7 @@ namespace KingsInterface
                             }
                         }
                     }
-                    if ((buyCnt > 0) && (updateInfo != null)) updateInfo(string.Format("{0}周遊: 在 {1} 買了 {2} 件物品", oGA.msgPrefix(), nextStep, buyCnt));
+                    if ((buyCnt > 0) && (updateInfo != null)) updateInfo(string.Format("{0}周遊: 在 {1} 買了 {2} 件物品", oGA.msgPrefix, nextStep, buyCnt));
                     break;
             }
             mapInfo.currStep = nextStep;

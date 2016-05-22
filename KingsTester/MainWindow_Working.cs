@@ -56,7 +56,7 @@ namespace KingsTester
                 rro = Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
                 if (rro.success)
                 {
-                    UpdateResult(string.Format("{0}領取紅包", oGA.msgPrefix()));
+                    UpdateResult(string.Format("{0}領取紅包", oGA.msgPrefix));
                 }
             }
 
@@ -88,7 +88,7 @@ namespace KingsTester
             GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             bool sendOK = action.sendNavalTroops(oGA, 3, oGA.BossWarBody);
-            UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
+            UpdateResult(oGA.msgPrefix + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
         }
     }
 }

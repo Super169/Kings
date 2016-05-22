@@ -54,7 +54,7 @@ namespace KingsInterface
             }
             if ((finCount > 0) && (updateInfo != null))
             {
-                updateInfo(oGA.msgPrefix() + string.Format("領取 {0} 項任務報酬)", finCount));
+                updateInfo(oGA.msgPrefix + string.Format("領取 {0} 項任務報酬)", finCount));
             }
             return finCount;
         }

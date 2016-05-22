@@ -19,7 +19,7 @@ namespace KingsInterface
                     rro = request.Activity.drawCompanyAnniversaryRechargeReward(oGA.currHeader, oGA.sid);
                     if (rro.success)
                     {
-                        if (updateInfo != null) updateInfo(string.Format("{0}領取紅包", oGA.msgPrefix()));
+                        if (updateInfo != null) updateInfo(string.Format("{0}領取紅包", oGA.msgPrefix));
                     }
                 }
             }
@@ -49,7 +49,7 @@ namespace KingsInterface
                     int bagId = JSON.getInt(o, "bagId");
                     rro = request.Activity.tuanGouReward(oGA.currHeader, oGA.sid, bagId);
                     if (rro.ok == 1) {
-                        if (updateInfo != null) updateInfo(string.Format("{0}跨服團購開啟寶箱 {1}", oGA.msgPrefix(), bagId));
+                        if (updateInfo != null) updateInfo(string.Format("{0}跨服團購開啟寶箱 {1}", oGA.msgPrefix, bagId));
                     }
                 }
             }

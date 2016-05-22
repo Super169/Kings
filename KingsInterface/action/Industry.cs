@@ -102,7 +102,7 @@ namespace KingsInterface
                     }
                 }
             }
-            if ((buyCnt > 0) && (updateInfo != null)) updateInfo(oGA.msgPrefix() + string.Format("在產業中購買了{0}次", buyCnt));
+            if ((buyCnt > 0) && (updateInfo != null)) updateInfo(oGA.msgPrefix + string.Format("在產業中購買了{0}次", buyCnt));
             return buyCnt;
         }
 

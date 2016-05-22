@@ -189,7 +189,7 @@ namespace KingsTester
                         // No way, can only check using this string, or hard code the position.  Text has been converted to TradChinese
                         if ((csi.pos < 3) && (!csi.sold) && (csi.res == "銀兩"))
                         {
-                            string info = oGA.msgPrefix() + "用銀買 " + csi.nm + " : ";
+                            string info = oGA.msgPrefix + "用銀買 " + csi.nm + " : ";
                             if (action.goShopbuyCycleShopItem(oGA.currHeader, oGA.sid, csi.pos))
                             {
                                 info += "成功";
@@ -229,7 +229,7 @@ namespace KingsTester
                 if (oGA.IsOnline())
                 {
                     int emailCnt = action.goEmailReadAll(oGA.currHeader, oGA.sid);
-                    if (emailCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("開啟 {0} 封郵件", emailCnt));
+                    if (emailCnt > 0) UpdateResult(oGA.msgPrefix + string.Format("開啟 {0} 封郵件", emailCnt));
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace KingsTester
                 if (oGA.IsOnline())
                 {
                     int buyCount = action.goSLShopBuyFood(oGA);
-                    if (buyCount > 0) UpdateResult(oGA.msgPrefix() + string.Format("勢力商店買了 {0} 次糧", buyCount));
+                    if (buyCount > 0) UpdateResult(oGA.msgPrefix + string.Format("勢力商店買了 {0} 次糧", buyCount));
                 }
             }
         }
@@ -271,7 +271,7 @@ namespace KingsTester
                     // can also buy food if possible
                     if (buySilver) buyCnt += action.goIndustryBuyAll(oGA, null, buyFood, true);
 
-                    if (buyCnt > 0) UpdateResult(oGA.msgPrefix() + string.Format("在產業中購買了{0}次", buyCnt));
+                    if (buyCnt > 0) UpdateResult(oGA.msgPrefix + string.Format("在產業中購買了{0}次", buyCnt));
                 }
             }
 
@@ -290,7 +290,7 @@ namespace KingsTester
                 if (oGA.IsOnline())
                 {
                     bool sendOK = action.sendNavalTroops(oGA, cityId, oGA.BossWarBody);
-                    UpdateResult(oGA.msgPrefix() + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
+                    UpdateResult(oGA.msgPrefix + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
 
                 }
             }
@@ -307,7 +307,7 @@ namespace KingsTester
                     int drawCount = action.goLuckyCycle(oGA);
                     if (drawCount > 0)
                     {
-                        UpdateResult(oGA.msgPrefix() + string.Format("轉了{0}次幸運轉盤.", drawCount));
+                        UpdateResult(oGA.msgPrefix + string.Format("轉了{0}次幸運轉盤.", drawCount));
                     }
                 }
             }
@@ -348,12 +348,12 @@ namespace KingsTester
                 {
                     if ((oGA.BossWarBody == null) || (oGA.BossWarBody == ""))
                     {
-                        UpdateResult(oGA.msgPrefix() + "神將無雙尚未設定");
+                        UpdateResult(oGA.msgPrefix + "神將無雙尚未設定");
                     }
                     else
                     {
                         BossWarInfo bwi = action.goBossWarOnce(oGA.currHeader, oGA.sid, oGA.BossWarBody, UpdateInfoHandler);
-                        string info = oGA.msgPrefix();
+                        string info = oGA.msgPrefix;
                         if (bwi.enterFail)
                         {
                             info += "進入戰場失敗";

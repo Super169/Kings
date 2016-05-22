@@ -19,11 +19,11 @@ namespace KingsTester
             {
                 if ((oGA.BossWarBody == null) || (oGA.BossWarBody == ""))
                 {
-                    UpdateResult(oGA.msgPrefix() + "神將無雙尚未設定");
+                    UpdateResult(oGA.msgPrefix + "神將無雙尚未設定");
                 } else
                 {
                     BossWarInfo bwi = action.goBossWarOnce(oGA.currHeader, oGA.sid, oGA.BossWarBody, UpdateInfoHandler);
-                    string info = oGA.msgPrefix();
+                    string info = oGA.msgPrefix;
                     if (bwi.enterFail)
                     {
                         info += "進入戰場失敗";
