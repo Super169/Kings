@@ -16,7 +16,7 @@ namespace KingsInterface
         {
             List<BagInfo> bis = new List<BagInfo>();
             RequestReturnObject rro = action.go_Bag_getBagInfo(oH, sid);
-            if (!rro.SuccessWithJson("items")) return bis;
+            if (!rro.SuccessWithJson("items", typeof(DynamicJsonArray))) return bis;
 
             DynamicJsonArray items = rro.responseJson["items"];
 

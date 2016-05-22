@@ -19,8 +19,7 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro = go_Corps_personIndustryList(oGA.currHeader, oGA.sid, type);
-                if (!rro.SuccessWithJson("items")) return null;
-                if (!(rro.responseJson["items"] is DynamicJsonArray)) return null;
+                if (!rro.SuccessWithJson("items", typeof(DynamicJsonArray))) return null;
                 {
                     DynamicJsonArray items = rro.responseJson["items"];
                     foreach (dynamic item in items)
@@ -48,8 +47,7 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro = go_City_getIndustryInfo(oGA.currHeader, oGA.sid, industryId);
-                if (!rro.SuccessWithJson("items")) return iis;
-                if (!(rro.responseJson["items"] is DynamicJsonArray)) return iis;
+                if (!rro.SuccessWithJson("items", typeof(DynamicJsonArray))) return iis;
                 DynamicJsonArray items = rro.responseJson["items"];
                 foreach (dynamic item in items)
                 {

@@ -23,7 +23,7 @@ namespace KingsInterface
             {
 
                 rro = go_Naval_inMissionHeros(oGA.currHeader, oGA.sid);
-                if (!rro.SuccessWithJson("alives")) return false;
+                if (!rro.SuccessWithJson("alives", typeof(DynamicJsonArray))) return false;
                 DynamicJsonArray oAlives, oDeads, oDeadHero;
                 oAlives = rro.responseJson["alives"];
                 oDeads = rro.responseJson["deads"];

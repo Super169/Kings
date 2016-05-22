@@ -18,7 +18,7 @@ namespace KingsInterface
             try
             {
                 RequestReturnObject rro = Hero.getPlayerHeroList(oH, sid);
-                if (rro.SuccessWithJson("heros"))
+                if (rro.SuccessWithJson("heros", typeof(DynamicJsonArray)))
                 {
                     DynamicJsonArray heros = rro.responseJson.heros;
 

@@ -19,7 +19,7 @@ namespace KingsInterface
 
             List<CycleShopInfo> csis = new List<CycleShopInfo>();
             RequestReturnObject rro = request.Shop.getCycleShopInfo(oH, sid);
-            if (!rro.SuccessWithJson("items")) return csis;
+            if (!rro.SuccessWithJson("items", typeof(DynamicJsonArray))) return csis;
             try
             {
                 DynamicJsonArray items = rro.responseJson["items"];

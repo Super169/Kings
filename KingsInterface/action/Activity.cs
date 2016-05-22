@@ -28,9 +28,7 @@ namespace KingsInterface
         public static void goTuanGou(GameAccount oGA, DelegateUpdateInfo updateInfo)
         {
             RequestReturnObject rro = request.Activity.getTuanGouInfo(oGA.currHeader, oGA.sid);
-            if (!rro.SuccessWithJson("bagInfos")) return;
-
-            if (rro.responseJson["bagInfos"].GetType() != typeof(DynamicJsonArray)) return;
+            if (!rro.SuccessWithJson("bagInfos", typeof(DynamicJsonArray))) return;
             DynamicJsonArray bagInfos = rro.responseJson["bagInfos"];
 
             if (rro.responseJson["rewardBags"].GetType() != typeof(DynamicJsonArray)) return;

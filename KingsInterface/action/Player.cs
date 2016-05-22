@@ -18,7 +18,7 @@ namespace KingsInterface
         {
             PlayerProperties pp = new PlayerProperties() { ready = false };
             RequestReturnObject rro = go_Player_getProperties(oH, sid);
-            if (rro.SuccessWithJson("pvs"))
+            if (rro.SuccessWithJson("pvs", typeof(DynamicJsonArray)))
             {
                 DynamicJsonArray pvs = rro.responseJson.pvs;
                 foreach (dynamic pv in pvs)
