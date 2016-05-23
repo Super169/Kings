@@ -2,10 +2,12 @@
 using KingsInterface.data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -93,6 +95,19 @@ namespace KingsTester
 
             TimeSpan bossWarStart = new TimeSpan(19, 59, 0);
             TimeSpan bossWarEnd = new TimeSpan(20, 31, 0);
+
+            if (now.Hour == 8)
+            {
+                // Restart Chrom at date start; may also add at 12:00 in case server down
+                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=35");
+                Thread.Sleep(60000);
+                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=36");
+                Thread.Sleep(60000);
+                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=37");
+                Thread.Sleep(60000);
+                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=43");
+                Thread.Sleep(60000);
+            }
 
             if ((dow == 0) || (dow == 5))
             {
