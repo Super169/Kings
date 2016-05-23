@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="action\Activity.cs" />
+    <Compile Include="action\Campaign.cs" />
     <Compile Include="action\LuckyCycle.cs" />
     <Compile Include="action\Travel.cs" />
     <Compile Include="request\Activity.cs" />

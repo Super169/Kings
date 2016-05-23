@@ -147,7 +147,8 @@ namespace KingsInterface
             if (hour < 5) mode = 0;
             else if (hour < 9) mode = 1;
             else if (hour < 12) mode = 2;
-            else if (hour < 16) mode = 3;
+            else if (hour < 18) mode = 3;
+            else if (hour < 19) mode = 4;
             else mode = 0;
 
             HTTPRequestHeaders oH = oGA.currHeader;

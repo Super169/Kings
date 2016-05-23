@@ -96,7 +96,7 @@ namespace KingsTester
             TimeSpan bossWarStart = new TimeSpan(19, 59, 0);
             TimeSpan bossWarEnd = new TimeSpan(20, 31, 0);
 
-            if (now.Hour == 8)
+            if (now.Hour == 6)
             {
                 // Restart Chrom at date start; may also add at 12:00 in case server down
                 Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=35");
@@ -155,7 +155,7 @@ namespace KingsTester
                 else
                 {
                     minNext = DateTime.Now.AddMinutes(1);
-                    nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 00, 00).AddHours(1);
+                    nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, 05, 00).AddHours(1);
                 }
 
             }

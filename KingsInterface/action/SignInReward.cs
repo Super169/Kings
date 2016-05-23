@@ -43,7 +43,7 @@ namespace KingsInterface
                         }
                     } else
                     {
-                        if (updateInfo != null) updateInfo(oGA.msgPrefix + "今天已經簽到了");
+                        // if (updateInfo != null) updateInfo(oGA.msgPrefix + "今天已經簽到了");
                     }
                 } else
                 {
