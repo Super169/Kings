@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -17,8 +18,20 @@ namespace SmartKings
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
 
+        Mutex mutex;
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            bool createdNew;
+            mutex = new Mutex(true, "{SmartKings Mutex}", out createdNew);
+            if (!createdNew)
+            {
+                mutex = null;
+                MessageBox.Show("SmartKings already running.");
+                Application.Current.Shutdown();
+                return;
+            }
+            
             MainWindow = new MainWindow();
             MainWindow.Closing += MainWindow_Closing;
 
@@ -70,6 +83,15 @@ namespace SmartKings
             {
                 e.Cancel = true;
                 MainWindow.Hide(); // A hidden window can be shown again, a closed one not
+            }
+        }
+
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            if (mutex != null)
+            {
+                mutex.ReleaseMutex();
+                mutex.Dispose();
             }
         }
     }
