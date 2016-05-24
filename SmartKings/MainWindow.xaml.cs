@@ -26,7 +26,7 @@ namespace SmartKings
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = "SmartKings v" + Assembly.GetExecutingAssembly().GetName().Version;
+            this.Title = ((App)Application.Current).winTitle;
         }
 
         #region "For call up from subsequent execution"

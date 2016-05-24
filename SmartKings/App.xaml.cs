@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Threading;
@@ -19,6 +20,8 @@ namespace SmartKings
     {
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
+
+        public string winTitle = "SmartKings v" + Assembly.GetExecutingAssembly().GetName().Version;
 
         Mutex mutex;
 
@@ -62,7 +65,7 @@ namespace SmartKings
             {
                 mutex = null;
 
-                IntPtr hTargetWnd = NativeMethod.FindWindow(null, "mainwindow");
+                IntPtr hTargetWnd = NativeMethod.FindWindow(null, winTitle);
                 if (hTargetWnd == IntPtr.Zero)
                 {
 
