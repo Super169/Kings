@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SingleApp.Properties
+namespace SmartKings.Properties
 {
 
 
