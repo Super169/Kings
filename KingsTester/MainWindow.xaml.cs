@@ -206,41 +206,169 @@ namespace KingsTester
             string sBody = null;
             switch (sAction)
             {
+                case "Activity.drawCompanyAnniversaryLoginReward":
+                case "Activity.drawCompanyAnniversaryRechargeReward":
+                case "Activity.drawExchangeHoliday":
+                case "Activity.drawStrategicFundInfo":
+                case "Activity.getActivityList":
+                case "Activity.getAnnouncement":
+                case "Activity.getBookHeroInfo":
+                case "Activity.getCloudSellerInfo":
+                case "Activity.getPlayerGoBackActivityInfo":
+                case "Activity.getRankInfo":
+                case "Activity.getRationActivity":
+                case "Activity.getShuangShiyiActivityInfo":
+                case "Activity.getShuangShiyiActivityReward":
+                case "Activity.getTuanGouInfo":
+                case "Activity.getTuanGouOpenInfo":
+                case "Activity.serverOpenTime":
+                case "Activity.showIconForServerOpenActivity":
                 case "Bag.getBagInfo":
+                case "BaiGuanYu.getTimeInfo":
                 case "BossWar.bossInfo":
+                case "BossWar.bossLineup":
                 case "BossWar.enterWar":
+                case "BossWar.keyKillInfo":
                 case "BossWar.leaveWar":
+                case "BossWar.openInfo":
                 case "BossWar.pk":
+                case "BossWar.rankInfo":
                 case "Campaign.eliteBuyTime":
+                case "Campaign.eliteGetAllInfos":
                 case "Campaign.fightNext":
                 case "Campaign.getLeftTimes":
                 case "Campaign.getTrialsInfo":
                 case "Campaign.nextEnemies":
                 case "Campaign.quitCampaign":
+                case "ChristmasTree.time":
+                case "Circle.challenge":
+                case "Circle.drawPassRewards":
+                case "Circle.getHuarongRoadInfo":
+                case "Circle.restartHuarongRoad":
+                case "City.getPlayerCityInfo":
+                case "Corps.corpsCityReward":
+                case "Corps.getCorpsMessageNum":
+                case "Corps.getJoinedCorps":
+                case "Corps.personIndustryRefresh":
+                case "Corps.playerTech":
+                case "Corps.takeZhanjiStep":
+                case "CorpsWar.getInfo":
+                case "Country.corpsCountry":
+                case "Country.viewCountry":
+                case "CrossCamp.getInfo":
+                case "CrossCamp.getJackpotInfo":
+                case "Drama.getDramaInfo":
+                case "EightTrigrams.getInfo":
+                case "EightTrigrams.open":
+                case "EightTrigrams.openBox":
                 case "Email.openInBox":
-                case "Hero.getFeastInfo":
+                case "Emperor.collected":
+                case "Emperor.draw":
+                case "Emperor.getBuyInfo":
+                case "Emperor.getGameInfo":
+                case "Emperor.isFloat":
+                case "Firecracker.activityInfo":
+                case "Firecracker.myFirecrackerInfo":
+                case "Gamble.chouqianOpenInfo":
+                case "GmActivity.superPackageInfo":
+                case "God.godStrenInfo":
+                case "GrassArrow.acquireGrassArrowInfo":
+                case "GrassArrow.doGrassArrowFight":
+                case "Hero.assessScore":
                 case "Hero.getConvenientFormations":
+                case "Hero.getCurrRecommendActivityInfo":
+                case "Hero.getFeastInfo":
+                case "Hero.getHeroIconInfo":
                 case "Hero.getPlayerHeroList":
+                case "Hero.getWineInfo":
+                case "KingRoad.afterSeasonEnemy":
+                case "KingRoad.kingroadEnd":
+                case "KingRoad.kingroadState":
+                case "Login.getOfflineConpensate":
+                case "Login.loginFinish":
                 case "Login.serverInfo":
+                case "LongMarch.getBuyResetTimes":
+                case "LongMarch.getFinishedReward":
+                case "LongMarch.getHeroStatus":
+                case "LongMarch.getMyStatus":
+                case "LongMarch.getUnpassBuff":
+                case "LongMarch.restart":
+                case "LordGodUp.getDispInfo":
+                case "Lottery.drawLottery":
+                case "Lottery.freeLottery":
+                case "Lottery.openLottery":
+                case "Lottery.refreshLottery":
+                case "LuckyCycle.draw":
+                case "LuckyCycle.info":
+                case "Major.getMyMajorInfo":
+                case "Manor.armsTechnology":
                 case "Manor.decreeInfo":
                 case "Manor.getManorInfo":
+                case "Manor.refreshManor":
+                case "Manor.resHourOutput":
+                case "MonthSignIn.getOpenInfo":
+                case "NationalWar.acquireCityCommandInfo":
+                case "NationalWar.acquireNationCardPanelInfo":
+                case "NationalWar.getMyTroops":
                 case "Naval.getInfo":
                 case "Naval.inMissionHeros":
                 case "Naval.killRank":
                 case "Naval.leaveWar":
                 case "Naval.rewardCfg":
+                case "NorthMarch.enterWar":
+                case "NorthMarch.inMissionHeros":
+                case "NorthMarch.leaveWar":
+                case "NorthMarch.northCitySituation":
+                case "NorthMarch.retreatAllTroops":
+                case "Notice.queryAllMarqueeMessage":
+                case "NpcCorps.getNpcWars":
+                case "OneYear.cityStatus":
                 case "Patrol.getPatrolInfo":
+                case "Platform.getPlatformInfo":
                 case "Player.getProperties":
+                case "Player.getSpecialState":
+                case "Pray.getPrayTime":
                 case "Rank.findAllPowerRank":
+                case "RedEnvelope.activityTime":
+                case "RewardActivity.getSevenDayFundRewardInfo":
+                case "Shop.availableShops":
+                case "Shop.getCycleShopInfo":
+                case "Shop.getResourceTradeInfo":
+                case "Shop.getShuangShiyiShopInfo":
+                case "Shop.getTravelShopInfo":
+                case "Shop.otherShopsRefreshTime":
                 case "Shop.shopNextRefreshTime":
+                case "Shop2.availableShops":
                 case "SignInReward.getInfo":
                 case "SignInReward.signIn":
+                case "StarGazing.activityInfo":
+                case "StarGazing.myFirecrackerInfo":
+                case "Task.getAchievementInfo":
+                case "Task.getTaskTraceInfo":
+                case "TeamDuplicate.teamDuplicateFreeTimes":
+                case "Travel.checkOut":
+                case "Travel.dice":
+                case "Travel.escape":
+                case "Travel.getMapInfo":
+                case "Travel.getStatus":
+                case "Travel.restartTravel":
+                case "TurnCardReward.getTurnCardRewards":
+                case "Valentine.getActivityInfo":
+                case "Vip.firstChargeInfo":
+                case "Vip.monthCard":
+                case "VipAuthentication.isGotMobileGift":
+                case "WelfareLottery.time":
+                case "World.getAllOpenedCities":
+                case "World.getAllTransportingUnits":
+                case "World.getCityChapterBlueprint":
+                case "World.getCityRewardInfo":
+                case "World.getExploredWorldArea":
+                case "World.worldSituation":
+                case "YunYou.getYunYouInfo":
+                case "ZaJinDan.getTimeInfo":
+
                 case "TeamDuplicate.battleStart":
                 case "TeamDuplicate.duplicateList":
-                case "TeamDuplicate.teamDuplicateFreeTimes":
-                case "TurnCardReward.getTurnCardRewards":
-                case "World.getAllTransportingUnits":
-                case "World.worldSituation":
                     ShowGenericActionResult(oGA.currHeader, oGA.sid, sAction);
                     break;
                 case "Naval.enterWar":
