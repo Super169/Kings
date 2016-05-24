@@ -167,7 +167,6 @@
     <Compile Include="monitor\KingsPacket.cs" />
     <Compile Include="monitor\KingsSocketMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="util\GenericFileRecord.cs" />
     <Compile Include="util\_util.cs" />
   </ItemGroup>
   <ItemGroup>

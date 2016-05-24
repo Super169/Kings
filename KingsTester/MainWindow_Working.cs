@@ -17,7 +17,15 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goTrialsBuyTimes();
+            goMarketTask();
+        }
+
+        private void goMarketTask()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            if (!oGA.IsOnline()) return;
+            action.goMarketTask(oGA, UpdateInfoHandler);
         }
 
         private void goTrialsBuyTimes()

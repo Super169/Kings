@@ -70,5 +70,12 @@ namespace KingsInterface.request
         {
             return com.SendGenericRequest(oH, sid, CMD_shopNextRefreshTime);
         }
+
+        public static RequestReturnObject tradeResource(HTTPRequestHeaders oH, string sid, string resource)
+        {
+            string body = string.Format("{{\"resouce\":\"{0}\"}}", resource);
+            return com.SendGenericRequest(oH, sid, CMD_tradeResource, true, body);
+        }
+
     }
 }

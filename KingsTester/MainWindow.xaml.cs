@@ -22,6 +22,7 @@ using System.Windows.Threading;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using MyUtil;
 
 namespace KingsTester
 {
@@ -658,14 +659,14 @@ namespace KingsTester
 
         private void saveAccounts()
         {
-            List<util.GenericFileRecord> gfrs = new List<util.GenericFileRecord>();
+            List<GFR.GenericFileRecord> gfrs = new List<GFR.GenericFileRecord>();
 
             foreach (GameAccount oGA in gameAccounts)
             {
                 gfrs.Add(oGA.toGenericFileRecord());
             }
 
-            util.saveGenericFileRecords("GFR.DAT", gfrs);
+            GFR.saveGFR("GFR.DAT", gfrs);
         }
 
         private void btnReadAccounts_Click(object sender, RoutedEventArgs e)
@@ -675,8 +676,8 @@ namespace KingsTester
 
         private void restoreAccounts()
         {
-            List<util.GenericFileRecord> gfrs = null;
-            if (util.restoreGenericFileRecords("GFR.DAT", ref gfrs))
+            List<GFR.GenericFileRecord> gfrs = null;
+            if (GFR.restoreGFR("GFR.DAT", ref gfrs))
             {
                 lock (gameAccountsLocker)
                 {
@@ -686,14 +687,14 @@ namespace KingsTester
             }
         }
 
-        private void refreshAccountList(List<util.GenericFileRecord> gfrs)
+        private void refreshAccountList(List<GFR.GenericFileRecord> gfrs)
         {
             int currSelectedIndex = lvAccounts.SelectedIndex;
 
             lock (gameAccountsLocker)
             {
                 gameAccounts.Clear();
-                foreach (util.GenericFileRecord gfr in gfrs)
+                foreach (GFR.GenericFileRecord gfr in gfrs)
                 {
                     gameAccounts.Add(new GameAccount(gfr));
                 }

@@ -89,7 +89,7 @@ namespace KingsInterface.data
             }
         }
 
-        public GameAccount(util.GenericFileRecord gfr)
+        public GameAccount(GFR.GenericFileRecord gfr)
         {
             if (gfr == null) return;
             if ((this.account != null) && (gfr.key != this.account)) return;
@@ -268,9 +268,9 @@ namespace KingsInterface.data
             return (status == AccountStatus.Online);
         }
 
-        public util.GenericFileRecord toGenericFileRecord()
+        public GFR.GenericFileRecord toGenericFileRecord()
         {
-            util.GenericFileRecord gfr = new util.GenericFileRecord(this.account);
+            GFR.GenericFileRecord gfr = new GFR.GenericFileRecord(this.account);
             gfr.saveObject(KEY.sid, this.sid);
             gfr.saveObject(KEY.account, this.account);
             gfr.saveObject(KEY.status, this.status);

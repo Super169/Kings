@@ -1,5 +1,6 @@
 ﻿using Fiddler;
 using KingsInterface.data;
+using MyUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,50 +35,7 @@ namespace KingsInterface
             return retJson;
         }
 
-        #region "GenericFileRecords"
-
-        public static bool saveGenericFileRecords(string fileName, List<util.GenericFileRecord> data)
-        {
-            FileStream fs = null;
-            BinaryFormatter formatter = new BinaryFormatter();
-            try
-            {
-                fs = new FileStream(fileName, FileMode.OpenOrCreate);
-                formatter.Serialize(fs, data);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                if (fs != null) fs.Close();
-            }
-            return true;
-        }
-
-
-        public static bool restoreGenericFileRecords(string fileName, ref List<util.GenericFileRecord> data)
-        {
-            FileStream fs = null;
-            BinaryFormatter formatter = new BinaryFormatter();
-            try
-            {
-                fs = new FileStream(fileName, FileMode.Open);
-                data = (List<util.GenericFileRecord>)formatter.Deserialize(fs);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            finally
-            {
-                if (fs != null) fs.Close();
-            }
-            return true;
-        }
-
-        #endregion
+ 
 
         #region "HTTPRequestHeader covnersion"
 

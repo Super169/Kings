@@ -35,6 +35,8 @@ namespace KingsTester
             goTaskCycleShop();
             // 每日簽到
             goTaskSingInAll();
+            // 為 "糧草先行" 任務購物
+            goTaskMarketTask();
             // 勢力商店購買糧食
             goTaskSLBuyFood();
             // 產業購買
@@ -461,6 +463,25 @@ namespace KingsTester
             }
 
         }
+
+
+        private void goTaskMarketTask()
+        {
+            int currHour = DateTime.Now.Hour;
+
+            // Only need to try at 6-9.  Good enough to finish
+            if ((currHour < 6) || (currHour > 9)) return;
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goMarketTask(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
+
 
     }
 }
