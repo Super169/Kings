@@ -54,11 +54,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="action\Activity.cs" />
+    <Compile Include="action\Arena.cs" />
+    <Compile Include="action\Arenas.cs" />
     <Compile Include="action\Campaign.cs" />
     <Compile Include="action\LuckyCycle.cs" />
     <Compile Include="action\Travel.cs" />
     <Compile Include="request\Activity.cs" />
     <Compile Include="request\Archery.cs" />
+    <Compile Include="request\Arena.cs" />
+    <Compile Include="request\Arenas.cs" />
     <Compile Include="request\Bag.cs" />
     <Compile Include="request\BaiGuanYu.cs" />
     <Compile Include="request\BossWar.cs" />

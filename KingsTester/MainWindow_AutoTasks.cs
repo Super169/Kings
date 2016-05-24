@@ -33,16 +33,10 @@ namespace KingsTester
             goTaskHarvestAll();
             // 東瀛寶船
             goTaskCycleShop();
-            // 取得已完成任務的獎勵
-            goTaskFinishAllTasks();
             // 每日簽到
             goTaskSingInAll();
-            // 讀取郵件並取得附件
-            goTaskReadEmail();
             // 勢力商店購買糧食
             goTaskSLBuyFood();
-            // 清理背包
-            goTaskCleanBag();
             // 產業購買
             goTasksIndustryBuyAll();
             // 佈置跨服入侵
@@ -57,8 +51,16 @@ namespace KingsTester
             goTaskEliteBuyTime();
             // 購買英雄試練次數
             goTaskTrialsBuyTimes();
+            // 領取 天下比武 及 三軍演武 獎勵
+            goTaskGetArenaReward();
             // 周遊天下
             goTaskTravel();
+            // 讀取郵件並取得附件
+            goTaskReadEmail();
+            // 取得已完成任務的獎勵
+            goTaskFinishAllTasks();
+            // 清理背包
+            goTaskCleanBag();
         }
 
         private void goAutoKings()
@@ -168,7 +170,7 @@ namespace KingsTester
 
             autoTimer.Interval = waitMS;
             autoTimer.Enabled = true;
-            UpdateResult(string.Format("自動大皇帝 - 執行完成, 下次執行時候為: {0:yyyy-MM-dd hh:mm:ss}", nextActionTime));
+            UpdateResult(string.Format("自動大皇帝 - 執行完成, 下次執行時候為: {0:yyyy-MM-dd HH:mm:ss}", nextActionTime));
 
         }
 
@@ -441,6 +443,24 @@ namespace KingsTester
 
         }
 
+        private void goTaskGetArenaReward()
+        {
+            int currHour = DateTime.Now.Hour;
+
+            if (currHour < 21) return;
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.acceptArenaRankReward(oGA, UpdateInfoHandler);
+
+                    action.drawAreansTimeReward(oGA, UpdateInfoHandler);
+
+                }
+            }
+
+        }
 
     }
 }

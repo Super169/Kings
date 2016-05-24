@@ -43,7 +43,7 @@ namespace PacketDump
             if (Dispatcher.FromThread(Thread.CurrentThread) == null)
             {
                 // Time must be added here, otherwise, there will have longer delay
-                if (addTime) info = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ") + info;
+                if (addTime) info = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss | ") + info;
 
                 Application.Current.Dispatcher.BeginInvoke(
                   System.Windows.Threading.DispatcherPriority.Normal,
@@ -51,7 +51,7 @@ namespace PacketDump
                 return;
             }
             if (resetText) txtInfo.Text = "";
-            if (addTime) txtInfo.Text += DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss | ");
+            if (addTime) txtInfo.Text += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss | ");
             txtInfo.Text += info + "\n";
             txtInfo.ScrollToEnd();
         }
