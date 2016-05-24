@@ -54,6 +54,8 @@ namespace KingsTester
             goTaskTuanGou();
             // 拆紅包
             goTaskShuangShiyiActivityReward();
+            // 購買討伐次數
+            goTaskEliteBuyTime();
             // 周遊天下
             goTaskTravel();
         }
@@ -401,6 +403,18 @@ namespace KingsTester
             }
         }
 
+
+        private void goTaskEliteBuyTime()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goEliteBuyTime(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
 
         private void goTaskTravel()
         {
