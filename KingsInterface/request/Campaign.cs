@@ -70,6 +70,11 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_quitCampaign);
         }
 
-        
+        public static RequestReturnObject trialsBuyTimes(HTTPRequestHeaders oH, string sid, string type)
+        {
+            string body = string.Format("{{\"type\":\"{0}\"}}", type);
+            return com.SendGenericRequest(oH, sid, CMD_trialsBuyTimes, true, body);
+        }
+
     }
 }

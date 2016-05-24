@@ -17,7 +17,16 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goEliteBuyTime();
+            goTrialsBuyTimes();
+        }
+
+        private void goTrialsBuyTimes()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            if (!oGA.IsOnline()) return;
+            action.goTrialsBuyTimes(oGA, UpdateInfoHandler);
+
         }
 
         private void goEliteBuyTime()

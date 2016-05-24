@@ -20,8 +20,7 @@ namespace KingsTester
 
         private bool bossWarDay()
         {
-            DateTime now = DateTime.Now;
-            int dow = (int)now.DayOfWeek;
+            int dow = auto.ScheduleInfo.getGameDOW();
             if ((dow != 0) && (dow != 5)) return false;
             return true;
         }
@@ -56,6 +55,8 @@ namespace KingsTester
             goTaskShuangShiyiActivityReward();
             // 購買討伐次數
             goTaskEliteBuyTime();
+            // 購買英雄試練次數
+            goTaskTrialsBuyTimes();
             // 周遊天下
             goTaskTravel();
         }
@@ -90,7 +91,7 @@ namespace KingsTester
             // DateTime nextActionTime = new DateTime(minNext.Year, minNext.Month, minNext.Day, minNext.Hour, minNext.Minute, 00).AddMinutes(1);
 
             DateTime now = DateTime.Now;
-            int dow = (int)now.DayOfWeek;
+            int dow = auto.ScheduleInfo.getGameDOW();
             bool goBossWar = false;
             bool waitForBossWar = false;
             bool skipAction = false;
@@ -411,6 +412,18 @@ namespace KingsTester
                 if (oGA.IsOnline())
                 {
                     action.goEliteBuyTime(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
+
+        private void goTaskTrialsBuyTimes()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.IsOnline())
+                {
+                    action.goTrialsBuyTimes(oGA, UpdateInfoHandler);
                 }
             }
 
