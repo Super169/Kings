@@ -66,6 +66,10 @@ namespace KingsLib
                 }
             }
 
+            public GameAccount()
+            {
+
+            }
 
             public GameAccount(GFR.GenericFileRecord gfr)
             {
