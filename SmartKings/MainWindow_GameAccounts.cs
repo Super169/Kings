@@ -18,14 +18,16 @@ namespace SmartKings
 
             oGA = new data.GameAccount();
             oGA.status = data.AccountStatus.Online;
-            oGA.serverCode = "S35";
+            oGA.serverTitle = "S44 唔知乜野";
             oGA.nickName = "超級一六九";
+            oGA.refreshRecord();
             gameAccounts.Add(oGA);
 
             oGA = new data.GameAccount();
             oGA.status = data.AccountStatus.Offline;
-            oGA.serverCode = "S37";
+            oGA.serverTitle = "S46 眾志成城";
             oGA.nickName = "怕死的水子遠";
+            oGA.refreshRecord();
             gameAccounts.Add(oGA);
         }
 

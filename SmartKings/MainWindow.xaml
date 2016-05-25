@@ -67,7 +67,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="伺服" Width="40" DisplayMemberBinding="{Binding serverCode}" />
+                            <GridViewColumn Header="伺服" Width="35" DisplayMemberBinding="{Binding serverCode}" />
                             <GridViewColumn Header="主公名稱" Width="100" DisplayMemberBinding="{Binding nickName}"/>
                         </GridView>
                     </ListView.View>
