@@ -5,8 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartKings"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="MainWindow" Height="768" Width="1024" Loaded="Window_Loaded" MinHeight="600" MinWidth="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="100*" MinHeight="50" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="600*" MinHeight="300" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+            </Grid>
+            <Grid Grid.Row="1" Background="#FFE2E1E1" />
+            <Grid Grid.Row="2">
+                <ListView x:Name="lvStatus" Margin="2,2,2,2">
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.Row="3" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
+            <Grid Grid.Row="4">
+                <ListView x:Name="lvInfo" Margin="2,2,2,2">
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="5" Background="#FFE2E1E1" />
+            <Grid Grid.Row="6">
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Background="#FFE2E1E1" />
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150*" MinHeight="90" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="600" MinHeight="400"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView x:Name="lvAccounts" Margin="2,2,2,2">
+                </ListView>
+            </Grid>
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="*" MinHeight="400"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"  >
+                    <Label x:Name="label" Content="智能大皇帝 準備中" Height="30" HorizontalContentAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="16" FontWeight="ExtraBlack" FontFamily="MingLiU" ForceCursor="True" Background="#FFD1CFCF"/>
+                    <Label x:Name="label1" Content="最後執行:" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="20" Padding="0" BorderThickness="5,0,0,0" Width="59"/>
+                    <Label x:Name="lblLastTime" Content="YYYY-MM-DD HH:MM:SS" Margin="0,30,0,0" VerticalAlignment="Top" Height="20" Padding="0" BorderThickness="0,0,5,0" HorizontalAlignment="Right" Width="141" HorizontalContentAlignment="Right"/>
+                    <Label x:Name="label2" Content="下次執行:" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Height="20" Padding="0" BorderThickness="5,0,0,0" Width="59"/>
+                    <Label x:Name="lblNextTime" Content="YYYY-MM-DD HH:MM:SS" Margin="0,50,0,0" VerticalAlignment="Top" Height="20" Padding="0" BorderThickness="0,0,5,0" HorizontalAlignment="Right" Width="141" HorizontalContentAlignment="Right"/>
+                    <Button x:Name="btnAuto" Content="立即啟動" Margin="5,69,5,2"/>
+                </Grid>
+                <Grid Grid.Row="1"  Background="#FFE2E1E1"/>
+                <Grid Grid.Row="2"  />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
