@@ -47,7 +47,31 @@
                 <RowDefinition Height="600" MinHeight="400"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <ListView x:Name="lvAccounts" Margin="2,2,2,2">
+                <ListView x:Name="lvAccounts" Margin="2,6,2,-2">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="" Width="20">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type ListViewItem}">
+                                        <Canvas Width="20" Height="20">
+                                            <Image Name="StatusIcon" Height="20" Width="20" Margin="-6,0"/>
+                                        </Canvas>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding status}" Value="Online">
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="Images\Online.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="Offline">
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="Images\Offline.png" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="伺服" Width="40" DisplayMemberBinding="{Binding serverCode}" />
+                            <GridViewColumn Header="主公名稱" Width="100" DisplayMemberBinding="{Binding nickName}"/>
+                        </GridView>
+                    </ListView.View>
+
                 </ListView>
             </Grid>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>

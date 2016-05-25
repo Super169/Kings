@@ -27,6 +27,7 @@ namespace SmartKings
         {
             InitializeComponent();
             this.Title = ((App)Application.Current).winTitle;
+            blindingAccounts();
         }
 
         #region "For call up from subsequent execution"
