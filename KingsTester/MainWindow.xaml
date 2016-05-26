@@ -281,6 +281,7 @@
                 <Button x:Name="btnCheckStatus" Content="檢查帳戶" HorizontalAlignment="Left" Margin="115,189,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckStatus_Click"/>
                 <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="220,189,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
                 <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="115,228,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
+                <Button x:Name="btnReloadAll" Content="重啟所有帳戶" HorizontalAlignment="Left" Margin="220,228,0,0" VerticalAlignment="Top" Width="75" Click="btnReloadAll_Click"/>
                 <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,300,10,0" Click="btnGoAuto_Click" RenderTransformOrigin="0.502,-0.95" Height="20" VerticalAlignment="Top"/>
                 <Label x:Name="lblAutoRunning" Content="自動大皇帝已啟動" Margin="2,3,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>
                 <Label x:Name="lblAutoRunning2" Content="自動大皇帝已啟動" Margin="2,260,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>

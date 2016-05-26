@@ -739,5 +739,10 @@ namespace KingsTester
         {
             kingsWorkingTester();
         }
+
+        private void btnReloadAll_Click(object sender, RoutedEventArgs e)
+        {
+            reloadAll();
+        }
     }
 }

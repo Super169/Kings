@@ -85,6 +85,19 @@ namespace KingsTester
 
         }
 
+        void reloadAll()
+        {
+            // Restart Chrom at date start; may also add at 12:00 in case server down
+            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=35");
+            Thread.Sleep(60000);
+            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=36");
+            Thread.Sleep(60000);
+            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=37");
+            Thread.Sleep(60000);
+            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=43");
+            Thread.Sleep(60000);
+        }
+
         void autoTimerElapsedEventHandler(object sender, ElapsedEventArgs e)
         {
             autoTimer.Enabled = false;
@@ -103,17 +116,10 @@ namespace KingsTester
             TimeSpan bossWarStart = new TimeSpan(19, 59, 0);
             TimeSpan bossWarEnd = new TimeSpan(20, 31, 0);
 
-            if (now.Hour == 6)
+            // Auto-reload at 6:05 & 9:05
+            if ((now.Hour == 6) || (now.Hour == 9))
             {
-                // Restart Chrom at date start; may also add at 12:00 in case server down
-                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=35");
-                Thread.Sleep(60000);
-                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=36");
-                Thread.Sleep(60000);
-                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=37");
-                Thread.Sleep(60000);
-                Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=43");
-                Thread.Sleep(60000);
+                reloadAll();
             }
 
             if ((dow == 0) || (dow == 5))
