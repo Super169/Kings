@@ -26,8 +26,7 @@
             </Grid>
             <Grid Grid.Row="1" Background="#FFE2E1E1" />
             <Grid Grid.Row="2">
-                <ListView x:Name="lvStatus" Margin="2,2,2,2">
-                </ListView>
+                <TextBox x:Name="txtStatus" Margin="2,2,2,2" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Background="#FFC0FFFF"/>
             </Grid>
             <GridSplitter Grid.Row="3" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
             <Grid Grid.Row="4">
@@ -62,6 +61,9 @@
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding status}" Value="Offline">
                                                 <Setter TargetName="StatusIcon" Property="Source" Value="Images\Offline.png" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="Unknown">
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="Images\Unknown.png" />
                                             </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>

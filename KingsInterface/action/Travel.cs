@@ -391,7 +391,7 @@ namespace KingsInterface
             // Known poor item: 
             //   經驗書: 3, 4, 8, 9 , 14 ; 拜帖: 17 ; 烈酒: 16, 21, 26 ; 虎符: 68, 69 ; 
             if (config > 310) return false;  // seems gold item are in this range, need further testing
-            int[] poorItem = { 4, 8, 9, 14, 17, 21, 26, 68, 69 };
+            int[] poorItem = { 3, 4, 8, 9, 14, 17, 21, 26, 68, 69 };
             int findItem = poorItem.FirstOrDefault(x => x == config);
             if (findItem > 0) return false;
             return true;

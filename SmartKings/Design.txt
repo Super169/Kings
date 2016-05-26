@@ -1,0 +1,22 @@
+KingsLib
+  - data
+    * public struct RequestReturnObject
+  - monitor
+    * KingsMonitor
+    * KingsSocketMonitor
+    * KingsPacket
+  - com (use Fiddler at this moment)
+    * com
+      + public static string CleanUpResponse(string responseText, int minLength = 7)
+      + private static string GetResponseText(Session oS)
+      + private static dynamic getJsonFromResponse(string responseText, bool cleanUp = true)
+      + private static dynamic getJsonFromResponse(Session oS, bool cleanUp = true)
+
+      + public static void start(string appName)
+      + public static void ConfigFiddler(string appName)
+      + public static void Startup(bool sysProxy = false)
+      + public static bool isStarted()
+      + public static void ShutDown()
+
+      + public static RequestReturnObject SendRequest(HTTPRequestHeaders oH, string requestText)
+      + public static RequestReturnObject SendGenericRequest(HTTPRequestHeaders oH, string sid, string act, bool addSId = true, string body = null)

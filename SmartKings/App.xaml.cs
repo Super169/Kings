@@ -129,6 +129,7 @@ namespace SmartKings
         private void ExitApplication()
         {
             _isExit = true;
+            ((MainWindow) MainWindow).WindowPreClose();
             MainWindow.Close();
             _notifyIcon.Dispose();
             _notifyIcon = null;

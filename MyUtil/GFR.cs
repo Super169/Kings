@@ -23,7 +23,7 @@ namespace MyUtil
 
             public void saveObject(string key, object value)
             {
-                _ObjectData.Add(key, value);
+                if (value != null) _ObjectData.Add(key, value);
             }
 
             public object getObject(string key)
