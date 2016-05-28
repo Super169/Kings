@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketAnalyser", "PacketAna
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUtil", "MyUtil\MyUtil.csproj", "{985258BC-294E-4255-9878-848FD56A7387}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckResponse", "CheckResponse\CheckResponse.csproj", "{6F9344F4-A7BB-4CF5-836C-9E4EEE47F8B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{985258BC-294E-4255-9878-848FD56A7387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{985258BC-294E-4255-9878-848FD56A7387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{985258BC-294E-4255-9878-848FD56A7387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F9344F4-A7BB-4CF5-836C-9E4EEE47F8B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F9344F4-A7BB-4CF5-836C-9E4EEE47F8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F9344F4-A7BB-4CF5-836C-9E4EEE47F8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F9344F4-A7BB-4CF5-836C-9E4EEE47F8B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

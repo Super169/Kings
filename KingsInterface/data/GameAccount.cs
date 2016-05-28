@@ -15,6 +15,7 @@ namespace KingsInterface.data
     {
         public const string sid = "sid";
         public const string account = "account";
+        public const string enabled = "enabled";
         public const string status = "status";
         public const string timeAdjust = "timeAdjust";
         public const string server = "server";
@@ -38,6 +39,7 @@ namespace KingsInterface.data
     {
         public string sid { get; set; }
         public string account { get; set; }
+        public bool enabled { get; set; }
         public AccountStatus status { get; set; }
         public int timeAdjust { get; set; }
         public string server { get; set; }
@@ -67,6 +69,7 @@ namespace KingsInterface.data
             {
                 this.sid = li.sid;
                 this.account = li.account;
+                this.enabled = false;
                 this.status = AccountStatus.Online;
                 // timeAjust will be set later using system.ping
                 this.timeAdjust = 0;
@@ -96,6 +99,7 @@ namespace KingsInterface.data
 
             this.sid = JSON.getString(gfr.getObject(KEY.sid));
             this.account = JSON.getString(gfr.getObject(KEY.account));
+            this.enabled = JSON.getBool(gfr.getObject(KEY.enabled));
             // Set to unknown and wait for first call to check status
             // this.status = (AccountStatus)JSON.getInt(gfr.getObject(KEY.status));
             this.status = AccountStatus.Unknown;
@@ -268,11 +272,17 @@ namespace KingsInterface.data
             return (status == AccountStatus.Online);
         }
 
+        public bool goAutoTask()
+        {
+            return (this.enabled && this.IsOnline());
+        }
+
         public GFR.GenericFileRecord toGenericFileRecord()
         {
             GFR.GenericFileRecord gfr = new GFR.GenericFileRecord(this.account);
             gfr.saveObject(KEY.sid, this.sid);
             gfr.saveObject(KEY.account, this.account);
+            gfr.saveObject(KEY.enabled, this.enabled);
             gfr.saveObject(KEY.status, this.status);
             gfr.saveObject(KEY.timeAdjust, this.timeAdjust);
             gfr.saveObject(KEY.server, this.server);

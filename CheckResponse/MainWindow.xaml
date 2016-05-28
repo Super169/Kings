@@ -1,0 +1,16 @@
+﻿<Window x:Class="CheckResponse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckResponse"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="btnStart" Content="Start" Margin="0,0,85,10" Click="btnStart_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnStop" Content="Stop" Margin="0,0,5,10" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="btnStop_Click"/>
+        <TextBox x:Name="txtInfo" Margin="5,5,5,35" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="txtNext" Margin="0,0,165,7" TextWrapping="Wrap" Text="1" HorizontalAlignment="Right" Width="59" Height="23" VerticalAlignment="Bottom" TextChanged="txtNext_TextChanged"/>
+
+    </Grid>
+</Window>

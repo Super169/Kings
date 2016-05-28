@@ -65,25 +65,6 @@ namespace KingsTester
             goTaskCleanBag();
         }
 
-        private void goAutoKings()
-        {
-            normalMode = !normalMode;
-            setUI();
-
-            if (normalMode)
-            {
-                autoTimer.Enabled = false;
-                UpdateResult("自動大皇帝 - 停止");
-            }
-            else
-            {
-
-                UpdateResult("自動大皇帝 - 啟動");
-                autoTimer.Interval = 1000;
-                autoTimer.Enabled = true;
-            }
-
-        }
 
         void reloadAll()
         {
@@ -196,7 +177,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline()) action.goManorHarvestAll(oGA, UpdateInfoHandler);
+                if (oGA.goAutoTask()) action.goManorHarvestAll(oGA, UpdateInfoHandler);
             }
         }
 
@@ -209,7 +190,7 @@ namespace KingsTester
             if ((dow != 0) && (dow != 3)) return;
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     List<CycleShopInfo> csis = action.goShopGetCycleShopInfo(oGA.currHeader, oGA.sid);
                     foreach (CycleShopInfo csi in csis)
@@ -238,7 +219,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline()) action.goTaskFinishTaskAll(oGA, UpdateInfoHandler);
+                if (oGA.goAutoTask()) action.goTaskFinishTaskAll(oGA, UpdateInfoHandler);
             }
         }
 
@@ -246,7 +227,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline()) action.goSignIn(oGA, UpdateInfoHandler);
+                if (oGA.goAutoTask()) action.goSignIn(oGA, UpdateInfoHandler);
             }
         }
 
@@ -254,7 +235,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     int emailCnt = action.goEmailReadAll(oGA.currHeader, oGA.sid);
                     if (emailCnt > 0) UpdateResult(oGA.msgPrefix + string.Format("開啟 {0} 封郵件", emailCnt));
@@ -266,7 +247,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     int buyCount = action.goSLShopBuyFood(oGA);
                     if (buyCount > 0) UpdateResult(oGA.msgPrefix + string.Format("勢力商店買了 {0} 次糧", buyCount));
@@ -278,7 +259,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     int cleanUpCount = action.goBagCleanUp(oGA, UpdateInfoHandler);
                 }
@@ -289,7 +270,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     // go buy food first, then silver
                     int buyCnt = 0;
@@ -315,7 +296,7 @@ namespace KingsTester
             int cityId = (dow == 1 ? 1 : 3);
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     bool sendOK = action.sendNavalTroops(oGA, cityId, oGA.BossWarBody);
                     UpdateResult(oGA.msgPrefix + (sendOK ? "跨服入侵準備完成" : "跨服入侵準備失敗"));
@@ -330,7 +311,7 @@ namespace KingsTester
 
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     int drawCount = action.goLuckyCycle(oGA);
                     if (drawCount > 0)
@@ -349,7 +330,7 @@ namespace KingsTester
 
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goTuanGou(oGA, UpdateInfoHandler);
                 }
@@ -360,7 +341,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goShuangShiyiActivityReward(oGA, UpdateInfoHandler);
                 }
@@ -372,7 +353,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     if ((oGA.BossWarBody == null) || (oGA.BossWarBody == ""))
                     {
@@ -419,7 +400,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goEliteBuyTime(oGA, UpdateInfoHandler);
                 }
@@ -431,7 +412,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goTrialsBuyTimes(oGA, UpdateInfoHandler);
                 }
@@ -443,7 +424,7 @@ namespace KingsTester
         {
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goTravel(oGA, UpdateInfoHandler);
                 }
@@ -459,7 +440,7 @@ namespace KingsTester
 
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.acceptArenaRankReward(oGA, UpdateInfoHandler);
 
@@ -480,7 +461,7 @@ namespace KingsTester
 
             foreach (GameAccount oGA in gameAccounts)
             {
-                if (oGA.IsOnline())
+                if (oGA.goAutoTask())
                 {
                     action.goMarketTask(oGA, UpdateInfoHandler);
                 }

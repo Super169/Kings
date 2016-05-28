@@ -53,19 +53,28 @@
                 <ListView x:Name="lvAccounts" Margin="2,2,5,2">
                     <ListView.View>
                         <GridView >
-                            <GridViewColumn Header="狀態" Width="60">
+                            <GridViewColumn  Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding enabled}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="20">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate DataType="{x:Type ListViewItem}">
-                                        <TextBlock Name="TextBlockName" Text="{Binding Path=status}"></TextBlock>
+                                        <Canvas Width="20" Height="20">
+                                            <Image Name="StatusIcon" Height="20" Width="20" Margin="-6,0"/>
+                                        </Canvas>
                                         <DataTemplate.Triggers>
                                             <DataTrigger Binding="{Binding status}" Value="Online">
-                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightGreen" />
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="images\Online.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding status}" Value="Offline">
-                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightGray" />
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="images\Offline.png" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding status}" Value="Unknown">
-                                                <Setter TargetName="TextBlockName" Property="Background" Value="LightBlue" />
+                                                <Setter TargetName="StatusIcon" Property="Source" Value="images\Unknown.png" />
                                             </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>

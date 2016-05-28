@@ -41,6 +41,11 @@ namespace KingsTester
             InitializeComponent();
             this.Title = "大重帝輔助測試工具  v" + Assembly.GetExecutingAssembly().GetName().Version;
 
+            normalMode = true;
+            UpdateInfo("大重帝輔助測試工具 啟動");
+            setUI();
+
+
             lvAccounts.ItemsSource = gameAccounts;
             // Start Fiddler to retrieve old accounts
             com.start("KingTester");
@@ -55,13 +60,9 @@ namespace KingsTester
                 this.Close();
             }
 
-            cboAction.IsEnabled = true;
-            btnGoAction.IsEnabled = true;
-            /// RestoreProfile();
-            UpdateInfo("大重帝輔助測試工具 啟動");
-            setUI();
             autoTimer.Elapsed += new System.Timers.ElapsedEventHandler(autoTimerElapsedEventHandler);
             autoTimer.Enabled = false;
+            goAutoKings();
         }
 
         private void OnNewSidHandler(LoginInfo li, HTTPRequestHeaders oH)
@@ -624,9 +625,11 @@ namespace KingsTester
         {
             btnArchery.IsEnabled = normalMode;
             btnBossWar.IsEnabled = normalMode;
-            btnBossWarSetting.IsEnabled = normalMode;
+            // can always change BossWar setting
+            btnBossWarSetting.IsEnabled = true;
             btnCycleShop.IsEnabled = normalMode;
             btnDecInfo.IsEnabled = normalMode;
+            cboAction.IsEnabled = normalMode;
             btnGoAction.IsEnabled = normalMode;
             btnGoAuto.IsEnabled = true;
             btnGoAuto.Content = (normalMode ? "啟動" : "停止") + " 自動大皇帝";
@@ -644,6 +647,26 @@ namespace KingsTester
         private void btnGoAuto_Click(object sender, RoutedEventArgs e)
         {
             goAutoKings();
+        }
+
+
+        private void goAutoKings()
+        {
+            normalMode = !normalMode;
+            setUI();
+
+            if (normalMode)
+            {
+                autoTimer.Enabled = false;
+                UpdateResult("自動大皇帝 - 停止");
+            }
+            else
+            {
+
+                UpdateResult("自動大皇帝 - 啟動");
+                autoTimer.Interval = 1000;
+                autoTimer.Enabled = true;
+            }
         }
 
         private void btnReadMail_Click(object sender, RoutedEventArgs e)
@@ -711,6 +734,7 @@ namespace KingsTester
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            if (!normalMode) goAutoKings();
             saveAccounts();
         }
 

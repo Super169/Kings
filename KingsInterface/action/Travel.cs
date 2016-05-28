@@ -389,11 +389,15 @@ namespace KingsInterface
         private static bool isBuyConfig(int config)
         {
             // Known poor item: 
-            //   經驗書: 3, 4, 8, 9 , 14 ; 拜帖: 17 ; 烈酒: 16, 21, 26 ; 虎符: 68, 69 ; 
-            if (config > 310) return false;  // seems gold item are in this range, need further testing
-            int[] poorItem = { 3, 4, 8, 9, 14, 17, 21, 26, 68, 69 };
-            int findItem = poorItem.FirstOrDefault(x => x == config);
-            if (findItem > 0) return false;
+            // 1 - 15:  經驗書; 16-30: (烈酒, 拜帖, 影子虎符, 單挑戰令, 廢棄); 31-46: 糧草; 47-67: 精鐵; 68-70 虎符
+            // 70 - 140: gold item of above 70
+            // ???? unknown area
+            // 291 - 310 - 白, 綠, 藍, 紫, 金 items
+            if (config < 30) return false;
+            if (config < 68) return true;
+            if (config <= 140) return false;
+            if (config < 291) return false;
+            if (config > 310)  return false;  // seems gold item are in this range, need further testing
             return true;
         }
 
