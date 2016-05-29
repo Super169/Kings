@@ -42,7 +42,8 @@ namespace KingsInterface
             string[] trialType = { "", "WZLJ", "WJDD", "WHSJ" };
             for (int idx = 1; idx <= 3; idx++)
             {
-                if ((weekday == 0) || (weekday == idx) || (weekday == idx + 3))
+                // Interestign, weekday of Sunday is & instead of 0, for sefety, check both 0 & 7.
+                if ((weekday == 0) || (weekday == 7) || (weekday == idx) || (weekday == idx + 3))
                 {
                     int buyTime = JSON.getInt(buyTimes, trialType[idx]);
                     if (buyTime == 0)

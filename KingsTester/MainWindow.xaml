@@ -88,212 +88,227 @@
             </Grid>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="#FFE2E1E1"/>
             <Grid Grid.Row="2">
-                <ComboBox x:Name="cboAction" Margin="2,34,5,0" VerticalAlignment="Top">
-                    <ComboBoxItem Content="Activity.drawCompanyAnniversaryLoginReward" />
-                    <ComboBoxItem Content="Activity.drawCompanyAnniversaryRechargeReward" />
-                    <ComboBoxItem Content="Activity.drawExchangeHoliday" />
-                    <ComboBoxItem Content="Activity.drawStrategicFundInfo" />
-                    <ComboBoxItem Content="Activity.getActivityList" />
-                    <ComboBoxItem Content="Activity.getAnnouncement" />
-                    <ComboBoxItem Content="Activity.getBookHeroInfo" />
-                    <ComboBoxItem Content="Activity.getCloudSellerInfo" />
-                    <ComboBoxItem Content="Activity.getPlayerGoBackActivityInfo" />
-                    <ComboBoxItem Content="Activity.getRankInfo" />
-                    <ComboBoxItem Content="Activity.getRationActivity" />
-                    <ComboBoxItem Content="Activity.getRedPointActivityInfo" />
-                    <ComboBoxItem Content="Activity.getShuangShiyiActivityInfo" />
-                    <ComboBoxItem Content="Activity.getShuangShiyiActivityReward" />
-                    <ComboBoxItem Content="Activity.getTuanGouInfo" />
-                    <ComboBoxItem Content="Activity.getTuanGouOpenInfo" />
-                    <ComboBoxItem Content="Activity.serverOpenTime" />
-                    <ComboBoxItem Content="Activity.showIconForServerOpenActivity" />
-                    <ComboBoxItem Content="Activity.tuanGouReward" />
-                    <ComboBoxItem Content="Archery.archeryOpenInfo" />
-                    <ComboBoxItem Content="Archery.getArcheryInfo | 百步穿楊 資料" />
-                    <ComboBoxItem Content="Archery.getArcheryRewardInfo" />
-                    <ComboBoxItem Content="Archery.getReward" />
-                    <ComboBoxItem Content="Archery.shoot" />
-                    <ComboBoxItem Content="Bag.getBagInfo | 倉庫資料"/>
-                    <ComboBoxItem Content="BossWar.bossInfo | 神將無雙 資料"/>
-                    <ComboBoxItem Content="BossWar.enterWar | 神將無雙 進入戰場"/>
-                    <ComboBoxItem Content="BossWar.leaveWar | 神將無雙 離開戰場"/>
-                    <ComboBoxItem Content="BossWar.pk | 神將無雙 戰前切磋"/>
-                    <ComboBoxItem Content="Campaign.eliteBuyTime"/>
-                    <ComboBoxItem Content="Campaign.fightNext"/>
-                    <ComboBoxItem Content="Campaign.getLeftTimes"/>
-                    <ComboBoxItem Content="Campaign.getTrialsInfo"/>
-                    <ComboBoxItem Content="Campaign.nextEnemies"/>
-                    <ComboBoxItem Content="Campaign.quitCampaign"/>
-                    <ComboBoxItem Content="ChristmasTree.time" />
-                    <ComboBoxItem Content="Circle.challenge" />
-                    <ComboBoxItem Content="Circle.drawPassRewards" />
-                    <ComboBoxItem Content="Circle.getHuarongRoadInfo" />
-                    <ComboBoxItem Content="Circle.restartHuarongRoad" />
-                    <ComboBoxItem Content="City.getPlayerCityInfo" />
-                    <ComboBoxItem Content="Corps.corpsCityReward" />
-                    <ComboBoxItem Content="Corps.getCorpsMessageNum" />
-                    <ComboBoxItem Content="Corps.getJoinedCorps" />
-                    <ComboBoxItem Content="Corps.personIndustryRefresh" />
-                    <ComboBoxItem Content="Corps.playerTech" />
-                    <ComboBoxItem Content="Corps.takeZhanjiStep" />
-                    <ComboBoxItem Content="CorpsWar.getInfo" />
-                    <ComboBoxItem Content="Country.corpsCountry" />
-                    <ComboBoxItem Content="Country.viewCountry" />
-                    <ComboBoxItem Content="CrossCamp.getInfo" />
-                    <ComboBoxItem Content="CrossCamp.getJackpotInfo" />
-                    <ComboBoxItem Content="Drama.getDramaInfo" />
-                    <ComboBoxItem Content="EightTrigrams.getInfo" />
-                    <ComboBoxItem Content="EightTrigrams.open" />
-                    <ComboBoxItem Content="EightTrigrams.openBox" />
-                    <ComboBoxItem Content="Email.getAttachment | emailId 取得附件"/>
-                    <ComboBoxItem Content="Email.openInBox | 開啟郵箱"/>
-                    <ComboBoxItem Content="Email.openInBox" />
-                    <ComboBoxItem Content="Email.read | emailId 讀取郵件"/>
-                    <ComboBoxItem Content="Emperor.collected" />
-                    <ComboBoxItem Content="Emperor.draw" />
-                    <ComboBoxItem Content="Emperor.getBuyInfo" />
-                    <ComboBoxItem Content="Emperor.getGameInfo" />
-                    <ComboBoxItem Content="Emperor.isFloat" />
-                    <ComboBoxItem Content="Firecracker.activityInfo" />
-                    <ComboBoxItem Content="Firecracker.myFirecrackerInfo" />
-                    <ComboBoxItem Content="Gamble.chouqianOpenInfo" />
-                    <ComboBoxItem Content="GmActivity.superPackageInfo" />
-                    <ComboBoxItem Content="God.godStrenInfo" />
-                    <ComboBoxItem Content="GrassArrow.acquireGrassArrowInfo" />
-                    <ComboBoxItem Content="GrassArrow.doGrassArrowFight" />
-                    <ComboBoxItem Content="Hero.assessScore" />
-                    <ComboBoxItem Content="Hero.getConvenientFormations"/>
-                    <ComboBoxItem Content="Hero.getCurrRecommendActivityInfo" />
-                    <ComboBoxItem Content="Hero.getFeastInfo"/>
-                    <ComboBoxItem Content="Hero.getHeroIconInfo" />
-                    <ComboBoxItem Content="Hero.getPlayerHeroList"/>
-                    <ComboBoxItem Content="Hero.getWineInfo" />
-                    <ComboBoxItem Content="KingRoad.afterSeasonEnemy" />
-                    <ComboBoxItem Content="KingRoad.kingroadEnd" />
-                    <ComboBoxItem Content="KingRoad.kingroadState" />
-                    <ComboBoxItem Content="Login.getOfflineConpensate" />
-                    <ComboBoxItem Content="Login.login"/>
-                    <ComboBoxItem Content="Login.loginFinish" />
-                    <ComboBoxItem Content="Login.serverInfo"/>
-                    <ComboBoxItem Content="LongMarch.getBuyResetTimes" />
-                    <ComboBoxItem Content="LongMarch.getFinishedReward" />
-                    <ComboBoxItem Content="LongMarch.getHeroStatus" />
-                    <ComboBoxItem Content="LongMarch.getMyStatus" />
-                    <ComboBoxItem Content="LongMarch.getUnpassBuff" />
-                    <ComboBoxItem Content="LongMarch.restart" />
-                    <ComboBoxItem Content="LordGodUp.getDispInfo" />
-                    <ComboBoxItem Content="Lottery.drawLottery" />
-                    <ComboBoxItem Content="Lottery.freeLottery" />
-                    <ComboBoxItem Content="Lottery.openLottery" />
-                    <ComboBoxItem Content="Lottery.refreshLottery" />
-                    <ComboBoxItem Content="LuckyCycle.draw" />
-                    <ComboBoxItem Content="LuckyCycle.info" />
-                    <ComboBoxItem Content="Major.getMyMajorInfo" />
-                    <ComboBoxItem Content="Manor.armsTechnology" />
-                    <ComboBoxItem Content="Manor.decreeInfo | 軍府資料"/>
-                    <ComboBoxItem Content="Manor.decreeInfo" />
-                    <ComboBoxItem Content="Manor.getManorInfo | 封地資料"/>
-                    <ComboBoxItem Content="Manor.getManorInfo" />
-                    <ComboBoxItem Content="Manor.refreshManor" />
-                    <ComboBoxItem Content="Manor.resHourOutput" />
-                    <ComboBoxItem Content="MonthSignIn.getOpenInfo" />
-                    <ComboBoxItem Content="NationalWar.acquireCityCommandInfo" />
-                    <ComboBoxItem Content="NationalWar.acquireNationCardPanelInfo" />
-                    <ComboBoxItem Content="NationalWar.getMyTroops" />
-                    <ComboBoxItem Content="Naval.enterWar | n 跨服進入戰場"/>
-                    <ComboBoxItem Content="Naval.getInfo | 跨服入侵資料"/>
-                    <ComboBoxItem Content="Naval.getInfo" />
-                    <ComboBoxItem Content="Naval.getVersusCount | battleNo 跨服戰場資料"/>
-                    <ComboBoxItem Content="Naval.inMissionHeros | 跨服戰場英雄資料"/>
-                    <ComboBoxItem Content="Naval.inMissionHeros" />
-                    <ComboBoxItem Content="Naval.killRank | 跨服排名資料"/>
-                    <ComboBoxItem Content="Naval.killRank" />
-                    <ComboBoxItem Content="Naval.leaveWar | 跨服入侵離開"/>
-                    <ComboBoxItem Content="Naval.leaveWar" />
-                    <ComboBoxItem Content="Naval.rewardCfg | 跨服入侵獎勵資料"/>
-                    <ComboBoxItem Content="Naval.rewardCfg" />
-                    <ComboBoxItem Content="NorthMarch.enterWar" />
-                    <ComboBoxItem Content="NorthMarch.inMissionHeros" />
-                    <ComboBoxItem Content="NorthMarch.leaveWar" />
-                    <ComboBoxItem Content="NorthMarch.northCitySituation" />
-                    <ComboBoxItem Content="NorthMarch.retreatAllTroops" />
-                    <ComboBoxItem Content="Notice.queryAllMarqueeMessage" />
-                    <ComboBoxItem Content="NpcCorps.getNpcWars" />
-                    <ComboBoxItem Content="OneYear.cityStatus" />
-                    <ComboBoxItem Content="Patrol.dealPatroledEvent"/>
-                    <ComboBoxItem Content="Patrol.getPatrolInfo"/>
-                    <ComboBoxItem Content="Platform.getPlatformInfo" />
-                    <ComboBoxItem Content="Player.getProperties | 主公資料"/>
-                    <ComboBoxItem Content="Player.getProperties" />
-                    <ComboBoxItem Content="Player.getSpecialState" />
-                    <ComboBoxItem Content="Pray.getPrayTime" />
-                    <ComboBoxItem Content="Rank.findAllPowerRank"/>
-                    <ComboBoxItem Content="RedEnvelope.activityTime" />
-                    <ComboBoxItem Content="RewardActivity.getSevenDayFundRewardInfo" />
-                    <ComboBoxItem Content="Shop.availableShops" />
-                    <ComboBoxItem Content="Shop.getCycleShopInfo" />
-                    <ComboBoxItem Content="Shop.getResourceTradeInfo" />
-                    <ComboBoxItem Content="Shop.getShuangShiyiShopInfo" />
-                    <ComboBoxItem Content="Shop.getTravelShopInfo" />
-                    <ComboBoxItem Content="Shop.otherShopsRefreshTime" />
-                    <ComboBoxItem Content="Shop.shopNextRefreshTime"/>
-                    <ComboBoxItem Content="Shop2.availableShops" />
-                    <ComboBoxItem Content="SignInReward.getInfo | 讀取簽到資料"/>
-                    <ComboBoxItem Content="SignInReward.getInfo" />
-                    <ComboBoxItem Content="SignInReward.signIn | 簽到"/>
-                    <ComboBoxItem Content="SignInReward.signIn" />
-                    <ComboBoxItem Content="StarGazing.activityInfo" />
-                    <ComboBoxItem Content="StarGazing.myFirecrackerInfo" />
-                    <ComboBoxItem Content="System.ping"/>
-                    <ComboBoxItem Content="Task.getAchievementInfo" />
-                    <ComboBoxItem Content="Task.getTaskTraceInfo" />
-                    <ComboBoxItem Content="TeamDuplicate.battleStart"/>
-                    <ComboBoxItem Content="TeamDuplicate.duplicateList"/>
-                    <ComboBoxItem Content="TeamDuplicate.teamDuplicateFreeTimes"/>
-                    <ComboBoxItem Content="Travel.checkOut" />
-                    <ComboBoxItem Content="Travel.dice" />
-                    <ComboBoxItem Content="Travel.escape" />
-                    <ComboBoxItem Content="Travel.getMapInfo" />
-                    <ComboBoxItem Content="Travel.getStatus" />
-                    <ComboBoxItem Content="Travel.restartTravel" />
-                    <ComboBoxItem Content="TurnCardReward.getTurnCardRewards"/>
-                    <ComboBoxItem Content="Valentine.getActivityInfo" />
-                    <ComboBoxItem Content="Vip.firstChargeInfo" />
-                    <ComboBoxItem Content="Vip.monthCard" />
-                    <ComboBoxItem Content="VipAuthentication.isGotMobileGift" />
-                    <ComboBoxItem Content="WelfareLottery.time" />
-                    <ComboBoxItem Content="World.citySituationDetail | cityId - 城市資料"/>
-                    <ComboBoxItem Content="World.getAllOpenedCities" />
-                    <ComboBoxItem Content="World.getAllTransportingUnits"/>
-                    <ComboBoxItem Content="World.getCityChapterBlueprint" />
-                    <ComboBoxItem Content="World.getCityRewardInfo" />
-                    <ComboBoxItem Content="World.getExploredWorldArea" />
-                    <ComboBoxItem Content="World.worldSituation | 地圖全城市資料"/>
-                    <ComboBoxItem Content="World.worldSituation" />
-                    <ComboBoxItem Content="YunYou.getYunYouInfo" />
-                    <ComboBoxItem Content="ZaJinDan.getTimeInfo" />
-                </ComboBox>
-                <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,64,0,0" VerticalAlignment="Top"/>
-                <Button x:Name="btnGoAction" Content="執行指令" VerticalAlignment="Top" Margin="220,61,5,0" Click="btnGoAction_Click" />
-                <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,89,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
-                <Button x:Name="btnSignIn" Content="簽到" HorizontalAlignment="Left" Margin="115,89,0,0" VerticalAlignment="Top" Width="75" Click="btnSignIn_Click"/>
-                <Button x:Name="btnArchery" Content="百步穿楊" Margin="220,89,5,0" VerticalAlignment="Top" Click="btnArchery_Click"/>
-                <Button x:Name="btnPlayerInfo" Content="主公資料" HorizontalAlignment="Left" Margin="2,114,0,0" VerticalAlignment="Top" Width="75" Click="btnPlayerInfo_Click"/>
-                <Button x:Name="btnManorInfo" Content="封田資料" HorizontalAlignment="Left" Margin="115,114,0,0" VerticalAlignment="Top" Width="75" Click="btnManorInfo_Click"/>
-                <Button x:Name="btnHarvestAll" Content="一鍵全收" Margin="220,114,5,0" VerticalAlignment="Top" Click="btnHarvestAll_Click"/>
-                <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,139,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
-                <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="115,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
-                <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="220,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
-                <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,164,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
-                <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="220,164,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
-                <Button x:Name="btnSaveAccounts" Content="儲存帳戶資料" HorizontalAlignment="Left" Margin="2,189,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveAccounts_Click"/>
-                <Button x:Name="btnCheckStatus" Content="檢查帳戶" HorizontalAlignment="Left" Margin="115,189,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckStatus_Click"/>
-                <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="220,189,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
-                <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="115,228,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
-                <Button x:Name="btnReloadAll" Content="重啟所有帳戶" HorizontalAlignment="Left" Margin="220,228,0,0" VerticalAlignment="Top" Width="75" Click="btnReloadAll_Click"/>
-                <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,300,10,0" Click="btnGoAuto_Click" RenderTransformOrigin="0.502,-0.95" Height="20" VerticalAlignment="Top"/>
-                <Label x:Name="lblAutoRunning" Content="自動大皇帝已啟動" Margin="2,3,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>
-                <Label x:Name="lblAutoRunning2" Content="自動大皇帝已啟動" Margin="2,260,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150*" MinHeight="150" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="600*" MinHeight="200" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label x:Name="lblAutoRunning" Content="自動大皇帝已啟動" Margin="2,0,5,0" VerticalAlignment="Top" Background="#FF3EFD06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="30" Foreground="#FFFF0404" Height="40" VerticalContentAlignment="Center" Padding="0"/>
+                    <Label x:Name="lblLastExecution" Content="最後執行時間：" HorizontalAlignment="Left" Margin="5,46,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <TextBox x:Name="txtLastExecution" HorizontalAlignment="Right" Height="23" Margin="0,50,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" Foreground="#FF003FFF" FontWeight="Bold" FontSize="14"/>
+                    <Label x:Name="lblNextExecution" Content="下次執行時間：" HorizontalAlignment="Left" Margin="5,76,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <TextBox x:Name="txtNextExecution" HorizontalAlignment="Right" Height="23" Margin="0,80,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="181" FontWeight="Bold" FontSize="14" Foreground="#FF003FFF"/>
+                    <Button x:Name="btnGoAuto" Content="啟動　自動大皇帝" Margin="10,108,10,2" Click="btnGoAuto_Click" RenderTransformOrigin="0.502,-0.95" FontSize="20" FontWeight="Bold"/>
+
+                </Grid>
+                <Grid Grid.Row="1" Background="#FFE2E1E1"/>
+                <Grid Grid.Row="2">
+                    <Label x:Name="lblAutoRunning2" Content="自動大皇帝已啟動" Margin="2,0,5,0" VerticalAlignment="Top" Background="#FF3FFF06" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14" Foreground="#FFFF0404"/>
+                    <ComboBox x:Name="cboAction" Margin="2,34,5,0" VerticalAlignment="Top">
+                        <ComboBoxItem Content="Activity.drawCompanyAnniversaryLoginReward" />
+                        <ComboBoxItem Content="Activity.drawCompanyAnniversaryRechargeReward" />
+                        <ComboBoxItem Content="Activity.drawExchangeHoliday" />
+                        <ComboBoxItem Content="Activity.drawStrategicFundInfo" />
+                        <ComboBoxItem Content="Activity.getActivityList" />
+                        <ComboBoxItem Content="Activity.getAnnouncement" />
+                        <ComboBoxItem Content="Activity.getBookHeroInfo" />
+                        <ComboBoxItem Content="Activity.getCloudSellerInfo" />
+                        <ComboBoxItem Content="Activity.getPlayerGoBackActivityInfo" />
+                        <ComboBoxItem Content="Activity.getRankInfo" />
+                        <ComboBoxItem Content="Activity.getRationActivity" />
+                        <ComboBoxItem Content="Activity.getRedPointActivityInfo" />
+                        <ComboBoxItem Content="Activity.getShuangShiyiActivityInfo" />
+                        <ComboBoxItem Content="Activity.getShuangShiyiActivityReward" />
+                        <ComboBoxItem Content="Activity.getTuanGouInfo" />
+                        <ComboBoxItem Content="Activity.getTuanGouOpenInfo" />
+                        <ComboBoxItem Content="Activity.serverOpenTime" />
+                        <ComboBoxItem Content="Activity.showIconForServerOpenActivity" />
+                        <ComboBoxItem Content="Activity.tuanGouReward" />
+                        <ComboBoxItem Content="Archery.archeryOpenInfo" />
+                        <ComboBoxItem Content="Archery.getArcheryInfo | 百步穿楊 資料" />
+                        <ComboBoxItem Content="Archery.getArcheryRewardInfo" />
+                        <ComboBoxItem Content="Archery.getReward" />
+                        <ComboBoxItem Content="Archery.shoot" />
+                        <ComboBoxItem Content="Bag.getBagInfo | 倉庫資料"/>
+                        <ComboBoxItem Content="BossWar.bossInfo | 神將無雙 資料"/>
+                        <ComboBoxItem Content="BossWar.enterWar | 神將無雙 進入戰場"/>
+                        <ComboBoxItem Content="BossWar.leaveWar | 神將無雙 離開戰場"/>
+                        <ComboBoxItem Content="BossWar.pk | 神將無雙 戰前切磋"/>
+                        <ComboBoxItem Content="Campaign.eliteBuyTime"/>
+                        <ComboBoxItem Content="Campaign.fightNext"/>
+                        <ComboBoxItem Content="Campaign.getLeftTimes"/>
+                        <ComboBoxItem Content="Campaign.getTrialsInfo"/>
+                        <ComboBoxItem Content="Campaign.nextEnemies"/>
+                        <ComboBoxItem Content="Campaign.quitCampaign"/>
+                        <ComboBoxItem Content="ChristmasTree.time" />
+                        <ComboBoxItem Content="Circle.challenge" />
+                        <ComboBoxItem Content="Circle.drawPassRewards" />
+                        <ComboBoxItem Content="Circle.getHuarongRoadInfo" />
+                        <ComboBoxItem Content="Circle.restartHuarongRoad" />
+                        <ComboBoxItem Content="City.getPlayerCityInfo" />
+                        <ComboBoxItem Content="Corps.corpsCityReward" />
+                        <ComboBoxItem Content="Corps.getCorpsMessageNum" />
+                        <ComboBoxItem Content="Corps.getJoinedCorps" />
+                        <ComboBoxItem Content="Corps.personIndustryRefresh" />
+                        <ComboBoxItem Content="Corps.playerTech" />
+                        <ComboBoxItem Content="Corps.takeZhanjiStep" />
+                        <ComboBoxItem Content="CorpsWar.getInfo" />
+                        <ComboBoxItem Content="Country.corpsCountry" />
+                        <ComboBoxItem Content="Country.viewCountry" />
+                        <ComboBoxItem Content="CrossCamp.getInfo" />
+                        <ComboBoxItem Content="CrossCamp.getJackpotInfo" />
+                        <ComboBoxItem Content="Drama.getDramaInfo" />
+                        <ComboBoxItem Content="EightTrigrams.getInfo" />
+                        <ComboBoxItem Content="EightTrigrams.open" />
+                        <ComboBoxItem Content="EightTrigrams.openBox" />
+                        <ComboBoxItem Content="Email.getAttachment | emailId 取得附件"/>
+                        <ComboBoxItem Content="Email.openInBox | 開啟郵箱"/>
+                        <ComboBoxItem Content="Email.openInBox" />
+                        <ComboBoxItem Content="Email.read | emailId 讀取郵件"/>
+                        <ComboBoxItem Content="Emperor.collected" />
+                        <ComboBoxItem Content="Emperor.draw" />
+                        <ComboBoxItem Content="Emperor.getBuyInfo" />
+                        <ComboBoxItem Content="Emperor.getGameInfo" />
+                        <ComboBoxItem Content="Emperor.isFloat" />
+                        <ComboBoxItem Content="Firecracker.activityInfo" />
+                        <ComboBoxItem Content="Firecracker.myFirecrackerInfo" />
+                        <ComboBoxItem Content="Gamble.chouqianOpenInfo" />
+                        <ComboBoxItem Content="GmActivity.superPackageInfo" />
+                        <ComboBoxItem Content="God.godStrenInfo" />
+                        <ComboBoxItem Content="GrassArrow.acquireGrassArrowInfo" />
+                        <ComboBoxItem Content="GrassArrow.doGrassArrowFight" />
+                        <ComboBoxItem Content="Hero.assessScore" />
+                        <ComboBoxItem Content="Hero.getConvenientFormations"/>
+                        <ComboBoxItem Content="Hero.getCurrRecommendActivityInfo" />
+                        <ComboBoxItem Content="Hero.getFeastInfo"/>
+                        <ComboBoxItem Content="Hero.getHeroIconInfo" />
+                        <ComboBoxItem Content="Hero.getPlayerHeroList"/>
+                        <ComboBoxItem Content="Hero.getWineInfo" />
+                        <ComboBoxItem Content="KingRoad.afterSeasonEnemy" />
+                        <ComboBoxItem Content="KingRoad.kingroadEnd" />
+                        <ComboBoxItem Content="KingRoad.kingroadState" />
+                        <ComboBoxItem Content="Login.getOfflineConpensate" />
+                        <ComboBoxItem Content="Login.login"/>
+                        <ComboBoxItem Content="Login.loginFinish" />
+                        <ComboBoxItem Content="Login.serverInfo"/>
+                        <ComboBoxItem Content="LongMarch.getBuyResetTimes" />
+                        <ComboBoxItem Content="LongMarch.getFinishedReward" />
+                        <ComboBoxItem Content="LongMarch.getHeroStatus" />
+                        <ComboBoxItem Content="LongMarch.getMyStatus" />
+                        <ComboBoxItem Content="LongMarch.getUnpassBuff" />
+                        <ComboBoxItem Content="LongMarch.restart" />
+                        <ComboBoxItem Content="LordGodUp.getDispInfo" />
+                        <ComboBoxItem Content="Lottery.drawLottery" />
+                        <ComboBoxItem Content="Lottery.freeLottery" />
+                        <ComboBoxItem Content="Lottery.openLottery" />
+                        <ComboBoxItem Content="Lottery.refreshLottery" />
+                        <ComboBoxItem Content="LuckyCycle.draw" />
+                        <ComboBoxItem Content="LuckyCycle.info" />
+                        <ComboBoxItem Content="Major.getMyMajorInfo" />
+                        <ComboBoxItem Content="Manor.armsTechnology" />
+                        <ComboBoxItem Content="Manor.decreeInfo | 軍府資料"/>
+                        <ComboBoxItem Content="Manor.decreeInfo" />
+                        <ComboBoxItem Content="Manor.getManorInfo | 封地資料"/>
+                        <ComboBoxItem Content="Manor.getManorInfo" />
+                        <ComboBoxItem Content="Manor.refreshManor" />
+                        <ComboBoxItem Content="Manor.resHourOutput" />
+                        <ComboBoxItem Content="MonthSignIn.getOpenInfo" />
+                        <ComboBoxItem Content="NationalWar.acquireCityCommandInfo" />
+                        <ComboBoxItem Content="NationalWar.acquireNationCardPanelInfo" />
+                        <ComboBoxItem Content="NationalWar.getMyTroops" />
+                        <ComboBoxItem Content="Naval.enterWar | n 跨服進入戰場"/>
+                        <ComboBoxItem Content="Naval.getInfo | 跨服入侵資料"/>
+                        <ComboBoxItem Content="Naval.getInfo" />
+                        <ComboBoxItem Content="Naval.getVersusCount | battleNo 跨服戰場資料"/>
+                        <ComboBoxItem Content="Naval.inMissionHeros | 跨服戰場英雄資料"/>
+                        <ComboBoxItem Content="Naval.inMissionHeros" />
+                        <ComboBoxItem Content="Naval.killRank | 跨服排名資料"/>
+                        <ComboBoxItem Content="Naval.killRank" />
+                        <ComboBoxItem Content="Naval.leaveWar | 跨服入侵離開"/>
+                        <ComboBoxItem Content="Naval.leaveWar" />
+                        <ComboBoxItem Content="Naval.rewardCfg | 跨服入侵獎勵資料"/>
+                        <ComboBoxItem Content="Naval.rewardCfg" />
+                        <ComboBoxItem Content="NorthMarch.enterWar" />
+                        <ComboBoxItem Content="NorthMarch.inMissionHeros" />
+                        <ComboBoxItem Content="NorthMarch.leaveWar" />
+                        <ComboBoxItem Content="NorthMarch.northCitySituation" />
+                        <ComboBoxItem Content="NorthMarch.retreatAllTroops" />
+                        <ComboBoxItem Content="Notice.queryAllMarqueeMessage" />
+                        <ComboBoxItem Content="NpcCorps.getNpcWars" />
+                        <ComboBoxItem Content="OneYear.cityStatus" />
+                        <ComboBoxItem Content="Patrol.dealPatroledEvent"/>
+                        <ComboBoxItem Content="Patrol.getPatrolInfo"/>
+                        <ComboBoxItem Content="Platform.getPlatformInfo" />
+                        <ComboBoxItem Content="Player.getProperties | 主公資料"/>
+                        <ComboBoxItem Content="Player.getProperties" />
+                        <ComboBoxItem Content="Player.getSpecialState" />
+                        <ComboBoxItem Content="Pray.getPrayTime" />
+                        <ComboBoxItem Content="Rank.findAllPowerRank"/>
+                        <ComboBoxItem Content="RedEnvelope.activityTime" />
+                        <ComboBoxItem Content="RewardActivity.getSevenDayFundRewardInfo" />
+                        <ComboBoxItem Content="Shop.availableShops" />
+                        <ComboBoxItem Content="Shop.getCycleShopInfo" />
+                        <ComboBoxItem Content="Shop.getResourceTradeInfo" />
+                        <ComboBoxItem Content="Shop.getShuangShiyiShopInfo" />
+                        <ComboBoxItem Content="Shop.getTravelShopInfo" />
+                        <ComboBoxItem Content="Shop.otherShopsRefreshTime" />
+                        <ComboBoxItem Content="Shop.shopNextRefreshTime"/>
+                        <ComboBoxItem Content="Shop2.availableShops" />
+                        <ComboBoxItem Content="SignInReward.getInfo | 讀取簽到資料"/>
+                        <ComboBoxItem Content="SignInReward.getInfo" />
+                        <ComboBoxItem Content="SignInReward.signIn | 簽到"/>
+                        <ComboBoxItem Content="SignInReward.signIn" />
+                        <ComboBoxItem Content="StarGazing.activityInfo" />
+                        <ComboBoxItem Content="StarGazing.myFirecrackerInfo" />
+                        <ComboBoxItem Content="System.ping"/>
+                        <ComboBoxItem Content="Task.getAchievementInfo" />
+                        <ComboBoxItem Content="Task.getTaskTraceInfo" />
+                        <ComboBoxItem Content="TeamDuplicate.battleStart"/>
+                        <ComboBoxItem Content="TeamDuplicate.duplicateList"/>
+                        <ComboBoxItem Content="TeamDuplicate.teamDuplicateFreeTimes"/>
+                        <ComboBoxItem Content="Travel.checkOut" />
+                        <ComboBoxItem Content="Travel.dice" />
+                        <ComboBoxItem Content="Travel.escape" />
+                        <ComboBoxItem Content="Travel.getMapInfo" />
+                        <ComboBoxItem Content="Travel.getStatus" />
+                        <ComboBoxItem Content="Travel.restartTravel" />
+                        <ComboBoxItem Content="TurnCardReward.getTurnCardRewards"/>
+                        <ComboBoxItem Content="Valentine.getActivityInfo" />
+                        <ComboBoxItem Content="Vip.firstChargeInfo" />
+                        <ComboBoxItem Content="Vip.monthCard" />
+                        <ComboBoxItem Content="VipAuthentication.isGotMobileGift" />
+                        <ComboBoxItem Content="WelfareLottery.time" />
+                        <ComboBoxItem Content="World.citySituationDetail | cityId - 城市資料"/>
+                        <ComboBoxItem Content="World.getAllOpenedCities" />
+                        <ComboBoxItem Content="World.getAllTransportingUnits"/>
+                        <ComboBoxItem Content="World.getCityChapterBlueprint" />
+                        <ComboBoxItem Content="World.getCityRewardInfo" />
+                        <ComboBoxItem Content="World.getExploredWorldArea" />
+                        <ComboBoxItem Content="World.worldSituation | 地圖全城市資料"/>
+                        <ComboBoxItem Content="World.worldSituation" />
+                        <ComboBoxItem Content="YunYou.getYunYouInfo" />
+                        <ComboBoxItem Content="ZaJinDan.getTimeInfo" />
+                    </ComboBox>
+                    <CheckBox x:Name="cbxCleanUp" Content="處理結果" HorizontalAlignment="Left" Margin="2,64,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnGoAction" Content="執行指令" VerticalAlignment="Top" Margin="220,61,5,0" Click="btnGoAction_Click" />
+                    <Button x:Name="btnHeroList" Content="英雄資料" HorizontalAlignment="Left" Margin="2,89,0,0" Width="75" Click="btnHeroList_Click" Height="20" VerticalAlignment="Top"/>
+                    <Button x:Name="btnSignIn" Content="簽到" HorizontalAlignment="Left" Margin="115,89,0,0" VerticalAlignment="Top" Width="75" Click="btnSignIn_Click"/>
+                    <Button x:Name="btnArchery" Content="百步穿楊" Margin="220,89,5,0" VerticalAlignment="Top" Click="btnArchery_Click"/>
+                    <Button x:Name="btnPlayerInfo" Content="主公資料" HorizontalAlignment="Left" Margin="2,114,0,0" VerticalAlignment="Top" Width="75" Click="btnPlayerInfo_Click"/>
+                    <Button x:Name="btnManorInfo" Content="封田資料" HorizontalAlignment="Left" Margin="115,114,0,0" VerticalAlignment="Top" Width="75" Click="btnManorInfo_Click"/>
+                    <Button x:Name="btnHarvestAll" Content="一鍵全收" Margin="220,114,5,0" VerticalAlignment="Top" Click="btnHarvestAll_Click"/>
+                    <Button x:Name="btnDecInfo" Content="軍府資料" HorizontalAlignment="Left" Margin="2,139,0,0" VerticalAlignment="Top" Width="75" Click="btnDecInfo_Click"/>
+                    <Button x:Name="btnBossWarSetting" Content="神將設定" HorizontalAlignment="Left" Margin="115,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWarSetting_Click"/>
+                    <Button x:Name="btnBossWar" Content="神將無雙" HorizontalAlignment="Left" Margin="220,139,0,0" VerticalAlignment="Top" Width="75" Click="btnBossWar_Click"/>
+                    <Button x:Name="btnReadMail" Content="讀取郵件" HorizontalAlignment="Left" Margin="2,164,0,0" VerticalAlignment="Top" Width="75" Click="btnReadMail_Click"/>
+                    <Button x:Name="btnCycleShop" Content="東瀛寶船" HorizontalAlignment="Left" Margin="220,164,0,0" VerticalAlignment="Top" Width="75" Click="btnCycleShop_Click"/>
+                    <Button x:Name="btnSaveAccounts" Content="儲存帳戶資料" HorizontalAlignment="Left" Margin="2,189,0,0" VerticalAlignment="Top" Width="75" Click="btnSaveAccounts_Click"/>
+                    <Button x:Name="btnCheckStatus" Content="檢查帳戶" HorizontalAlignment="Left" Margin="115,189,0,0" VerticalAlignment="Top" Width="75" Click="btnCheckStatus_Click"/>
+                    <Button x:Name="btnReadAccounts" Content="讀取帳戶資料" HorizontalAlignment="Left" Margin="220,189,0,0" VerticalAlignment="Top" Width="75" Click="btnReadAccounts_Click"/>
+                    <Button x:Name="btnWorking" Content="測試" HorizontalAlignment="Left" Margin="115,228,0,0" VerticalAlignment="Top" Width="75" Click="btnWorking_Click"/>
+                    <Button x:Name="btnReloadAll" Content="重啟所有帳戶" HorizontalAlignment="Left" Margin="220,228,0,0" VerticalAlignment="Top" Width="75" Click="btnReloadAll_Click"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

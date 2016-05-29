@@ -82,7 +82,12 @@ namespace KingsTester
         void autoTimerElapsedEventHandler(object sender, ElapsedEventArgs e)
         {
             autoTimer.Enabled = false;
+
+            UpdateTextBox(txtLastExecution, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), false);
+            UpdateTextBox(txtNextExecution, "執行中。。。。。。", false);
+
             UpdateResult(string.Format("自動大皇帝 - 開始執行"));
+            
 
             DateTime minNext;
             DateTime nextActionTime;
@@ -160,6 +165,7 @@ namespace KingsTester
             autoTimer.Interval = waitMS;
             autoTimer.Enabled = true;
             UpdateResult(string.Format("自動大皇帝 - 執行完成, 下次執行時候為: {0:yyyy-MM-dd HH:mm:ss}", nextActionTime));
+            UpdateTextBox(txtNextExecution, nextActionTime.ToString("yyyy-MM-dd HH:mm:ss"));
 
         }
 
@@ -196,7 +202,7 @@ namespace KingsTester
                     foreach (CycleShopInfo csi in csis)
                     {
                         // No way, can only check using this string, or hard code the position.  Text has been converted to TradChinese
-                        if ((csi.pos < 3) && (!csi.sold) && (csi.res == "銀兩"))
+                        if ((csi.pos < 3) && (!csi.sold) && ((csi.res == "銀兩") || (csi.res == "银两")))
                         {
                             string info = oGA.msgPrefix + "用銀買 " + csi.nm + " : ";
                             if (action.goShopbuyCycleShopItem(oGA.currHeader, oGA.sid, csi.pos))

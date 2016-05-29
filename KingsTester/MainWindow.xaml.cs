@@ -150,7 +150,28 @@ namespace KingsTester
             // UpdateInfo(info);
         }
 
-        private void UpdateUI(TextBox tb, string info, bool addTime = true, bool resetText = false)
+        private void UpdateTextBox(TextBox tb, string content, bool async = true)
+        {
+            if (Dispatcher.FromThread(Thread.CurrentThread) == null)
+            {
+                if (async)
+                {
+                    Application.Current.Dispatcher.BeginInvoke(
+                      System.Windows.Threading.DispatcherPriority.Normal,
+                      (Action)(() => UpdateTextBox(tb, content, async)));
+                } else
+                {
+                    Application.Current.Dispatcher.Invoke(
+                      System.Windows.Threading.DispatcherPriority.Normal,
+                      (Action)(() => UpdateTextBox(tb, content, async)));
+                }
+                return;
+            }
+            tb.Text = content;
+            tb.ScrollToEnd();
+        }
+
+        private void UpdateUI(TextBox tb, string info, bool addTime = true, bool resetText = false, bool newLine = true)
         {
             if (Dispatcher.FromThread(Thread.CurrentThread) == null)
             {
@@ -159,12 +180,12 @@ namespace KingsTester
 
                 Application.Current.Dispatcher.BeginInvoke(
                   System.Windows.Threading.DispatcherPriority.Normal,
-                  (Action)(() => UpdateUI(tb, info, false, resetText)));
+                  (Action)(() => UpdateUI(tb, info, false, resetText, newLine)));
                 return;
             }
             if (resetText) tb.Text = "";
             if (addTime) tb.Text += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss | ");
-            tb.Text += info + "\n";
+            tb.Text += info + (newLine ? "\n" : "");
             tb.ScrollToEnd();
 
         }
@@ -562,7 +583,8 @@ namespace KingsTester
 
                 oGA.DecreeHeros = action.goManorGetDecreeInfoWithName(oGA.currHeader, oGA.sid, oGA.Heros);
 
-            } else
+            }
+            else
             {
                 UpdateResult("#### 帳戶已在其他地方登入, 以下顯示資料可能已過時 ####");
             }
@@ -589,7 +611,8 @@ namespace KingsTester
                     UpdateResult("讀取英雄資料失敗");
                     return;
                 }
-            } else
+            }
+            else
             {
                 if (oGA.Heros.Count == 0)
                 {
@@ -640,8 +663,15 @@ namespace KingsTester
             btnPlayerInfo.IsEnabled = normalMode;
             btnReadMail.IsEnabled = normalMode;
             btnSignIn.IsEnabled = normalMode;
-            lblAutoRunning.Visibility = (normalMode ? Visibility.Hidden : Visibility.Visible);
-            lblAutoRunning2.Visibility = (normalMode ? Visibility.Hidden : Visibility.Visible);
+            lblAutoRunning.Content = (normalMode ? "自動大皇帝 準備中" : "自動大皇帝 已啟動");
+            lblAutoRunning.Background = (normalMode ? Brushes.Gray : new SolidColorBrush(Color.FromArgb(255, 63, 255, 0)));
+            lblAutoRunning.Foreground = (normalMode ? Brushes.Black : Brushes.Red);
+            // lblAutoRunning.Visibility = (normalMode ? Visibility.Hidden : Visibility.Visible);
+            lblAutoRunning2.Content = (normalMode ? "獨立測試" : "自動大皇帝 已啟動");
+            lblAutoRunning2.Background = (normalMode ? Brushes.LightBlue : Brushes.LightGreen);
+            lblAutoRunning2.Foreground = (normalMode ? Brushes.Red : Brushes.Black);
+
+            // lblAutoRunning2.Visibility = (normalMode ? Visibility.Hidden : Visibility.Visible);
         }
 
         private void btnGoAuto_Click(object sender, RoutedEventArgs e)
@@ -724,7 +754,7 @@ namespace KingsTester
             }
             lvAccounts.SelectedIndex = (currSelectedIndex == -1 ? 0 : currSelectedIndex);
             goCheckAccountStatus(true);
-            foreach(GameAccount oGA in gameAccounts)
+            foreach (GameAccount oGA in gameAccounts)
             {
                 KingsMonitor.addAccount(oGA.account, oGA.sid);
             }
