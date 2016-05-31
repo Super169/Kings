@@ -1,9 +1,0 @@
-
-- 商店
-{"act":"Shop.getTravelShopInfo","sid":"678a531931fcadae7842da25ac1de35371aa459e"}
-{"items":[{"config":39,"discount":100,"sold":false},{"config":308,"discount":100,"sold":false},{"config":307,"discount":100,"sold":false},{"config":86,"discount":100,"sold":false},{"config":73,"discount":100,"sold":false},{"config":780,"discount":100,"sold":false}],"refreshSeconds":34877,"buyTimes":0,"todayTimes":0,"refreshTimes":0}
-
-
-307 -
-306 -
-308 -

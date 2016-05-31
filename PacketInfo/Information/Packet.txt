@@ -1,8 +1,0 @@
-{"act":"Player.getProperties","sid":"678a531931fcadae7842da251e62d794a93600b6"}
-{"pvs":[{"p":"EXP","v":"50797"},{"p":"UNDERGO_EXP","v":"0"},{"p":"LEVEL_UP_EXP","v":"290000"},{"p":"LEVEL","v":"92"},{"p":"VIP_LEVEL","v":"3"},{"p":"GOLD","v":"2341"},{"p":"SILVER","v":"5957128"},{"p":"FOOD","v":"25449"},{"p":"EXPLOIT","v":"11805"},{"p":"ARENA_COIN","v":"40186"},{"p":"XIYU_COIN","v":"5653"},{"p":"MAX_FOOD","v":"3720000"},{"p":"MAX_SILVER","v":"6660000"},{"p":"MAX_IRON","v":"800000"},{"p":"CORPS_NAME","v":"九輪燎原"},{"p":"IRON","v":"144519"},{"p":"ICON","v":"100007"},{"p":"PLATFORM_MARK","v":"0"},{"p":"LONGMARCH_COIN","v":"1140"},{"p":"CSKING_COIN","v":"31645"},{"p":"FIGHTING_SPIRIT","v":"0"},{"p":"CONTRIBUTION","v":"22951"},{"p":"GOLD_TICKET","v":"0"}]}
-{"pvs":[{"p":"EXP","v":"60113"},{"p":"UNDERGO_EXP","v":"0"},{"p":"LEVEL_UP_EXP","v":"290000"},{"p":"LEVEL","v":"92"},{"p":"VIP_LEVEL","v":"3"},{"p":"GOLD","v":"2359"},{"p":"SILVER","v":"4450623"},{"p":"FOOD","v":"755279"},{"p":"EXPLOIT","v":"11108"},{"p":"ARENA_COIN","v":"41372"},{"p":"XIYU_COIN","v":"5653"},{"p":"MAX_FOOD","v":"3720000"},{"p":"MAX_SILVER","v":"6660000"},{"p":"MAX_IRON","v":"800000"},{"p":"CORPS_NAME","v":"九輪燎原"},{"p":"IRON","v":"228079"},{"p":"ICON","v":"100007"},{"p":"PLATFORM_MARK","v":"0"},{"p":"LONGMARCH_COIN","v":"540"},{"p":"CSKING_COIN","v":"30645"},{"p":"FIGHTING_SPIRIT","v":"0"},{"p":"CONTRIBUTION","v":"23060"},{"p":"GOLD_TICKET","v":"0"}]}
-
-- Get current city
-{"act":"City.getPlayerCityInfo","sid":"678a531931fcadae7842da25fde2d207bd355ccc"}
-{"curCity":6,"state":"PARKING"}
-
