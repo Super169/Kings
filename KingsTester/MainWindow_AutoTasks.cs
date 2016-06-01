@@ -33,8 +33,8 @@ namespace KingsTester
             goTaskHarvestAll();
             // 東瀛寶船
             goTaskCycleShop();
-            // 每日簽到
-            goTaskSingInAll();
+            // 每日簽到  --20160601, signin changed
+            // goTaskSingInAll();
             // 為 "糧草先行" 任務購物
             goTaskMarketTask();
             // 勢力商店購買糧食
