@@ -58,6 +58,20 @@ namespace KingsInterface
             }
             return finCount;
         }
+
+        public static bool goTaskGetUpgradeActivityReward(GameAccount oGA, DelegateUpdateInfo updateInfo)
+        {
+            RequestReturnObject rro = request.OperateActivity.getUpgradeActivityInfo(oGA.currHeader, oGA.sid);
+            if (!rro.SuccessWithJson("isGot")) return false;
+            bool isGot = JSON.getBool(rro.responseJson, "isGot", true);
+            if (isGot) return false;
+            string name = JSON.getString(rro.responseJson, "name", "<unknown>");
+            rro = request.OperateActivity.upgradeActivityReward(oGA.currHeader, oGA.sid);
+            if (rro.ok != 1) return false;
+            if (updateInfo != null) updateInfo(string.Format("(0)領取 {1} 獎勵", oGA.msgPrefix, name));
+
+            return true;
+        }
     }
 
 }

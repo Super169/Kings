@@ -100,6 +100,7 @@
     <Compile Include="request\Notice.cs" />
     <Compile Include="request\NpcCorps.cs" />
     <Compile Include="request\OneYear.cs" />
+    <Compile Include="request\OperateActivity.cs" />
     <Compile Include="request\Patrol.cs" />
     <Compile Include="request\Platform.cs" />
     <Compile Include="request\Player.cs" />

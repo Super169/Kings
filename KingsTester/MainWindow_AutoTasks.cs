@@ -35,6 +35,8 @@ namespace KingsTester
             goTaskCycleShop();
             // 每日簽到  --20160601, signin changed
             // goTaskSingInAll();
+            // 登入好禮
+            goTaskOperateActivity();
             // 為 "糧草先行" 任務購物
             goTaskMarketTask();
             // 勢力商店購買糧食
@@ -218,6 +220,14 @@ namespace KingsTester
                     }
 
                 }
+            }
+        }
+
+        private void goTaskOperateActivity()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.goAutoTask()) action.goTaskGetUpgradeActivityReward(oGA, UpdateInfoHandler);
             }
         }
 
