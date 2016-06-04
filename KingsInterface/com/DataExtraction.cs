@@ -55,7 +55,7 @@ namespace KingsInterface
                 string jsonString = (cleanUp ? CleanUpResponse(responseText) : responseText);
                 if ((jsonString == null) || (jsonString == ""))
                 {
-                    json = JSON.Empty();
+                    json = JSON.Empty;
                 } else
                 {
                     json = Json.Decode(jsonString);
@@ -64,7 +64,7 @@ namespace KingsInterface
             catch (Exception ex)
             {
                 Console.WriteLine("Error getting response:\n{0}", ex.Message);
-                json = JSON.Empty();
+                json = JSON.Empty;
             }
             return json;
         }

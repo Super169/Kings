@@ -57,6 +57,7 @@
     <Compile Include="action\Arena.cs" />
     <Compile Include="action\Arenas.cs" />
     <Compile Include="action\Campaign.cs" />
+    <Compile Include="action\DaqiaoActivity.cs" />
     <Compile Include="action\LuckyCycle.cs" />
     <Compile Include="action\Travel.cs" />
     <Compile Include="request\Activity.cs" />

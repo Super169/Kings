@@ -10,10 +10,9 @@ namespace MyUtil
     public class JSON
     {
 
-        public static dynamic Empty()
-        {
-            return Json.Decode("{}");
-        }
+        public static string EmptyString { get { return "{}"; } }
+        public static dynamic Empty { get { return Json.Decode("{}"); } }
+
 
         #region "Numeric Data"
 
@@ -433,7 +432,48 @@ namespace MyUtil
 
         #endregion
 
+        public static dynamic decode(string jsonString)
+        {
+            dynamic json;
+            try
+            {
+                json = Json.Decode(jsonString);
+            }
+            catch
+            {
+                json = JSON.Empty;
+            }
+            return json;
+        }
 
+        public static string encode(dynamic json)
+        {
+            string jsonString = JSON.EmptyString;
+            try
+            {
+                jsonString = Json.Encode(json);
+            }
+            catch
+            {
+                jsonString = JSON.EmptyString;
+            }
+            return jsonString;
+        }
+
+        public static bool exists(dynamic json, string key, Type targetType = null)
+        {
+            if (json == null) return false;
+            if ((key == null) || (key == "")) return false;
+            return JSON.exists(json[key], targetType);
+        }
+
+
+        public static bool exists(dynamic json, Type targetType = null)
+        {
+            if (json == null) return false;
+            if ((targetType != null) && (json.GetType() != targetType)) return false;
+            return true;
+        }
 
     }
 }

@@ -72,6 +72,49 @@ namespace KingsInterface
 
             return true;
         }
+
+        private class DaqiaoDailyKey
+        {
+            public const string canDrawDailyReward = "canDrawDailyReward";
+            public const string curDays = "curDays";
+            public const string loginDays = "loginDays";
+            public const string rewardDays = "rewardDays";
+
+        }
+
+        public static void goTaskGetDaqiaoDailyReward(GameAccount oGA, DelegateUpdateInfo updateInfo)
+        {
+            HTTPRequestHeaders oH = oGA.currHeader;
+            String sid = oGA.sid;
+            int type = 0;
+            while (true)
+            {
+                type++;
+                RequestReturnObject rro = request.DaqiaoActivity.getCurrActivityInfo(oH, sid, type);
+                if (!rro.success) break;
+                if (rro.style == "ERROR") break;
+                if (rro.prompt == PROMPT_COMMON_EXCEPTION) break;
+                if (!rro.SuccessWithJson(DaqiaoDailyKey.canDrawDailyReward)) continue;
+                bool canDraw = JSON.getBool(rro.responseJson, DaqiaoDailyKey.canDrawDailyReward, false);
+                if (!canDraw) continue;
+                rro = request.DaqiaoActivity.dailyRewardInfo(oH, sid, type);
+                if (!rro.SuccessWithJson(DaqiaoDailyKey.curDays)) continue;
+                if (!(JSON.exists(rro.responseJson, DaqiaoDailyKey.loginDays, typeof(DynamicJsonArray)) &&
+                      JSON.exists(rro.responseJson, DaqiaoDailyKey.rewardDays, typeof(DynamicJsonArray)))) continue;
+                int curDays = JSON.getInt(rro.responseJson, DaqiaoDailyKey.curDays, -1);
+                int[] loginDays = JSON.getIntArray(rro.responseJson, DaqiaoDailyKey.loginDays);
+                if (!Array.Exists(loginDays, (x => x == curDays))) continue;
+                int[] rewardDays = JSON.getIntArray(rro.responseJson, DaqiaoDailyKey.rewardDays);
+                if (Array.Exists(rewardDays, (x => x == curDays))) continue;
+                rro = request.DaqiaoActivity.getDailyReward(oH, sid, type, curDays);
+                if ((rro.ok == 1) && (updateInfo != null))
+                {
+                    updateInfo(string.Format("{0}領取七日登入獎勵 (Type: {1}, days: {2})", oGA.msgPrefix, type, curDays));
+                }
+            }
+
+        }
+
     }
 
 }

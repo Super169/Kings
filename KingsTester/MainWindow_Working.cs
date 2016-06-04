@@ -17,7 +17,15 @@ namespace KingsTester
     {
         private void kingsWorkingTester()
         {
-            goMarketTask();
+            GetDaqiaoDailyReward();
+        }
+
+        private void GetDaqiaoDailyReward()
+        {
+            GameAccount oGA = GetSelectedActiveAccount();
+            if (oGA == null) return;
+            if (!oGA.IsOnline()) return;
+            action.goTaskGetDaqiaoDailyReward(oGA, UpdateInfoHandler);
         }
 
         private void goMarketTask()

@@ -204,7 +204,7 @@ namespace KingsTester.ui
 
 
             // The JSON to build the body string
-            dynamic json = JSON.Empty();
+            dynamic json = JSON.Empty;
             List<dynamic> heros = new List<dynamic>();
 
             int[,] warPos = { { -5, -1 }, { -3, -1 }, { -6, 0 }, { -4, 0 }, { -2, 0 }, { -5, 1 }, { -3, 1 } };
@@ -212,7 +212,7 @@ namespace KingsTester.ui
             {
                 if (warHeros[i].heroIdx > 0)
                 {
-                    dynamic o = JSON.Empty();
+                    dynamic o = JSON.Empty;
                     o.x = warPos[i, 0];
                     o.y = warPos[i, 1];
                     o.index = warHeros[i].heroIdx;

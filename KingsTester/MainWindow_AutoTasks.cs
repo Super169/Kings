@@ -37,6 +37,8 @@ namespace KingsTester
             // goTaskSingInAll();
             // 登入好禮
             goTaskOperateActivity();
+            // 七日登入
+            goTaskGetDaqiaoDailyReward();
             // 為 "糧草先行" 任務購物
             goTaskMarketTask();
             // 勢力商店購買糧食
@@ -228,6 +230,14 @@ namespace KingsTester
             foreach (GameAccount oGA in gameAccounts)
             {
                 if (oGA.goAutoTask()) action.goTaskGetUpgradeActivityReward(oGA, UpdateInfoHandler);
+            }
+        }
+
+        private void goTaskGetDaqiaoDailyReward()
+        {
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.goAutoTask()) action.goTaskGetDaqiaoDailyReward(oGA, UpdateInfoHandler);
             }
         }
 

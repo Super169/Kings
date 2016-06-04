@@ -21,7 +21,7 @@ namespace KingsInterface
                 this.id = taskId;
                 isEnabled = false;
                 schedule = new ScheduleInfo();
-                parm = JSON.Empty();
+                parm = JSON.Empty;
             }
 
             public bool readyToGo()

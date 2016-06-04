@@ -46,7 +46,7 @@ namespace KingsInterface
 
             public dynamic toJson()
             {
-                dynamic json = JSON.Empty();
+                dynamic json = JSON.Empty;
                 try
                 {
                     json["dow"] = dow;
@@ -60,7 +60,7 @@ namespace KingsInterface
                 } catch
                 {
                     // Return empty json for any error 
-                    json = JSON.Empty();
+                    json = JSON.Empty;
                 }
                 return json;
             }

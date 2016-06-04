@@ -8,6 +8,8 @@ namespace KingsInterface
 {
     public partial class action
     {
+        public const string PROMPT_COMMON_EXCEPTION = "ERR_COMMON_EXCEPTION";
+
         public const string PROMPT_NOT_ENOUGH = "ERR_NOT_ENOUGH";
         public const string PROMPT_NOT_SUPPORT = "ERR_COMMON_NOT_SUPPORTED";
         public const string PROMPT_RELOGIN = "ERR_COMMON_RELOGIN";
