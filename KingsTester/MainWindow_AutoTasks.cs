@@ -72,15 +72,18 @@ namespace KingsTester
 
         void reloadAll()
         {
-            // Restart Chrom at date start; may also add at 12:00 in case server down
-            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=35");
-            Thread.Sleep(60000);
-            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=36");
-            Thread.Sleep(60000);
-            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=37");
-            Thread.Sleep(60000);
-            Process.Start("chrome.exe", "http://www.pubgame.tw/play.do?gc=king&gsc=43");
-            Thread.Sleep(60000);
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.enabled)
+                {
+                    if (oGA.pubGameServerId > 0)
+                    {
+                        string url = "http://www.pubgame.tw/play.do?gc=king&gsc=" + oGA.pubGameServerId.ToString();
+                        Process.Start("chrome.exe", url);
+                        Thread.Sleep(60000);
+                    }
+                }
+            }
         }
 
         void autoTimerElapsedEventHandler(object sender, ElapsedEventArgs e)
@@ -91,7 +94,7 @@ namespace KingsTester
             UpdateTextBox(txtNextExecution, "執行中。。。。。。", false);
 
             UpdateResult(string.Format("自動大皇帝 - 開始執行"));
-            
+
 
             DateTime minNext;
             DateTime nextActionTime;

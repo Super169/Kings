@@ -44,7 +44,8 @@ namespace KingsInterface.data
         public int timeAdjust { get; set; }
         public string server { get; set; }
         public string serverTitle { get; set; }
-        public string adjServerCode { get; set; }
+        public int pubGameServerId { get; set; }
+        public string serverCode { get; set; }
         public string adjServerTitle { get; set; }
         public string nickName { get; set; }
         public string corpsName { get; set; }
@@ -133,7 +134,8 @@ namespace KingsInterface.data
             {
                 jsonString = JSON.getString(gfr.getObject(KEY.Heros));
                 json = Json.Decode(jsonString);
-                if ((json["data"] != null) && (json["data"].GetType() == typeof(DynamicJsonArray))) {
+                if ((json["data"] != null) && (json["data"].GetType() == typeof(DynamicJsonArray)))
+                {
                     foreach (dynamic o in json["data"])
                     {
                         this.Heros.Add(new HeroInfo(o));
@@ -185,7 +187,8 @@ namespace KingsInterface.data
                 {
                     this.Heros.Add(new HeroInfo(o));
                 }
-            } catch
+            }
+            catch
             {
                 // reset all data for any error
                 this.Heros = new List<HeroInfo>();
@@ -217,28 +220,33 @@ namespace KingsInterface.data
 
         public void setInfo()
         {
-            int pos = this.serverTitle.IndexOf(" ");
-            if (pos >= 2)
+            // For pubgame accounts:
+            string[] parts = serverTitle.Split(' ');
+            if ((parts[0].Length < 2) || (parts[0].Length > 4)) serverCode = parts[0];
+            try
             {
-                try
+                if (this.account.Contains("_pubgame"))
                 {
-                    int serverId = Convert.ToInt32(this.serverTitle.Substring(1, pos - 1));
-                    serverId = adjServerId(serverId);
-                    this.adjServerCode = this.serverTitle.Substring(0,1) + serverId.ToString();
-                    this.adjServerTitle = adjServerCode + this.serverTitle.Substring(3);
+                    int serverId = Convert.ToInt32(parts[0].Substring(1));
+                    this.pubGameServerId = (serverId > 9 ? serverId - 9 : serverId);
+                    this.serverCode = parts[0].Substring(0, 1) + pubGameServerId.ToString();
+                    this.adjServerTitle = serverCode + this.serverTitle.Substring(3);
                 }
-                catch {
-                    this.adjServerCode = this.serverTitle.Substring(0, pos);
+                else
+                {
+                    this.pubGameServerId = -1;
+                    this.serverCode = parts[0];
                     this.adjServerTitle = this.serverTitle;
                 }
             }
-            else
+            catch
             {
-                this.adjServerCode = this.serverTitle;
+                this.pubGameServerId = -1;
+                this.serverCode = parts[0];
                 this.adjServerTitle = this.serverTitle;
             }
 
-            msgPrefix = string.Format("【{0}: {1}】", this.adjServerCode, this.nickName);
+            msgPrefix = string.Format("【{0}: {1}】", this.serverCode, this.nickName);
         }
 
         #endregion
@@ -246,7 +254,7 @@ namespace KingsInterface.data
         public AccountStatus CheckStatus(bool forceCheck = false)
         {
             // Offline cannot be changed to online without new login detected
-            if ((!forceCheck) &&(this.status == AccountStatus.Offline)) return AccountStatus.Offline;
+            if ((!forceCheck) && (this.status == AccountStatus.Offline)) return AccountStatus.Offline;
 
             RequestReturnObject rro = action.go_System_ping(currHeader, sid);
             if (rro.prompt == action.PROMPT_RELOGIN)
