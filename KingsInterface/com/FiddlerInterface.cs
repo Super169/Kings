@@ -16,8 +16,10 @@ namespace KingsInterface
         public static void start(string appName)
         {
             // Start Fiddler before starting the monitor, otherwise, it may cause problem when traffic comes before not all monitors started.
-            ConfigFiddler(appName);
-            Startup(false);
+            
+            // TODO: FIddler for testing
+            // ConfigFiddler(appName);
+            // Startup(false);
         }
 
         public static void ConfigFiddler(string appName)
