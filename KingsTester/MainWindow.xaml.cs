@@ -770,7 +770,7 @@ namespace KingsTester
 
         private void btnCheckStatus_Click(object sender, RoutedEventArgs e)
         {
-            goCheckAccountStatus();
+            goCheckAccountStatus(true);
         }
 
 

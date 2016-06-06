@@ -21,14 +21,15 @@ namespace KingsInterface
             RequestReturnObject rro;
             if (goType == 1)
             {
-                rro =  SendRequest1(oH, requestText);
-            } else
+                rro = SendRequest1(oH, requestText);
+            }
+            else
             {
-                rro = SendRequest2(oH, requestText); 
+                rro = SendRequest2(oH, requestText);
             }
             return rro;
         }
-        
+
         public static RequestReturnObject SendRequest2(HTTPRequestHeaders oH, string requestText)
         {
             RequestReturnObject rro = new RequestReturnObject();
@@ -72,9 +73,16 @@ namespace KingsInterface
                     if (cookiesCnt > 0)
                     {
                         client = new HttpClient(handler);
-                    } else
+                    }
+                    else
                     {
                         client = new HttpClient();
+                    }
+
+                    string proxyAuthorization = JSON.getString(oH["Proxy-Authorization"]);
+                    if ((proxyAuthorization != null) && (proxyAuthorization != ""))
+                    {
+                        client.DefaultRequestHeaders.Add("Proxy-Authorization", proxyAuthorization);
                     }
 
                     HttpResponseMessage response = client.PostAsync(FullPath, _Body).Result;
