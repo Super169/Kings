@@ -61,7 +61,7 @@ namespace PacketDump
                         monitor_Socket = new Socket(AddressFamily.InterNetworkV6, SocketType.Raw, System.Net.Sockets.ProtocolType.IP);
                     }
                     monitor_Socket.Bind(new IPEndPoint(ipAddress, 0));
-                    monitor_Socket.IOControl(SIO_RCVALL, BitConverter.GetBytes((int)1), null);
+                    monitor_Socket.IOControl(SIO_RCVALL, BitConverter.GetBytes((int)0), BitConverter.GetBytes((int)1));
                     monitor_Socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
                 }
                 catch (Exception e)

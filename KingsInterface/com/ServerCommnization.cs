@@ -79,12 +79,32 @@ namespace KingsInterface
                         client = new HttpClient();
                     }
 
+                    setHeader(ref client, oH, "Host");
+                    setHeader(ref client, oH, "Proxy-Connection");
+                    // setHeader(ref client, oH, "Content-Length");
+                    setHeader(ref client, oH, "Proxy-Authorization");
+                    setHeader(ref client, oH, "Origin");
+                    setHeader(ref client, oH, "X-Requested-With");
+                    setHeader(ref client, oH, "User-Agent");
+                    // setHeader(ref client, oH, "Content-Type");
+                    setHeader(ref client, oH, "Accept");
+                    setHeader(ref client, oH, "Referer");
+                    setHeader(ref client, oH, "Accept-Encoding");
+                    setHeader(ref client, oH, "Accept-Language");
+                    setHeader(ref client, oH, "Cookie");
+                    /*
+                    string proxyConneciton = JSON.getString(oH["Proxy-Connection"]);
+                    if ((proxyConneciton != null) && (proxyConneciton != ""))
+                    {
+                        client.DefaultRequestHeaders.Add("Proxy-Connection", proxyConneciton);
+                    }
+
                     string proxyAuthorization = JSON.getString(oH["Proxy-Authorization"]);
                     if ((proxyAuthorization != null) && (proxyAuthorization != ""))
                     {
                         client.DefaultRequestHeaders.Add("Proxy-Authorization", proxyAuthorization);
                     }
-
+                    */
                     HttpResponseMessage response = client.PostAsync(FullPath, _Body).Result;
                     if (response.IsSuccessStatusCode)
                     {
@@ -116,6 +136,15 @@ namespace KingsInterface
             }
 
             return rro;
+        }
+
+        private static void setHeader(ref HttpClient client, HTTPRequestHeaders oH, string key)
+        {
+            string value = JSON.getString(oH[key]);
+            if ((value != null) && (value != ""))
+            {
+                client.DefaultRequestHeaders.Add(key, value);
+            }
         }
 
         public static RequestReturnObject SendRequest1(HTTPRequestHeaders oH, string requestText)

@@ -18,7 +18,7 @@ namespace KingsInterface.monitor
         private const int IOC_IN = -2147483648; //0x80000000;
         private const int SIO_RCVALL = IOC_IN | IOC_VENDOR | 1;
         private const int BUF_SIZE = 1024 * 1024;
-        
+
         private Socket monitor_Socket;
         private IPAddress ipAddress;
         private byte[] buffer;
@@ -50,7 +50,7 @@ namespace KingsInterface.monitor
             {
                 try
                 {
-
+                    /*
                     if (ipAddress.AddressFamily == AddressFamily.InterNetwork)
                     {
                         monitor_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Raw, System.Net.Sockets.ProtocolType.IP);
@@ -59,10 +59,27 @@ namespace KingsInterface.monitor
                     {
                         monitor_Socket = new Socket(AddressFamily.InterNetworkV6, SocketType.Raw, System.Net.Sockets.ProtocolType.IP);
                     }
+                    
                     monitor_Socket.Bind(new IPEndPoint(ipAddress, 0));
+
                     monitor_Socket.IOControl(SIO_RCVALL, BitConverter.GetBytes((int)1), null);
+
+                    */
+
+                    // https://msdn.microsoft.com/en-us/library/system.net.sockets.socket(v=vs.110).aspx
+                    // https://msdn.microsoft.com/en-us/library/8a3744sh(v=vs.110).aspx
+                    // http://msdn.microsoft.com/en-us/library/system.net.sockets.iocontrolcode.aspx
+
+                    IPEndPoint ipe = new IPEndPoint(ipAddress, 0);
+                    monitor_Socket = new Socket(ipe.AddressFamily, SocketType.Raw, System.Net.Sockets.ProtocolType.IP);
+                    monitor_Socket.Bind(ipe);
+
+                    byte[] inValue = BitConverter.GetBytes(1);
+                    byte[] outValue = BitConverter.GetBytes(0);
+                    monitor_Socket.IOControl(IOControlCode.ReceiveAll, inValue, outValue);
                     monitor_Socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, new AsyncCallback(this.OnReceive), null);
                     socketReady = true;
+
 #if CONSOLE_DEBUG
                     Console.WriteLine("Start monitor on " + ip());
 #endif
