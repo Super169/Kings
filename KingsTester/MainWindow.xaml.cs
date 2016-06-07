@@ -464,7 +464,7 @@ namespace KingsTester
         {
             GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
-            action.goArcheryShootAll(oGA.currHeader, oGA.sid, UpdateInfoHandler);
+            action.goArcheryShootAll(oGA.currHeader, oGA.sid, UpdateInfoHandler, "NORMAL");
         }
 
         private void btnPlayerInfo_Click(object sender, RoutedEventArgs e)

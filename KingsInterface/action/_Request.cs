@@ -12,15 +12,15 @@ namespace KingsInterface
     {
         #region "Archery"
 
-        public static RequestReturnObject go_Archery_getArcheryInfo(HTTPRequestHeaders oH, string sid)
+        public static RequestReturnObject go_Archery_getArcheryInfo(HTTPRequestHeaders oH, string sid, string type)
         {
-            string body = "{\"type\":\"NORMAL\"}";
+            string body = "{\"type\":\"" + type + "\"}";
             return com.SendGenericRequest(oH, sid, CMD_Archery_shoot, true, body);
         }
 
-        public static RequestReturnObject go_Archery_shoot(HTTPRequestHeaders oH, string sid, int x, int y)
+        public static RequestReturnObject go_Archery_shoot(HTTPRequestHeaders oH, string sid, int x, int y, string type)
         {
-            string body = "{\"x\":" + x.ToString() + ",\"y\":" + y.ToString() + ",\"type\":\"NORMAL\"}";
+            string body = "{\"x\":" + x.ToString() + ",\"y\":" + y.ToString() + ",\"type\":\"" + type + "\"}";
             return com.SendGenericRequest(oH, sid, CMD_Archery_shoot, true, body);
         }
 

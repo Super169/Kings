@@ -69,5 +69,14 @@ namespace KingsInterface
 
             return 0;
         }
+
+        public static int goOneYearArchery(GameAccount oGA, DelegateUpdateInfo updateInfo)
+        {
+            HTTPRequestHeaders oH = oGA.currHeader;
+            string sid = oGA.sid;
+            action.goArcheryShootAll(oH, sid, updateInfo, "ONEYEAY");
+            return 0;
+        }
+
     }
 }

@@ -27,7 +27,8 @@ namespace KingsTester
             GameAccount oGA = GetSelectedActiveAccount();
             if (oGA == null) return;
             if (!oGA.IsOnline()) return;
-            action.goOneYearSignIn(oGA, UpdateInfoHandler);
+            action.goOneYearArchery(oGA, UpdateInfoHandler);
+            //action.goOneYearSignIn(oGA, UpdateInfoHandler);
         }
 
         private void GetDaqiaoDailyReward()

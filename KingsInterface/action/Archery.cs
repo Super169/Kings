@@ -8,9 +8,9 @@ namespace KingsInterface
     {
         public delegate void DelegateUpdateInfo(string info);
 
-        public static ArcheryInfo getArcheryInfo(HTTPRequestHeaders oH, string sid) {
+        public static ArcheryInfo getArcheryInfo(HTTPRequestHeaders oH, string sid, string type) {
             ArcheryInfo ai = new ArcheryInfo() { success = false, returnCode = AiReturnCode.NORMAL};
-            RequestReturnObject rro = action.go_Archery_getArcheryInfo(oH, sid);
+            RequestReturnObject rro = action.go_Archery_getArcheryInfo(oH, sid, type);
             if (!rro.success)
             {
                 ai.msg = "讀取 百步穿楊 資訊失敗: " + rro.msg;
@@ -49,12 +49,12 @@ namespace KingsInterface
             return ai;
         }
 
-        public static bool goArcheryShoot(HTTPRequestHeaders oH, string sid, ref ArcheryInfo ai)
+        public static bool goArcheryShoot(HTTPRequestHeaders oH, string sid, ref ArcheryInfo ai, string type)
         {
             if ((ai == null) || (!ai.success))
             {
                 // ArcheryInfo is not yet retrieved, go retrieve first
-                ai = getArcheryInfo(oH, sid);
+                ai = getArcheryInfo(oH, sid, type);
             }
             if (!ai.success) return false;
 
@@ -68,7 +68,7 @@ namespace KingsInterface
             // TODO: Adjust for abs(ai.wind) > 500
             ai.goX = (Math.Abs(ai.wind) < 100 ? 0 : (ai.wind < 0 ? (ai.wind + 100) / -10 : (100 - ai.wind) / 10));
             ai.goY = 11;
-            RequestReturnObject rro = action.go_Archery_shoot(oH, sid, ai.goX, ai.goY);
+            RequestReturnObject rro = action.go_Archery_shoot(oH, sid, ai.goX, ai.goY, type);
             if (!rro.success)
             {
                 ai.msg = "執行射擊失敗: " + rro.msg;
@@ -106,7 +106,7 @@ namespace KingsInterface
 
         // 現有{0}環; 餘下{1}次; 風力{2}; 目標({3},{4}); 結果({5},{6}); 得{7}環
         //
-        public static bool goArcheryShootAll(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo)
+        public static bool goArcheryShootAll(HTTPRequestHeaders oH, string sid, DelegateUpdateInfo updateInfo, string type)
         {
             ArcheryInfo ai;
             bool returnCode = true;
@@ -115,7 +115,7 @@ namespace KingsInterface
             {
                 // Enforce to check archery info before shooting
                 ai = null;
-                goNext = goArcheryShoot(oH, sid, ref ai);
+                goNext = goArcheryShoot(oH, sid, ref ai, type);
                 if (goNext)
                 {
                     string info = string.Format("現有{0}環; 餘下{1}次; 風力{2}; 目標({3},{4}); 結果({5},{6}); 得{7}環",
