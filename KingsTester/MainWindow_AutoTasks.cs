@@ -39,6 +39,8 @@ namespace KingsTester
             goTaskOperateActivity();
             // 七日登入
             goTaskGetDaqiaoDailyReward();
+            // 嘉年華活動 - 登陸
+            goTaskOneYearSignIn();
             // 為 "糧草先行" 任務購物
             goTaskMarketTask();
             // 勢力商店購買糧食
@@ -493,6 +495,19 @@ namespace KingsTester
                 if (oGA.goAutoTask())
                 {
                     action.goMarketTask(oGA, UpdateInfoHandler);
+                }
+            }
+
+        }
+
+        private void goTaskOneYearSignIn()
+        {
+
+            foreach (GameAccount oGA in gameAccounts)
+            {
+                if (oGA.goAutoTask())
+                {
+                    action.goOneYearSignIn(oGA, UpdateInfoHandler);
                 }
             }
 

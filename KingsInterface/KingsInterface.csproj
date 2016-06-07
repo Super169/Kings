@@ -59,6 +59,8 @@
     <Compile Include="action\Campaign.cs" />
     <Compile Include="action\DaqiaoActivity.cs" />
     <Compile Include="action\LuckyCycle.cs" />
+    <Compile Include="action\OneYear.cs" />
+    <Compile Include="action\System.cs" />
     <Compile Include="action\Travel.cs" />
     <Compile Include="request\Activity.cs" />
     <Compile Include="request\Archery.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="request\Notice.cs" />
     <Compile Include="request\NpcCorps.cs" />
     <Compile Include="request\OneYear.cs" />
+    <Compile Include="request\OneYearEntry.cs" />
     <Compile Include="request\OperateActivity.cs" />
     <Compile Include="request\Patrol.cs" />
     <Compile Include="request\Platform.cs" />

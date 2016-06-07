@@ -48,6 +48,14 @@ namespace KingsInterface.data
             return true;
         }
 
+        public bool Exists(string key, Type targetType = null)
+        {
+            if (responseJson == null) return false;
+            if ((key == null) || (key == "")) return true;
+            if (responseJson[key] == null) return false;
+            if (responseJson[key].GetType() != targetType) return false;
+            return true;
+        }
 
     }
 
