@@ -19,8 +19,8 @@ namespace KingsInterface.data
             if (!this.us) return false;
             if (this.n <= 0) return false;
             if (nm == "喇叭") return true;
-            if (nm.EndsWith("色寶物包")) return true;
-            if (nm.EndsWith("色軍械包")) return true;
+            if (nm.EndsWith("寶物包") || nm.EndsWith("宝物包")) return true;
+            if (nm.EndsWith("軍械包") || nm.EndsWith("军械包")) return true;
             return false;
         }
     }
