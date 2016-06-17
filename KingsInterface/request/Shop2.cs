@@ -25,9 +25,9 @@ namespace KingsInterface.request
             return com.SendGenericRequest(oH, sid, CMD_shop2Info, true, body);
         }
 
-        public static RequestReturnObject buyItem(HTTPRequestHeaders oH, string sid, int id, string shop2Type)
+        public static RequestReturnObject buyItem(HTTPRequestHeaders oH, string sid, int count, int id, string shop2Type)
         {
-            string body = "{\"id\":" + id.ToString() + ", \"shop2Type\":\"" + shop2Type + "\"}";
+            string body = "{\"count\":"+count.ToString() + ",\"id\":" + id.ToString() + ", \"shop2Type\":\"" + shop2Type + "\"}";
             return com.SendGenericRequest(oH, sid, CMD_buyItem, true, body);
         }
 

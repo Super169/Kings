@@ -61,7 +61,7 @@ namespace KingsInterface
 
             while ((!error) && (coins >= 92) && (remainCount > 0))
             {
-                rro = Shop2.buyItem(oGA.currHeader, oGA.sid, 1, "SL_SHOP");
+                rro = Shop2.buyItem(oGA.currHeader, oGA.sid, 1, 1, "SL_SHOP");
                 error = (rro.ok != 1);
                 if (!error)
                 {
