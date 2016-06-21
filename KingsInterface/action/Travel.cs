@@ -57,7 +57,8 @@ namespace KingsInterface
                 if (checkPos > mapInfo.mapSize) checkPos -= mapInfo.mapSize;
                 if (mode == 0)
                 {
-                    if (((mapInfo.diceNum <= 25) && (boxInfo[checkPos] == 2)) ||
+                    if ((boxInfo[checkPos] == 3) ||
+                        ((mapInfo.diceNum <= 25) && (boxInfo[checkPos] == 2)) ||
                         ((mapInfo.diceNum <= 20) && (boxInfo[checkPos] == 1)))
                     {
                         goStep = i;
@@ -176,7 +177,11 @@ namespace KingsInterface
                             foreach (dynamic o in itemDefs)
                             {
                                 string name = JSON.getString(o, "name", "");
-                                if (name.EndsWith("金色寶物包") || name.EndsWith("金色宝物包"))
+                                if (name.EndsWith("紅色寶物包") || name.EndsWith("红色宝物包"))
+                                {
+                                    boxInfo[i] = 3;
+                                }
+                                else if(name.EndsWith("金色寶物包") || name.EndsWith("金色宝物包"))
                                 {
                                     boxInfo[i] = 2;
                                 }
