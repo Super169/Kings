@@ -74,16 +74,22 @@ namespace KingsInterface
                     }
                 }
             }
+            bool controlStepOK = false;
             if ((goStep >= 1) && (goStep <= 6))
             {
                 rro = Travel.controlDice(oH, sid, goStep);
-                if (rro.ok != 1) return false;
-                nextStep = mapInfo.currStep + goStep;
-                if (nextStep > mapInfo.mapSize) nextStep -= mapInfo.mapSize;
-                if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 指定擲出 {2}, 將會前進到 {3}", oGA.msgPrefix, mapInfo.diceNum, goStep, nextStep));
-                actStep = nextStep;
+                if (rro.ok == 1)
+                {
+                    nextStep = mapInfo.currStep + goStep;
+                    if (nextStep > mapInfo.mapSize) nextStep -= mapInfo.mapSize;
+                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 指定擲出 {2}, 將會前進到 {3}", oGA.msgPrefix, mapInfo.diceNum, goStep, nextStep));
+                    actStep = nextStep;
+                } else
+                {
+                    if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 操控骰子失敗", oGA.msgPrefix, mapInfo.diceNum));
+                }
             }
-            else
+            if (!controlStepOK)
             {
                 rro = Travel.dice(oH, sid);
                 if (!rro.SuccessWithJson()) return false;
@@ -179,15 +185,15 @@ namespace KingsInterface
                                 string name = JSON.getString(o, "name", "");
                                 if (name.EndsWith("紅色寶物包") || name.EndsWith("红色宝物包"))
                                 {
-                                    boxInfo[i] = 3;
+                                    boxInfo[i] = 2;
                                 }
                                 else if(name.EndsWith("金色寶物包") || name.EndsWith("金色宝物包"))
                                 {
-                                    boxInfo[i] = 2;
+                                    boxInfo[i] = 1;
                                 }
                                 else if (name.EndsWith("色寶物包") || name.EndsWith("色宝物包"))
                                 {
-                                    boxInfo[i] = 1;
+                                    boxInfo[i] = 0;
                                 }
 
                             }
