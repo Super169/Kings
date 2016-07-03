@@ -83,6 +83,7 @@ namespace KingsInterface
                     nextStep = mapInfo.currStep + goStep;
                     if (nextStep > mapInfo.mapSize) nextStep -= mapInfo.mapSize;
                     if (updateInfo != null) updateInfo(string.Format("{0}周遊: 餘下{1} 次, 指定擲出 {2}, 將會前進到 {3}", oGA.msgPrefix, mapInfo.diceNum, goStep, nextStep));
+                    controlStepOK = true;
                     actStep = nextStep;
                 } else
                 {
